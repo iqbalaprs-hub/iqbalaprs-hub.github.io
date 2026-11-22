@@ -107,7 +107,7 @@ section{padding:72px 0}
 .gridbg{background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:32px 32px;background-position:center}
 
 /* hero */
-.hero{padding:64px 0 64px}
+.hero{padding:44px 0 64px}
 @media(min-width:900px){.hero{padding:64px 0 96px}}
 .hero-grid{display:grid;gap:40px;align-items:center}
 .hero-grid>*,.ai-row>*,.process>*,.about>*,.p-olx>*{min-width:0}
@@ -493,18 +493,18 @@ footer .wrap{display:grid;gap:14px}
     <div>
       <span class="badge rv"><img src="assets/iqbal.webp" alt="" width="28" height="28"><span>SDET at <b>PT Astra Digital Mobil</b> · OLX</span></span>
       <h1 class="display rotator rv" id="rotator">
-        <span class="sr">Mobile, web, and API tests you can trust</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Mobile, web, and API tests</span> you can trust</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Quality engineering</span> for every platform</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Catch the bug</span> before your users do</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Reliable tests,</span> faster releases</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Test automation</span> teams keep using</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Green builds</span> you can believe in</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Ship every release</span> with confidence</span>
-        <span class="sz" aria-hidden="true"><span class="grad">From test plan</span> to green pipeline</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Fewer flaky tests,</span> calmer releases</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Quality built in,</span> not bolted on</span>
-        <span class="typed" aria-hidden="true"><span class="grad" id="tA">Mobile, web, and API tests</span><span id="tB"> you can trust</span><span class="caret"></span></span>
+        <span class="sr">I test with heuristics, not just checklists</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I test with heuristics,</span> not just checklists</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Risk decides</span> what gets tested first</span>
+        <span class="sz" aria-hidden="true"><span class="grad">A flaky test</span> is a bug, not bad luck</span>
+        <span class="sz" aria-hidden="true"><span class="grad">API checks first,</span> UI tests on top</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Automate the repeatable,</span> explore the risky</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Coverage is a metric,</span> not the goal</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Quality starts</span> at the requirement</span>
+        <span class="sz" aria-hidden="true"><span class="grad">A green build</span> should mean working software</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Every bug report</span> ships with steps to reproduce</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Test like a user,</span> verify like an engineer</span>
+        <span class="typed" aria-hidden="true"><span class="grad" id="tA">I test with heuristics,</span><span id="tB"> not just checklists</span><span class="caret"></span></span>
       </h1>
       <p class="lead rv">I'm Iqbal, an SDET with almost 5 years in QA. I automate mobile, web and API tests on real devices.</p>
       <div class="cta-row rv">
@@ -996,7 +996,7 @@ footer .wrap{display:grid;gap:14px}
   menu.addEventListener('click', function(e){ if (e.target.tagName === 'A' && menu.classList.contains('open')) btn.click(); });
 
   // headline: types a phrase, holds, deletes it, types the next; pauses while hovered
-  var PH = [["Mobile, web, and API tests", " you can trust"], ["Quality engineering", " for every platform"], ["Catch the bug", " before your users do"], ["Reliable tests,", " faster releases"], ["Test automation", " teams keep using"], ["Green builds", " you can believe in"], ["Ship every release", " with confidence"], ["From test plan", " to green pipeline"], ["Fewer flaky tests,", " calmer releases"], ["Quality built in,", " not bolted on"]];
+  var PH = [["I test with heuristics,", " not just checklists"], ["Risk decides", " what gets tested first"], ["A flaky test", " is a bug, not bad luck"], ["API checks first,", " UI tests on top"], ["Automate the repeatable,", " explore the risky"], ["Coverage is a metric,", " not the goal"], ["Quality starts", " at the requirement"], ["A green build", " should mean working software"], ["Every bug report", " ships with steps to reproduce"], ["Test like a user,", " verify like an engineer"]];
   var rotator = document.getElementById('rotator'), tA = document.getElementById('tA'), tB = document.getElementById('tB');
   var pi = 0, ci = (PH[0][0] + PH[0][1]).length, del = true, paused = false;
   rotator.addEventListener('mouseenter', function(){ paused = true; });

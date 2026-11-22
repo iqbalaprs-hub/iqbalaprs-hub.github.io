@@ -1,9 +1,10 @@
 /* Bugyy: pixel cat that lives on top of the page. Port of ESDY (ESDY Planner v13+).
-   Mount: const destroy = mountBugyy({ name, storageKey, below }); destroy() removes everything. */
+   Mount: const destroy = mountBugyy({ name, storageKey, below, color }); destroy() removes everything.
+   This site runs it without the dynamic island: no panel, no hunger, grey cat by default. */
 (function () {
 'use strict';
 const CSS = ".esdy-island-wrap, .esdy-cat-world { --card:#fff; --fg:#000; --line:#e2ded9; --muted:rgba(0,0,0,.56); --accent:#16A34A; --font-ui:'Inter',system-ui,sans-serif; --font-mono:'JetBrains Mono',ui-monospace,monospace; --spring:cubic-bezier(.2,1.4,.4,1); }\nbody { position: relative; isolation: isolate; }\n.esdy-island-wrap { position: fixed; top: var(--esdy-top, max(10px, env(safe-area-inset-top, 0px))); left: 50%; transform: translateX(-50%); z-index: 90; display: flex; justify-content: center; pointer-events: none; }\n.esdy-island { pointer-events: auto; background: #09090b; color: #f5f5f7; border-radius: 22px; width: 196px; overflow: hidden; box-shadow: 0 10px 30px -10px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.06); transition: width .5s var(--spring), border-radius .5s var(--spring); }\n.esdy-island.mini:not(.open) { width: 52px; }\n.esdy-island { transition: width .5s var(--spring), border-radius .5s var(--spring), transform .35s ease, opacity .25s; }\n.esdy-island.away:not(.open) { transform: translateY(-160%); opacity: 0; pointer-events: none; }\n.esdy-island.mini:not(.open) .esdy-island-btn { padding: 0; justify-content: center; }\n.esdy-island.mini:not(.open) :is(.esdy-island-name, .esdy-hunger) { display: none; } /* mini pill shows only ESDY, no clipped text */\n.esdy-island.open { width: min(360px, calc(100vw - 24px)); border-radius: 26px; }\n.esdy-island-btn { all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px 0 8px; width: 100%; }\n.esdy-island-btn:focus-visible { outline: 2px solid #7fd6c2; outline-offset: -3px; border-radius: 22px; }\n.esdy-island-btn canvas { width: 31px; height: 26px; image-rendering: pixelated; flex: none; transition: transform .12s ease-out; } /* 24\u00d720 sprite grid, same height as before */\n.esdy-island-name { font: 600 13px var(--font-ui); flex: 1; }\n.esdy-hunger { display: flex; gap: 2px; }\n.esdy-hunger i { width: 6px; height: 10px; border-radius: 2px; background: #3a3a40; }\n.esdy-hunger i.on { background: #ffb347; }\n.esdy-hunger.low i.on { background: #ff6b6b; }\n.esdy-island-panel { display: grid; gap: 12px; padding: 0 14px; max-height: 0; opacity: 0; overflow: hidden; visibility: hidden; transition: max-height .5s var(--spring), opacity .25s, padding .3s, visibility 0s .5s; }\n.esdy-island.open .esdy-island-panel { max-height: min(460px, calc(100dvh - 80px)); overflow-y: auto; opacity: 1; padding: 4px 14px 14px; visibility: visible; transition: max-height .5s var(--spring), opacity .25s, padding .3s; }\n.esdy-ip-label { font: 500 10.5px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: #9a9aa3; }\n.esdy-cat-picks { display: grid; gap: 8px; margin-top: 6px; }\n.esdy-cat-breed { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }\n.esdy-cat-breed > span { font-size: 11.5px; color: #b4b4bc; width: 100%; }\n.esdy-cat-pick { all: unset; box-sizing: border-box; cursor: pointer; width: 44px; height: 44px; border-radius: 12px; background: #1c1c21; display: grid; place-items: center; border: 2px solid transparent; transition: transform .2s var(--spring), background .2s; }\n.esdy-cat-pick canvas { width: 36px; height: 36px; image-rendering: pixelated; }\n.esdy-cat-pick:hover { transform: translateY(-2px); background: #2a2a31; }\n.esdy-cat-pick[aria-pressed=\"true\"] { border-color: #7fd6c2; background: #24302d; }\n.esdy-cat-pick:focus-visible { outline: 2px solid #7fd6c2; outline-offset: 2px; }\n.esdy-ip-acts { display: flex; gap: 8px; flex-wrap: wrap; }\n.esdy-ip-acts button { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 12px; background: #1c1c21; color: #f5f5f7; font: 500 13px var(--font-ui); transition: transform .2s var(--spring), background .2s; }\n.esdy-ip-acts button:hover { background: #2a2a31; transform: translateY(-1px); }\n.esdy-ip-acts button:active { transform: scale(.94); }\n.esdy-ip-acts button:focus-visible { outline: 2px solid #7fd6c2; }\n.esdy-ip-acts svg { width: 16px; height: 16px; }\n.esdy-ip-stat { font-size: 12px; color: #b4b4bc; }\n\n/* cat lane: the cat roams the full width of the dashboard */\n/* The cat lives on its own fixed overlay that never takes clicks, so no component moves or loses a click. */\n.esdy-cat-world { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 45; }\n#esdy-cat-canvas { position: absolute; left: 0; top: 0; width: 48px; height: 40px; /* = CAT_W \u00d7 CAT_H; a mismatch squashes the sprite */ image-rendering: pixelated; will-change: transform; }\n.esdy-cat-food { position: absolute; left: 0; top: 0; width: 11px; height: 5px; border-radius: 1px; background: #5aa9e6; box-shadow: inset 2px 1px 0 -1px #1e3a52; }\n.esdy-cat-food::after { content: \"\"; position: absolute; left: 10px; top: -1px; width: 3px; height: 7px; background: #5aa9e6; }\n.esdy-cat-ball { position: absolute; left: 0; top: 0; width: 10px; height: 10px; background: linear-gradient(#ff5c5c 0 40%, #fff 40% 60%, #ff5c5c 60%); }\n.esdy-cat-fx { position: absolute; pointer-events: none; font: 600 12px var(--font-ui); white-space: nowrap; }\n.esdy-cat-bubble { white-space: normal; width: max-content; max-width: min(220px, calc(100vw - 24px)); text-align: center; line-height: 1.35; transform-origin: 50% 100%; box-shadow: 0 8px 20px -12px rgba(0,0,0,.4); }\n.esdy-cat-bubble small { display: block; font: 600 9.5px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 1px; }\n.esdy-cat-bubble { background: var(--card); color: var(--fg); border: 1px solid var(--line); padding: 3px 8px; border-radius: 10px; animation: esdy-bubble 1.8s ease forwards; }\n.esdy-cat-bubble::after { content: \"\"; position: absolute; left: calc(50% + var(--tx, 0px)); bottom: -5px; width: 8px; height: 8px; margin-left: -4px; background: inherit; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: rotate(45deg); } /* tail points at ESDY */\n.esdy-cat-heart { color: #ff5c8a; font-size: 16px; animation: esdy-heart 1.1s ease-out forwards; }\n.esdy-cat-z { color: var(--muted); font-size: 13px; animation: esdy-zz 2.2s ease-out forwards; }\n/* fxPlace sets the bubble's real position; the animation only adds a small rise, so a frame without it never shifts the bubble */\n@keyframes esdy-bubble { 0% { opacity: 0; transform: translateY(6px) scale(.85); } 8% { opacity: 1; transform: none; } 90% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-6px); } }\n@keyframes esdy-heart { from { opacity: 1; transform: translate(0, 0) scale(.6); } to { opacity: 0; transform: translate(var(--dx, 0), -38px) scale(1.2); } }\n@keyframes esdy-zz { from { opacity: 0; transform: translate(0, 0); } 20% { opacity: 1; } to { opacity: 0; transform: translate(14px, -30px); } }\n@media (hover: none) { .esdy-cat-pick:hover, .esdy-ip-acts button:hover { transform: none; } }\n";
-const CONTEXT = [["capabilities", "Android dan iOS, dua-duanya Iqbal pegang di OLX."], ["projects", "Ini produk yang pernah Iqbal test, dari OLX sampai e-Katalog."], ["experience", "Hampir 5 tahun di QA. Lumayan kan?"], ["work-together", "Iqbal terima full-time dan freelance."], ["contact", "Mau ngobrol? Email atau LinkedIn, dua-duanya bisa."]];
+const CONTEXT = [["capabilities", "Android and iOS? Iqbal's got both covered at OLX."], ["projects", "These are real products Iqbal tested. Pretty legit, right?"], ["experience", "Almost 5 years in QA. Not bad, huh?"], ["work-together", "Full-time or freelance, Iqbal's open to both."], ["contact", "Wanna talk? Email or LinkedIn, either works."]];
 window.mountBugyy = function mountBugyy(opts) {
   opts = opts || {};
   if (document.getElementById('esdy-cat-world')) return function () {};
@@ -21,20 +22,6 @@ window.mountBugyy = function mountBugyy(opts) {
 
   const style = document.createElement('style'); style.id = 'esdy-style'; style.textContent = CSS; document.head.append(style);
   const holder = document.createElement('div');
-  holder.innerHTML = `<div class="esdy-island-wrap">
-      <div class="esdy-island" id="esdy-island" role="group" aria-label="${NAME}, kucing pixel">
-        <button class="esdy-island-btn" id="esdy-island-btn" type="button" aria-expanded="false" aria-controls="esdy-island-panel" data-tip="${NAME} si kucing: warna, makan, main">
-          <canvas id="esdy-island-cat" width="24" height="20" aria-hidden="true"></canvas>
-          <span class="esdy-island-name" id="esdy-island-name">${NAME}</span>
-          <span class="esdy-hunger" id="esdy-island-hunger" aria-label="Kenyang"></span>
-        </button>
-        <div class="esdy-island-panel" id="esdy-island-panel">
-          <div><span class="esdy-ip-label">Ras &amp; warna</span><div class="esdy-cat-picks" id="esdy-cat-swatches"></div></div>
-          <div class="esdy-ip-acts" id="esdy-cat-acts"></div>
-          <div class="esdy-ip-stat" id="esdy-cat-stat"></div>
-        </div>
-      </div>
-    </div>`; const wrapEl = holder.firstElementChild; document.body.append(wrapEl);
   holder.innerHTML = `<div class="esdy-cat-world" id="esdy-cat-world" aria-hidden="true"><canvas id="esdy-cat-canvas" width="44" height="28" hidden></canvas><div class="esdy-cat-food" id="esdy-cat-food" hidden></div><div class="esdy-cat-ball" id="esdy-cat-ball" hidden></div></div>`; const worldEl = holder.firstElementChild; document.body.append(worldEl);
 
 const $ = (id) => document.getElementById('esdy-' + id);
@@ -173,8 +160,8 @@ const OLD_COLOR = { oranye: 'kampung-oranye', abu: 'kampung-abu', hitam: 'kampun
 const CAT_KEY = STORAGE_KEY;
 const catSaved = load(CAT_KEY) || {};
 const catState = { color: OLD_COLOR[catSaved.color] || catSaved.color || 'kampung-oranye', hunger: typeof catSaved.hunger === 'number' ? catSaved.hunger : 80, at: catSaved.at || Date.now(), hidden: !!catSaved.hidden, pets: catSaved.pets || 0, meals: catSaved.meals || 0 };
-if (!CAT_COLORS.some((c) => c.id === catState.color)) catState.color = CAT_COLORS[0].id;
-const hungerNow = () => Math.max(0, catState.hunger - (Date.now() - catState.at) / 180000); // turun 1 poin tiap 3 menit
+catState.color = CAT_COLORS.some((c) => c.id === opts.color) ? opts.color : 'kampung-abu'; catState.hidden = false; // grey by default; no picker or show/hide without the island
+const hungerNow = () => 100; // no island to feed from, so the cat never gets hungry
 function saveCat() { catState.hunger = hungerNow(); catState.at = Date.now(); store(CAT_KEY, { ...catState }); }
 // Missing codes fall back to the body/face colours, so a variant only lists what differs.
 const mixHex = (a, b, t) => '#' + [1, 3, 5].map((i) => Math.round(parseInt(a.slice(i, i + 2), 16) * (1 - t) + parseInt(b.slice(i, i + 2), 16) * t).toString(16).padStart(2, '0')).join('');
@@ -354,6 +341,9 @@ function lowRuns(e) {
   }
   flush(); return out;
 }
+
+// No island on this site: the cat drops in from just under the header, centred; perches must sit below that line.
+function anchorRect() { const b = opts.below && document.querySelector(opts.below); const y = b ? Math.max(0, b.getBoundingClientRect().bottom) : 0; return { left: innerWidth / 2, right: innerWidth / 2, width: 0, height: 0, top: y, bottom: y }; }
 function catBlockers() {
   const vh = innerHeight, vw = innerWidth, out = [];
   const add = (r) => { if (r.width > 0 && r.height > 0 && r.bottom > -40 && r.top < vh + 40 && r.right > 0 && r.left < vw) out.push(r); };
@@ -373,7 +363,7 @@ function catBlockers() {
 // Free stretches on the top edge of each visible component where the whole cat fits without touching a blocker.
 function catFindSpots() {
   const bl = catBlockers(); const vh = innerHeight, vw = innerWidth;
-  const minTop = $('island').getBoundingClientRect().bottom + 4;
+  const minTop = anchorRect().bottom + 4;
   const spots = [];
   for (const e of document.querySelectorAll(PERCH_SEL)) {
     if (e.closest('dialog, [hidden], .esdy-island-wrap, header, .banner, .mobile-menu')) continue;
@@ -411,7 +401,7 @@ function pickSpot(minW = 0) {
 }
 function catHopTo(spot, then, ox) {
   let p = catPos(); let drop = false;
-  if (!p) { const ir = $('island').getBoundingClientRect(); p = { x: ir.left + ir.width / 2 - CAT_W / 2, y: ir.bottom + CAT_H - 4 }; drop = true; }
+  if (!p) { const ir = anchorRect(); p = { x: ir.left + ir.width / 2 - CAT_W / 2, y: ir.bottom + CAT_H - 4 }; drop = true; }
   const r = perchRect(spot.el);
   const tox = ox != null ? ox : spot.x0 + Math.random() * (spot.x1 - spot.x0);
   const ex = r.left + tox, ey = r.top, dist = Math.hypot(ex - p.x, ey - p.y);
@@ -445,7 +435,7 @@ function catValidate(now) {
   const p = catPos();
   const ok = p && (() => {
     const box = { left: p.x, right: p.x + CAT_W, top: p.y - CAT_H - 4 - cat.jy, bottom: p.y };
-    if (p.y - CAT_H < $('island').getBoundingClientRect().bottom + 4 || p.y > innerHeight - 8 || p.x < 0 || p.x + CAT_W > innerWidth) return false;
+    if (p.y - CAT_H < anchorRect().bottom + 4 || p.y > innerHeight - 8 || p.x < 0 || p.x + CAT_W > innerWidth) return false;
     if (document.querySelector('dialog[open]')) return false;
     return !catBlockers().some((b) => overlap(box, b));
   })();
@@ -489,27 +479,27 @@ const hearts = (n = 3) => { for (let i = 0; i < n; i++) setTimeout(() => catFx('
 // ---- weekly cat lines: reminders, life wisdom, click feedback. A new set per ISO week, stored in db "catlines/<week>".
 const CAT_LINES_DEFAULT = {
   "reminders": [
-    "Cari SDET? Tombol Download CV ada di bagian atas.",
-    "Mampir ke Projects, ada OLX dan e-Katalog di sana.",
-    "Iqbal terbuka untuk full-time dan freelance.",
-    "Test yang flaky jangan dibiarkan, catat dulu.",
-    "Sudah lihat Stack? Ada WebdriverIO, Appium, Playwright.",
-    "Mau ngobrol? Tombol Email me ada di paling bawah."
+    "Hiring an SDET? The CV button's right up top, no cap.",
+    "Peep the Projects section. OLX and e-Katalog are in there.",
+    "Iqbal's down for full-time or freelance gigs.",
+    "Flaky test? Log it now, don't let it slide.",
+    "Check the Stack: WebdriverIO, Appium, Playwright. Solid lineup.",
+    "Wanna chat? Hit Email me at the bottom."
   ],
   "wisdom": [
-    "Bug yang ketemu hari ini lebih murah dari bug di production.",
-    "Pelan tidak apa-apa, asal tidak berhenti.",
-    "Istirahat juga bagian dari kerja.",
-    "Hal kecil yang konsisten mengalahkan hal besar yang sesekali.",
-    "Build hijau itu enak. Build hijau yang jujur lebih enak."
+    "A bug caught today is way cheaper than one in prod.",
+    "Slow progress is still progress, fr.",
+    "Breaks count as work too. Go stretch a bit.",
+    "Small wins every day beat big wins once in a while.",
+    "Green builds feel good. Honest green builds feel better."
   ],
   "feedback": [
-    "Meong! Aku Bugyy, penjaga bug di sini.",
-    "Hehe, geli!",
-    "Mrrp? Aku lagi cari bug.",
-    "Nyaa~ jangan lupa sapa Iqbal ya!",
-    "Purrr… makasih sudah mampir.",
-    "Meong! Semua test hijau hari ini."
+    "Mrow! I'm Bugyy, resident bug hunter.",
+    "Hehe, that tickles!",
+    "Mrrp? Busy sniffing out bugs rn.",
+    "Nyaa~ go say hi to Iqbal!",
+    "Purrr… thanks for dropping by.",
+    "Meow! All tests green today, we vibing."
   ]
 };
 function isoWeek(d = new Date()) {
@@ -527,14 +517,14 @@ function nextLine(kind) {
 }
 const cleanLines = (x) => (Array.isArray(x) ? x.filter((v) => typeof v === 'string' && v.trim()).map((v) => v.trim().slice(0, 160)) : []);
 // Mouse (or pen) coming close startles ESDY: jump in fright, then run away from the pointer; cornered or chased, it leaps to a far perch.
-const STARTLE = ['Eh, kaget!', 'Waa!', 'Hiii, jangan dekat-dekat!', 'Meong?!', 'Kaget aku!', 'Nyaa, kursornya!', 'Astaga!', 'Eits, nggak kena!'];
+const STARTLE = ['Whoa, jumpscare!', 'Waa!', 'Yikes, back off!', 'Meow?!', 'Bro, you scared me!', 'Nyaa, the cursor!', 'Oh my gosh!', 'Missed me!'];
 let startles = [], calmUntil = 0, lastStartle = 0;
 function catStartle(px, py) {
   const now = performance.now(); startles = startles.filter((t) => now - t < 8000); startles.push(now);
   cat.lastTouch = now; cat.food = null; cat.ball = null;
-  if (startles.length >= 5) { calmUntil = now + 9000; startles = []; cat.state = 'look'; cat.until = now + 3000; setMood('flat', 3000); say('Oke, oke… aku menyerah. Elus aku deh.'); return; }
+  if (startles.length >= 5) { calmUntil = now + 9000; startles = []; cat.state = 'look'; cat.until = now + 3000; setMood('flat', 3000); say('Okay okay… I give up. Just pet me already.'); return; }
   const chased = startles.length >= 2;
-  setMood('surprised', 1700); say(chased ? 'Jangan kejar aku!' : STARTLE[Math.floor(Math.random() * STARTLE.length)]);
+  setMood('surprised', 1700); say(chased ? 'Quit chasing me!' : STARTLE[Math.floor(Math.random() * STARTLE.length)]);
   if (reduceCat.matches) { cat.state = 'look'; cat.until = now + 1500; return; }
   const p = catPos(); if (!p) return; const away = px < p.x + CAT_W / 2 ? 1 : -1;
   const target = away > 0 ? cat.range[1] : cat.range[0];
@@ -562,14 +552,14 @@ function contextLine() {
 function nextCatLine() {
   for (let i = 0; i < 3; i++) {
     const k = ['reminders', 'wisdom', 'context'][lineTurn++ % 3];
-    if (k === 'context') { const c = contextLine(); if (c) return [c, 'Info']; continue; }
-    return [nextLine(k), k === 'reminders' ? 'Pengingat' : 'Petuah'];
+    if (k === 'context') { const c = contextLine(); if (c) return [c, 'FYI']; continue; }
+    return [nextLine(k), k === 'reminders' ? 'Tip' : 'Real talk'];
   }
-  return [nextLine('reminders'), 'Pengingat'];
+  return [nextLine('reminders'), 'Tip'];
 }
 function catPoke() {
   cat.lastTouch = performance.now();
-  if (!catPos()) { const sp = pickSpot(); if (sp) catHopTo(sp, () => say('Hai!')); return; }
+  if (!catPos()) { const sp = pickSpot(); if (sp) catHopTo(sp, () => say('Hey there!')); return; }
   if (cat.state === 'sleep') { cat.state = 'look'; cat.until = cat.lastTouch + 2000; setMood('surprised', 1400); say('Mrrp?'); return; }
   if (!cat.hop && cat.state !== 'eat' && cat.state !== 'chase') { cat.state = 'look'; cat.until = cat.lastTouch + 2200; } // turns to you
   if (!reduceCat.matches && cat.jy === 0 && !cat.hop) cat.vy = 260;
@@ -578,21 +568,21 @@ function catPoke() {
 // Food and ball need room: move to the widest free perch first.
 function withRoom(minW, fn) {
   if (cat.el && cat.range[1] - cat.range[0] >= minW && !cat.hop) { fn(); return; }
-  const sp = pickSpot(minW); if (sp) catHopTo(sp, fn, sp.x0); else say('Tempatnya sempit');
+  const sp = pickSpot(minW); if (sp) catHopTo(sp, fn, sp.x0); else say('Too cramped here');
 }
 function catFeed() {
   cat.lastTouch = performance.now();
   if (reduceCat.matches) { finishMeal(); return; }
-  if (cat.food) { say('Makanannya masih ada'); return; }
+  if (cat.food) { say('Still got food, chill'); return; }
   withRoom(70, () => {
     const fo = cat.range[1] + CAT_W - 10; cat.food = { el: cat.el, ox: fo };
-    cat.state = 'walk'; cat.target = cat.range[1]; face(1); setMood('surprised', 700); say('Ikan!');
+    cat.state = 'walk'; cat.target = cat.range[1]; face(1); setMood('surprised', 700); say('Fish!');
   });
 }
-function finishMeal() { catState.hunger = 100; catState.at = Date.now(); catState.meals++; saveCat(); setMood('happy', 3000); hearts(3); say('Kenyang!'); renderIsland(); }
+function finishMeal() { catState.hunger = 100; catState.at = Date.now(); catState.meals++; saveCat(); setMood('happy', 3000); hearts(3); say('So full!'); renderIsland(); }
 function catPlay() {
   cat.lastTouch = performance.now();
-  if (reduceCat.matches) { say('Main bola!'); hearts(1); return; }
+  if (reduceCat.matches) { say('Ball time!'); hearts(1); return; }
   if (cat.state === 'sleep') cat.state = 'idle';
   withRoom(140, () => { cat.ball = { el: cat.el, x: cat.range[1] + CAT_W - 12, vx: -220, kicks: 0, rot: 0, lo: cat.range[0], hi: cat.range[1] + CAT_W - 12 }; });
 }
@@ -634,7 +624,7 @@ function catLoop(ts) {
       if (h.pre > 0) h.pre -= dt; else h.t = Math.min(1, h.t + dt / h.T);
       // Content may have moved during the jump: re-check the landing spot once before touching down, and retarget mid-air if it is now covered.
       if (!h.checked && h.t >= .6) { h.checked = true; const box = { left: ex, right: ex + CAT_W, top: ey - CAT_H - 4, bottom: ey };
-        if (ey - CAT_H < $('island').getBoundingClientRect().bottom + 4 || catBlockers().some((b) => overlap(box, b))) { const sp = pickSpot(); if (sp) { catHopTo(sp, cat.then); cat.hop.pre = 0; return; } } }
+        if (ey - CAT_H < anchorRect().bottom + 4 || catBlockers().some((b) => overlap(box, b))) { const sp = pickSpot(); if (sp) { catHopTo(sp, cat.then); cat.hop.pre = 0; return; } } }
       if (h.drop) { // falls like it has weight: x eases out, y accelerates
         h.x = sx + (ex - sx) * h.t * h.t * (3 - 2 * h.t); h.y = sy + (ey - sy) * h.t * h.t;
       } else {
@@ -654,7 +644,7 @@ function catLoop(ts) {
       if (Math.abs(cat.ox + CAT_W / 2 - b.x - 6) < 16 && Math.abs(b.vx) < 80) {
         b.kicks++; b.vx = (b.x > (b.lo + b.hi) / 2 ? -1 : 1) * (150 + Math.random() * 120); if (cat.jy === 0) cat.vy = 200;
         setMood('happy', 900);
-        if (b.kicks >= 5) { cat.ball = null; cat.state = 'sit'; cat.until = now + 4000; hearts(2); say('Seru!'); }
+        if (b.kicks >= 5) { cat.ball = null; cat.state = 'sit'; cat.until = now + 4000; hearts(2); say('That was fun!'); }
       }
     }
     if (cat.state === 'walk' || cat.state === 'chase' || cat.state === 'flee') {
@@ -663,7 +653,7 @@ function catLoop(ts) {
       else if (Math.abs(dx) < 1.5) {
         if (cat.food) { cat.dir = 1; cat.state = 'eat'; cat.until = now + 2600; }
         else if (cat.state === 'walk') { cat.state = 'idle'; cat.until = now + 600 + Math.random() * 1200; }
-        else if (cat.state === 'flee') { cat.v = 0; cat.state = 'look'; cat.until = now + 1300 + Math.random() * 700; if (Math.random() < .35) say(['Hmph.', 'Fiuh…', 'Aman…'][Math.floor(Math.random() * 3)]); }
+        else if (cat.state === 'flee') { cat.v = 0; cat.state = 'look'; cat.until = now + 1300 + Math.random() * 700; if (Math.random() < .35) say(['Hmph.', 'Phew…', 'Safe…'][Math.floor(Math.random() * 3)]); }
       } else if (performance.now() >= cat.turnUntil) {
         face(Math.sign(dx));
         if (performance.now() >= cat.turnUntil) {
@@ -679,7 +669,7 @@ function catLoop(ts) {
       if (now > cat.nextZ) { catFx('esdy-cat-z', 'z', 8, '', 2200); cat.nextZ = now + 1800; }
     } else if (now > cat.until) catPick(now);
   }
-  if (now > cat.nextNag) { cat.nextNag = now + 90000; if (hungerNow() < 25 && cat.state !== 'sleep') { if (!cat.hop && cat.state !== 'eat') { cat.state = 'look'; cat.until = now + 2500; } say('Lapar… beri aku ikan ya.'); } }
+  if (now > cat.nextNag) { cat.nextNag = now + 90000; if (hungerNow() < 25 && cat.state !== 'sleep') { if (!cat.hop && cat.state !== 'eat') { cat.state = 'look'; cat.until = now + 2500; } say('So hungry… fish pls?'); } }
   if (!cat.nextLine) cat.nextLine = now + 8000; // first line soon after the page opens
   if (now > cat.nextLine && !cat.hop && catPos()) {
     if (cat.fx.some((f) => f.n.classList.contains('esdy-cat-bubble'))) cat.nextLine = now + 3000; // never talk over itself
@@ -722,48 +712,8 @@ new MutationObserver((ms) => {
   cat.nextCheck = Math.min(cat.nextCheck, performance.now() + 60);
 }).observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['class', 'hidden', 'open'] });
 
-function renderIsland() {
-  const h = hungerNow(); const seg = Math.ceil(h / 20);
-  const hb = $('island-hunger'); hb.className = 'esdy-hunger' + (h < 25 ? ' low' : '');
-  hb.replaceChildren(...Array.from({ length: 5 }, (_, i) => el('i', i < seg ? 'on' : '')));
-  hb.setAttribute('aria-label', `Kenyang ${Math.round(h)}%`);
-  islandKey = ''; islandMirror(cat.pose || 'front', catExpr(performance.now()), cat.dir || 1, 0); // redraw now (colour may have changed); the loop keeps it in sync
-  $('cat-swatches').replaceChildren(...Object.entries(CAT_BREEDS).map(([breed, info]) => {
-    const row = el('div', 'esdy-cat-breed'); row.append(el('span', null, info.name));
-    CAT_COLORS.filter((c) => c.breed === breed).forEach((c) => {
-      const b = el('button', 'esdy-cat-pick'); b.type = 'button';
-      const cv = el('canvas'); cv.width = 20; cv.height = CH; drawCat(cv.getContext('2d'), -2, 0, 1, 'front', 'smile', 1, variantPal(c)); b.append(cv);
-      b.setAttribute('aria-pressed', String(c.id === catState.color)); b.setAttribute('aria-label', c.name); b.dataset.tip = c.name;
-      b.addEventListener('click', () => { catState.color = c.id; saveCat(); spriteKey = ''; setMood('happy', 1500); renderIsland(); say(c.name + '!'); });
-      row.append(b);
-    });
-    return row;
-  }));
-  const act = (name, label, fn) => { const b = el('button'); b.type = 'button'; b.append(icon(name), document.createTextNode(label)); b.addEventListener('click', fn); return b; };
-  $('cat-acts').replaceChildren(
-    act('smile', 'Sapa', catPoke), act('fish', 'Beri makan', catFeed), act('ball', 'Main bola', catPlay), act('heart', 'Elus', catPet), act('moon', 'Tidurkan', catSleep),
-    act(catState.hidden ? 'eye' : 'eye-off', catState.hidden ? 'Tampilkan' : 'Sembunyikan', () => {
-      catState.hidden = !catState.hidden; saveCat(); $('cat-world').hidden = catState.hidden; $('cat-world').querySelectorAll('.esdy-cat-fx').forEach((n) => n.remove()); cat.fx = [];
-      if (!catState.hidden) cat.nextCheck = 0; renderIsland();
-    }));
-  $('cat-stat').textContent = `Kenyang ${Math.round(h)}% · ${catState.meals}x makan · ${catState.pets}x dielus${h < 25 ? ' · ' + NAME + ' lapar, beri makan ya' : ''}`;
-}
-function setIsland(open) { $('island').classList.toggle('open', open); if (open) $('island').classList.remove('mini'); $('island-btn').setAttribute('aria-expanded', String(open)); if (open) renderIsland(); }
-$('island-btn').addEventListener('click', () => setIsland(!$('island').classList.contains('open')));
-docOn('pointerdown', (e) => { if (!e.target.closest('#esdy-island')) setIsland(false); });
-docOn('keydown', (e) => { if (e.key === 'Escape' && $('island').classList.contains('open')) { setIsland(false); $('island-btn').focus(); } });
-// Floating island shrinks to a small pill while scrolling down, comes back when scrolling up.
-let islandLastY = scrollY;
-addEventListener('scroll', () => {
-  const y = scrollY, isl = $('island');
-  if (!isl.classList.contains('open')) {
-    isl.classList.toggle('mini', y > 120);
-    isl.classList.remove('away'); // stays visible while scrolling (only shrinks to the cat-only pill)
-  }
-  islandLastY = y;
-}, { passive: true });
+function renderIsland() {} // no island: nothing to render
 $('cat-world').hidden = catState.hidden;
-renderIsland(); setInterval(() => { if (!$('island').classList.contains('open')) renderIsland(); }, 60000);
 cat.nextCheck = Infinity; // armed by catArm() once the first data snapshot has rendered
 if (opts.debug) window.__bugyy = { cat, catState, get startles() { return startles; }, get calmUntil() { return calmUntil; }, get lastStartle() { return lastStartle; } };
 function catArm() { if (cat.nextCheck === Infinity) cat.nextCheck = performance.now() + 700; }
@@ -774,16 +724,12 @@ function catOnRoute() {
   if (cat.el && gone(cat.el)) { cat.el = null; cat.food = null; cat.ball = null; } if (cat.nextCheck !== Infinity && !cat.el && !cat.hop) cat.nextCheck = performance.now() + 450; }
 requestAnimationFrame(catLoop);
 
-  // integration: the island floats just under the site's sticky header instead of over it
-  const below = opts.below && document.querySelector(opts.below);
-  const placeIsland = () => { const b = below ? below.getBoundingClientRect().bottom : 0; wrapEl.style.setProperty('--esdy-top', Math.max(10, Math.round(b) + 8) + 'px'); };
-  if (below) { placeIsland(); addEventListener('scroll', placeIsland, { passive: true }); addEventListener('resize', placeIsland); }
   catArm();
 
   return function destroy() {
     dead = true; window.cancelAnimationFrame(raf);
     offs.forEach((f) => f()); ivs.forEach((id) => window.clearInterval(id)); tos.forEach((id) => window.clearTimeout(id)); mos.forEach((m) => m.disconnect());
-    wrapEl.remove(); worldEl.remove(); style.remove();
+    worldEl.remove(); style.remove();
   };
 };
 })();
