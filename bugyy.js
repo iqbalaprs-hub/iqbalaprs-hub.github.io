@@ -289,12 +289,13 @@ function drawCat(ctx, ox, oy, s, pose, expr, dir, pal) {
   for (const [x, y, c] of catSprite(pal.breed, pose, expr)) { ctx.fillStyle = pal[c] || pal.o; ctx.fillRect(ox + (dir > 0 ? x : CW - 1 - x) * s, oy + y * s, s, s); }
 }
 
-const reduceCat = matchMedia('(prefers-reduced-motion: reduce)');
+const reduceCat = opts.ignoreReducedMotion ? { matches: false } : matchMedia('(prefers-reduced-motion: reduce)');
 const CS = 2, CAT_W = CW * CS, CAT_H = CH * CS;
 // Components the cat may stand on (top edge), and everything it must never cover: text, controls, media, the island, the ticker.
 // Only the island and the toast float; everything else scrolls with the page.
-const PERCH_SEL = opts.perch || '.card, .role, .proj, .stack-group, .plan, .edu-card, .term, .ci-card, .portrait, .viz, .areas li, .btn, details, .stat';
-const BLOCK_SEL = 'a[href], button, input, select, textarea, label, summary, [role="button"], [tabindex]:not([tabindex="-1"]), img, svg, canvas:not(#esdy-cat-canvas), .chip, .sp, .pill, .swatch, .esdy-cat-pick' + (opts.block ? ', ' + opts.block : ', .tag, .badge, .spec, .now-pill, .pass-stamp, .lbl, .stamp, .device, .browser, .mweb, .odo, .stat-ico, .plan-head, .saas, .ico');
+const TEXT_PERCH = opts.textPerch || 'h2.display, .odo, .co, .proj-body h3, .edu-card h3, .logos span';
+const PERCH_SEL = (opts.perch || '.card, .stack-group, .term, .ci-art, .ci-card, .portrait, .proj-art, .plan-head, .role.now, .areas li, .btn-dark') + ', ' + TEXT_PERCH;
+const BLOCK_SEL = 'a[href], button, input, select, textarea, label, summary, [role="button"], [tabindex]:not([tabindex="-1"]), img, svg, canvas:not(#esdy-cat-canvas), .chip, .sp, .pill, .swatch, .esdy-cat-pick' + (opts.block ? ', ' + opts.block : ', .tag, .badge, .spec, .now-pill, .pass-stamp, .lbl, .stamp, .device, .browser, .mweb, .stat-ico, .saas, .ico');
 const INTERACTIVE_SEL = 'a[href], button, input, select, textarea, label, summary, [role="button"], [draggable="true"], [contenteditable]';
 const cat = { el: null, ox: 0, range: [0, 0], dir: 1, state: 'idle', target: 0, until: 0, frame: 0, ft: 0, jy: 0, vy: 0, hop: null, lastTouch: performance.now(), food: null, ball: null, nextNag: 0, nextZ: 0, nextCheck: 0, then: null,
   step: 0, walked: 0, mood: null, landUntil: 0, turnUntil: 0, blinkUntil: 0, fx: [] };
@@ -308,16 +309,64 @@ function catExpr(now) {
 // Turning around shows one front-facing frame, like a real cat swinging its head first.
 function face(dir) { if (dir && dir !== cat.dir) { cat.dir = dir; cat.turnUntil = performance.now() + 130; } }
 const overlap = (a, b) => a.left < b.right - 1 && a.right > b.left + 1 && a.top < b.bottom - 1 && a.bottom > b.top + 1;
+
+// Text perches stand on the tops of their first line's glyphs, not on the empty line box above them.
+const mctx = document.createElement('canvas').getContext('2d'); const metricCache = new Map();
+function glyphInset(e, text, boxH) { // px from the top of a line box of height boxH down to the top of its tallest glyph
+  const cs = getComputedStyle(e); const font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+  const key = font + '|' + Math.round(boxH) + '|' + text; let v = metricCache.get(key);
+  if (v == null) {
+    mctx.font = font; const m = mctx.measureText(text || 'H'); const fA = m.fontBoundingBoxAscent, fD = m.fontBoundingBoxDescent;
+    v = Math.max(0, (boxH - (fA + fD)) / 2 + fA - m.actualBoundingBoxAscent);
+    if (metricCache.size > 3000) metricCache.clear(); metricCache.set(key, v);
+  }
+  return v;
+}
+function perchRect(e) {
+  if (!e.matches || !e.matches(TEXT_PERCH)) return e.getBoundingClientRect();
+  if (e.classList.contains('odo')) { // rolling digits: the box is exactly one line, the hidden digits are clipped
+    const r = e.getBoundingClientRect(); const top = r.top + glyphInset(e, e.getAttribute('aria-label') || '0', r.height);
+    return { left: r.left, right: r.right, top, bottom: r.bottom, width: r.width, height: r.bottom - top };
+  }
+  const range = document.createRange(); range.selectNodeContents(e);
+  const rs = [...range.getClientRects()].filter((x) => x.width > 1);
+  if (!rs.length) return e.getBoundingClientRect();
+  const first = rs.reduce((a, b) => (b.top < a.top ? b : a)); const line = rs.filter((x) => Math.abs(x.top - first.top) < 3);
+  const left = Math.min(...line.map((x) => x.left)), right = Math.max(...line.map((x) => x.right));
+  const top = first.top + glyphInset(e, (e.textContent || '').trim().slice(0, 40), first.height);
+  return { left, right, top, bottom: first.bottom, width: right - left, height: first.bottom - top };
+}
+
+// On a text perch the cat may only stand where letters reach the perch height (capitals, ascenders):
+// a long stretch of short letters ("answers") gets a no-stand zone, so the cat never floats above x-height.
+function lowRuns(e) {
+  const pr = perchRect(e); if (pr.bottom < -40 || pr.top > innerHeight + 40) return [];
+  const fs = parseFloat(getComputedStyle(e).fontSize); const out = []; const range = document.createRange();
+  const walker = document.createTreeWalker(e, NodeFilter.SHOW_TEXT); let lineTop = null, a = null, b = null;
+  const flush = () => { if (a != null && b - a > 40) out.push({ left: a + 20, right: b - 20, top: pr.top - 30, bottom: pr.top - 2, width: b - a - 40, height: 28 }); a = b = null; };
+  for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+    for (let i = 0; i < n.length; i++) {
+      range.setStart(n, i); range.setEnd(n, i + 1); const r = range.getBoundingClientRect(); if (!r.width) continue;
+      if (lineTop == null) lineTop = r.top; if (Math.abs(r.top - lineTop) > 3) continue; // first line only
+      const ch = n.data[i]; const low = !ch.trim() || r.top + glyphInset(n.parentElement, ch, r.height) > pr.top + fs * .1;
+      if (low) { if (a == null) a = r.left; b = r.right; } else flush();
+    }
+  }
+  flush(); return out;
+}
 function catBlockers() {
   const vh = innerHeight, vw = innerWidth, out = [];
   const add = (r) => { if (r.width > 0 && r.height > 0 && r.bottom > -40 && r.top < vh + 40 && r.right > 0 && r.left < vw) out.push(r); };
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, { acceptNode: (n) => (n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT) });
   const range = document.createRange();
   for (let n = walker.nextNode(); n; n = walker.nextNode()) {
-    const pe = n.parentElement; if (!pe || pe.closest('script, style, title, #esdy-cat-world')) continue;
-    range.selectNodeContents(n); for (const r of range.getClientRects()) add(r);
+    const pe = n.parentElement; if (!pe || pe.closest('script, style, title, #esdy-cat-world, .odo')) continue;
+    range.selectNodeContents(n); const txt = n.nodeValue.trim().slice(0, 40);
+    for (const r of range.getClientRects()) { const g = glyphInset(pe, txt, r.height); add({ left: r.left, right: r.right, top: r.top + g, bottom: r.bottom, width: r.width, height: r.height - g }); }
   }
   document.querySelectorAll(BLOCK_SEL).forEach((e) => add(e.getBoundingClientRect()));
+  document.querySelectorAll('.odo').forEach((e) => add(perchRect(e)));
+  document.querySelectorAll(TEXT_PERCH).forEach((e) => { if (!e.classList.contains('odo')) lowRuns(e).forEach(add); });
   ['island'].forEach((id) => { const e = $(id); if (e && !e.hidden) add(e.getBoundingClientRect()); });
   return out;
 }
@@ -328,7 +377,7 @@ function catFindSpots() {
   const spots = [];
   for (const e of document.querySelectorAll(PERCH_SEL)) {
     if (e.closest('dialog, [hidden], .esdy-island-wrap, header, .banner, .mobile-menu')) continue;
-    const r = e.getBoundingClientRect();
+    const r = perchRect(e);
     if (r.width < CAT_W + 6 || r.top - CAT_H - 6 < minTop || r.top > vh - 8 || r.left < 0 || r.right > vw) continue;
     const lo = r.left + 3, hi = r.right - CAT_W - 3; let start = null;
     for (let x = lo; x <= hi + .1; x += 6) {
@@ -348,7 +397,7 @@ function catFindSpots() {
 function catPos() {
   if (cat.hop) return { x: cat.hop.x, y: cat.hop.y };
   if (!cat.el || !cat.el.isConnected) return null;
-  const r = cat.el.getBoundingClientRect(); if (!r.width && !r.height) return null;
+  const r = perchRect(cat.el); if (!r.width && !r.height) return null;
   return { x: r.left + cat.ox, y: r.top };
 }
 function pickSpot(minW = 0) {
@@ -363,7 +412,7 @@ function pickSpot(minW = 0) {
 function catHopTo(spot, then, ox) {
   let p = catPos(); let drop = false;
   if (!p) { const ir = $('island').getBoundingClientRect(); p = { x: ir.left + ir.width / 2 - CAT_W / 2, y: ir.bottom + CAT_H - 4 }; drop = true; }
-  const r = spot.el.getBoundingClientRect();
+  const r = perchRect(spot.el);
   const tox = ox != null ? ox : spot.x0 + Math.random() * (spot.x1 - spot.x0);
   const ex = r.left + tox, ey = r.top, dist = Math.hypot(ex - p.x, ey - p.y);
   const T = drop ? Math.min(1.4, Math.max(.6, Math.sqrt(Math.max(1, ey - p.y)) / 26, Math.abs(ex - p.x) / 600)) : Math.min(1, Math.max(.4, dist / 750));
@@ -578,7 +627,7 @@ function catLoop(ts) {
 
   if (cat.hop) {
     const h = cat.hop;
-    const hr = h.el.isConnected ? h.el.getBoundingClientRect() : null;
+    const hr = h.el.isConnected ? perchRect(h.el) : null;
     if (!hr || (!hr.width && !hr.height)) { cat.hop = null; cat.el = null; cat.then = null; cat.nextCheck = now + 450; } // target vanished (view change): drop in again
     else {
       const r = hr; const ex = r.left + h.ox, ey = r.top; const sx = h.sx - scrollX, sy = h.sy - scrollY;
@@ -656,8 +705,8 @@ function catLoop(ts) {
   setSprite(pose, blink && pose.startsWith('front') ? 'closed' : expr, cat.dir);
   catSpriteEl.hidden = false; place(catSpriteEl, p.x + sx, p.y + sy - CAT_H - cat.jy);
   for (const f of cat.fx) fxPlace(f, p);
-  if (cat.food && !cat.hop) { const r = cat.food.el.getBoundingClientRect(); catFoodEl.hidden = false; place(catFoodEl, r.left + cat.food.ox + sx - 8, r.top + sy - 5); } else catFoodEl.hidden = true;
-  if (cat.ball && !cat.hop) { const r = cat.ball.el.getBoundingClientRect(); catBallEl.hidden = false; place(catBallEl, r.left + cat.ball.x + sx, r.top + sy - 10, ` rotate(${Math.round(cat.ball.rot * 40)}deg)`); } else catBallEl.hidden = true;
+  if (cat.food && !cat.hop) { const r = perchRect(cat.food.el); catFoodEl.hidden = false; place(catFoodEl, r.left + cat.food.ox + sx - 8, r.top + sy - 5); } else catFoodEl.hidden = true;
+  if (cat.ball && !cat.hop) { const r = perchRect(cat.ball.el); catBallEl.hidden = false; place(catBallEl, r.left + cat.ball.x + sx, r.top + sy - 10, ` rotate(${Math.round(cat.ball.rot * 40)}deg)`); } else catBallEl.hidden = true;
 }
 // The overlay never takes clicks. A click on empty space where the cat stands (no control can be under it) pokes the cat.
 docOn('pointerdown', (e) => {
@@ -716,6 +765,7 @@ addEventListener('scroll', () => {
 $('cat-world').hidden = catState.hidden;
 renderIsland(); setInterval(() => { if (!$('island').classList.contains('open')) renderIsland(); }, 60000);
 cat.nextCheck = Infinity; // armed by catArm() once the first data snapshot has rendered
+if (opts.debug) window.__bugyy = { cat, catState, get startles() { return startles; }, get calmUntil() { return calmUntil; }, get lastStartle() { return lastStartle; } };
 function catArm() { if (cat.nextCheck === Infinity) cat.nextCheck = performance.now() + 700; }
 // A view change hides the perch: let the new view render, then the cat drops in from the island again.
 function catOnRoute() {

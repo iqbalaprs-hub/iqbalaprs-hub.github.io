@@ -117,10 +117,10 @@ section{padding:72px 0}
 .badge span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .badge b{font-weight:600}
 .rotator{display:grid;margin-bottom:22px}
-.rot{grid-area:1/1;opacity:0;transform:translateY(-.12em);filter:blur(8px);transition:opacity .3s ease,transform .3s ease,filter .3s ease;pointer-events:none}
-/* outgoing line fades first, incoming waits for it: a clean blink, never two lines on top of each other */
-.rot.on{opacity:1;transform:none;filter:none;pointer-events:auto;transition:opacity .6s ease .32s,transform .6s ease .32s,filter .6s ease .32s}
-.rot .caret{display:inline-block;width:.06em;height:.82em;margin-left:.08em;background:var(--pass);vertical-align:-.06em;animation:blink 1s steps(1) infinite}
+.sz,.typed{grid-area:1/1}
+.sz{visibility:hidden}
+.caret{display:inline-block;width:.06em;height:.82em;margin-left:.06em;background:var(--pass);vertical-align:-.06em;animation:blink 1s steps(1) infinite}
+.typing .caret{animation:none}
 @keyframes blink{50%{opacity:0}}
 .hero .lead{margin-bottom:28px}
 .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
@@ -432,9 +432,7 @@ footer .wrap{display:grid;gap:14px}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;transition:none}
-  .marquee-track,.live,.tap,.ui .cta,.ui .cta::before,.ui .cta::after,.bpage .cta,.bpage .cta::before,.bpage .cta::after,.rot .caret{animation:none}
-  .rot{transform:none;filter:none;transition:opacity .3s ease}
-  .rot.on{transform:none;filter:none;transition:opacity .5s ease .32s}
+  .marquee-track,.live,.tap,.ui .cta,.ui .cta::before,.ui .cta::after,.bpage .cta,.bpage .cta::before,.bpage .cta::after{animation:none}
   .odo .col{transition:none}
   .device,.browser{transition:none}
 }
@@ -495,26 +493,27 @@ footer .wrap{display:grid;gap:14px}
     <div>
       <span class="badge rv"><img src="assets/iqbal.webp" alt="" width="28" height="28"><span>SDET at <b>PT Astra Digital Mobil</b> · OLX</span></span>
       <h1 class="display rotator rv" id="rotator">
-        <span class="sr">Mobile, web, and API tests in one codebase you can trust</span>
-        <span class="rot on" aria-hidden="true"><span class="grad">Mobile, web, and API tests</span> in one codebase you can trust<span class="caret"></span></span>
-        <span class="rot" aria-hidden="true"><span class="grad">Android, iOS, and web,</span> covered by one test suite<span class="caret"></span></span>
-        <span class="rot" aria-hidden="true"><span class="grad">Catch the bug</span> before your users do<span class="caret"></span></span>
-        <span class="rot" aria-hidden="true"><span class="grad">Real devices, real flows,</span> real confidence<span class="caret"></span></span>
-        <span class="rot" aria-hidden="true"><span class="grad">Automation</span> your squads keep using<span class="caret"></span></span>
-        <span class="rot" aria-hidden="true"><span class="grad">Green builds</span> you can believe in<span class="caret"></span></span>
-        <span class="rot" aria-hidden="true"><span class="grad">Seller flows,</span> tested every release<span class="caret"></span></span>
-        <span class="rot" aria-hidden="true"><span class="grad">From test design</span> to a green pipeline<span class="caret"></span></span>
-        <span class="rot" aria-hidden="true"><span class="grad">Fewer flaky tests,</span> more confident releases<span class="caret"></span></span>
-        <span class="rot" aria-hidden="true"><span class="grad">Quality built in,</span> not bolted on<span class="caret"></span></span>
+        <span class="sr">Mobile, web, and API tests you can trust</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Mobile, web, and API tests</span> you can trust</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Quality engineering</span> for every platform</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Catch the bug</span> before your users do</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Reliable tests,</span> faster releases</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Test automation</span> teams keep using</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Green builds</span> you can believe in</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Ship every release</span> with confidence</span>
+        <span class="sz" aria-hidden="true"><span class="grad">From test plan</span> to green pipeline</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Fewer flaky tests,</span> calmer releases</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Quality built in,</span> not bolted on</span>
+        <span class="typed" aria-hidden="true"><span class="grad" id="tA">Mobile, web, and API tests</span><span id="tB"> you can trust</span><span class="caret"></span></span>
       </h1>
-      <p class="lead rv">I'm Iqbal, an SDET with almost 5 years in QA. I automate mobile, web and API tests and run them on real devices in CI.</p>
+      <p class="lead rv">I'm Iqbal, an SDET with almost 5 years in QA. I automate mobile, web and API tests on real devices.</p>
       <div class="cta-row rv">
         <a class="btn btn-dark" href="#contact">Get in touch</a>
         <a class="btn btn-light" href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>Download CV</a>
       </div>
       <ul class="checks rv">
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Android, iOS, desktop web and mobile web</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Android, iOS and web</li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Real-device cloud in CI</li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Bekasi, open to remote</li>
       </ul>
@@ -533,7 +532,7 @@ footer .wrap{display:grid;gap:14px}
           <button class="replay" id="replay" type="button"><span><svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><path d="M6 4l14 8-14 8z"/></svg></span>Replay run</button>
         </div>
       </div>
-      <p class="hero-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21l1.4-7L2 9.3l7-.8z"/></svg><span><b>0 defects reported</b> after the e-Katalog v6 release</span></p>
+      <p class="hero-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21l1.4-7L2 9.3l7-.8z"/></svg><span><b>0 defects</b> after the e-Katalog v6 release</span></p>
     </div>
   </div>
 </section>
@@ -577,7 +576,7 @@ footer .wrap{display:grid;gap:14px}
     <div>
       <p class="spec rv"><i></i>about.spec.ts</p>
       <h2 class="display rv">Hi, I'm Iqbal. <span class="grad">I break things</span> before your users can.</h2>
-      <p class="lead rv">SDET at PT Astra Digital Mobil, testing the OLX Indonesia apps on Android, iOS and web. Before that: government procurement, e-commerce SaaS and delivery apps.</p>
+      <p class="lead rv">SDET at PT Astra Digital Mobil, testing OLX Indonesia on Android, iOS and web. Before that: gov-tech, e-commerce SaaS and delivery apps.</p>
       <div class="facts rv">
         <span class="chip">📍 Bekasi, Indonesia</span>
         <span class="chip">🧪 Since Dec 2021</span>
@@ -605,7 +604,7 @@ footer .wrap{display:grid;gap:14px}
       <article class="card b-a rv">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span>
         <h3>Mobile: Android &amp; iOS</h3>
-        <p>Both OSes at PT Astra Digital Mobil (OLX), from one WebdriverIO + Appium codebase.</p>
+        <p>Both at PT Astra Digital Mobil (OLX), one WebdriverIO + Appium codebase.</p>
         <div class="stage" aria-hidden="true">
           <div class="dev-wrap">
             <div class="device android"><div class="scr">
@@ -639,7 +638,7 @@ footer .wrap{display:grid;gap:14px}
       <article class="card b-b rv">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/></svg></span>
         <h3>Web: desktop &amp; mobile web</h3>
-        <p>Playwright for both, plus Cypress and Selenium where teams already use them.</p>
+        <p>Playwright for both, plus Cypress and Selenium when needed.</p>
         <div class="bstage" aria-hidden="true">
           <div class="browser">
             <div class="btop"><div class="lights"><i></i><i></i><i></i></div><div class="url"><b>https://</b>app.example.test/sell</div></div>
@@ -672,7 +671,7 @@ footer .wrap{display:grid;gap:14px}
       <article class="card b-e rv">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
         <h3>Visual &amp; network checks</h3>
-        <p>Catch layout bugs and wrong API calls that assertions miss.</p>
+        <p>Catch layout bugs and wrong API calls.</p>
       </article>
 
       <article class="card b-f rv">
@@ -680,7 +679,7 @@ footer .wrap{display:grid;gap:14px}
           <div>
             <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg></span>
             <h3>AI-assisted test design, with guardrails</h3>
-            <p>Test designs become specs fast. Every locator is checked against real screen objects, so nothing is invented.</p>
+            <p>Test designs become specs fast. Every locator is checked against real screen objects.</p>
           </div>
           <div class="viz" aria-hidden="true">
             <span class="c">// test design → spec</span><br>
@@ -713,9 +712,9 @@ footer .wrap{display:grid;gap:14px}
           <span class="now-pill">Nov 2025 – now</span>
         </div>
         <ul>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>E2E for OLX on Android, iOS and web, in one TypeScript codebase.</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>OLX E2E on Android, iOS and web, one TypeScript codebase.</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Shared flow layer used by B2C, C2B and Commerce squads.</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Real-device runs in CI, visual and network checks.</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Real-device CI runs with visual and network checks.</li>
         </ul>
         <div class="tags"><span class="tag">WebdriverIO</span><span class="tag">Appium</span><span class="tag">Playwright</span><span class="tag">LambdaTest</span></div>
       </article>
@@ -752,7 +751,7 @@ footer .wrap{display:grid;gap:14px}
         </div>
         <ul>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Manual testing of the delivery app on iOS and Android.</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>PRDs turned into test plans and UI test cases.</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>PRDs into test plans and test cases.</li>
         </ul>
         <div class="tags"><span class="tag">Manual QA</span><span class="tag">Katalon</span></div>
       </article>
@@ -766,7 +765,7 @@ footer .wrap{display:grid;gap:14px}
     <div class="sec-head">
       <div><p class="spec rv"><i></i>projects.spec.ts</p>
       <h2 class="display rv"><span class="grad">Products</span> I've tested</h2></div>
-      <p class="lead rv">Real platforms, real users. One per company.</p>
+      <p class="lead rv">One per company.</p>
     </div>
     <div class="projects">
       <article class="proj p-olx rv">
@@ -777,7 +776,7 @@ footer .wrap{display:grid;gap:14px}
         <div class="proj-body">
           <span class="co-line">PT Astra Digital Mobil · 2025 – now</span>
           <h3 style="font-size:26px">OLX Indonesia: seller side</h3>
-          <p>Everything a seller touches, tested on every platform.</p>
+          <p>Every seller flow, on every platform.</p>
           <div class="plat-row"><span class="chip">🤖 Android</span><span class="chip">📱 iOS</span><span class="chip">🖥 Desktop &amp; mobile web</span></div>
           <ul class="areas">
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Enhance My Ads</li>
@@ -796,7 +795,7 @@ footer .wrap{display:grid;gap:14px}
         <div class="proj-body">
           <span class="co-line">Telkom Indonesia · 2023 – 2025</span>
           <h3>e-Katalog (INAPROC)</h3>
-          <p>National procurement catalog. I covered the whole seller side, end to end.</p>
+          <p>National procurement catalog. Whole seller side, end to end.</p>
           <a class="ext" href="https://katalog.inaproc.id/" target="_blank" rel="noopener">katalog.inaproc.id ↗</a>
           <div class="tags"><span class="tag">Ruby</span><span class="tag">Cucumber</span><span class="tag">GraphQL</span></div>
         </div>
@@ -810,7 +809,7 @@ footer .wrap{display:grid;gap:14px}
         <div class="proj-body">
           <span class="co-line">SIRCLO · 2022 – 2023</span>
           <h3>Commerce SaaS</h3>
-          <p>Store-management SaaS for brands. Cypress regression and API tests.</p>
+          <p>Commerce SaaS for brands. Cypress and API tests.</p>
           <div class="tags"><span class="tag">Cypress</span><span class="tag">Postman</span><span class="tag">Swagger</span></div>
         </div>
       </article>
@@ -820,7 +819,7 @@ footer .wrap{display:grid;gap:14px}
         <div class="proj-body">
           <span class="co-line">Wehelpyou · 2021 – 2022</span>
           <h3>Wehelpyou Delivery</h3>
-          <p>Delivery app on iOS and Android, tested manually flow by flow.</p>
+          <p>Delivery app on iOS and Android, tested manually.</p>
           <a class="ext" href="https://www.wehelpyou.id/" target="_blank" rel="noopener">wehelpyou.id ↗</a>
           <div class="tags"><span class="tag">Manual QA</span><span class="tag">Katalon</span></div>
         </div>
@@ -934,11 +933,11 @@ footer .wrap{display:grid;gap:14px}
       <h2 class="display rv">Quick <span class="grad">answers</span></h2>
     </div>
     <div class="rv">
-      <details open><summary>Open to remote?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. Remote, hybrid or onsite around Jakarta, or relocation to Malaysia, Japan or the US.</p></details>
+      <details open><summary>Open to remote?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. Remote, hybrid, onsite in Jakarta, or relocation to Malaysia, Japan or the US.</p></details>
       <details><summary>Notice period?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Two months.</p></details>
       <details><summary>Which languages do you test in?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>TypeScript and JavaScript daily, Ruby for BDD and API, Python and SQL for the rest.</p></details>
-      <details><summary>Performance testing?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>My focus is functional testing: web, mobile and API, manual and automated.</p></details>
-      <details><summary>Can you start automation from zero?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. Riskiest flows first, then framework, CI and docs your team can keep using.</p></details>
+      <details><summary>Performance testing?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Functional testing is my focus: web, mobile and API.</p></details>
+      <details><summary>Can you start automation from zero?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. Riskiest flows first, then framework, CI and docs.</p></details>
     </div>
   </div>
 </section>
@@ -968,7 +967,7 @@ footer .wrap{display:grid;gap:14px}
     <span>© <span id="yr">2026</span> Iqbal Apriansyah · all checks passed ✓</span>
     <p class="ai-credit">
       <span class="spark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg></span>
-      <span><b>Idea, direction &amp; final QA by me. Built with an AI pair.</b> Same way I ship tests: AI drafts, I verify every line.</span>
+      <span><b>Idea, direction &amp; final QA by me, built with an AI pair.</b> Like my tests: AI drafts, I verify.</span>
     </p>
   </div>
 </footer>
@@ -996,14 +995,24 @@ footer .wrap{display:grid;gap:14px}
   });
   menu.addEventListener('click', function(e){ if (e.target.tagName === 'A' && menu.classList.contains('open')) btn.click(); });
 
-  // rotating headline: crossfade every 3.2s, pauses on hover/focus
-  var rots = document.querySelectorAll('#rotator .rot'), ri = 0, paused = false, rotator = document.getElementById('rotator');
+  // headline: types a phrase, holds, deletes it, types the next; pauses while hovered
+  var PH = [["Mobile, web, and API tests", " you can trust"], ["Quality engineering", " for every platform"], ["Catch the bug", " before your users do"], ["Reliable tests,", " faster releases"], ["Test automation", " teams keep using"], ["Green builds", " you can believe in"], ["Ship every release", " with confidence"], ["From test plan", " to green pipeline"], ["Fewer flaky tests,", " calmer releases"], ["Quality built in,", " not bolted on"]];
+  var rotator = document.getElementById('rotator'), tA = document.getElementById('tA'), tB = document.getElementById('tB');
+  var pi = 0, ci = (PH[0][0] + PH[0][1]).length, del = true, paused = false;
   rotator.addEventListener('mouseenter', function(){ paused = true; });
   rotator.addEventListener('mouseleave', function(){ paused = false; });
-  setInterval(function(){
-    if (paused || document.hidden) return;
-    rots[ri].classList.remove('on'); ri = (ri + 1) % rots.length; rots[ri].classList.add('on');
-  }, 3200);
+  function type(){
+    var a = PH[pi][0], full = a + PH[pi][1], wait;
+    if (paused || document.hidden) { setTimeout(type, 400); return; }
+    ci += del ? -1 : 1;
+    tA.textContent = full.slice(0, Math.min(ci, a.length)); tB.textContent = ci > a.length ? full.slice(a.length, ci) : '';
+    rotator.classList.add('typing');
+    wait = del ? 26 : 48 + Math.random() * 40;
+    if (!del && ci === full.length) { del = true; wait = 2600; rotator.classList.remove('typing'); }
+    else if (del && ci === 0) { del = false; pi = (pi + 1) % PH.length; wait = 380; rotator.classList.remove('typing'); }
+    setTimeout(type, wait);
+  }
+  setTimeout(type, 2600);
 
   // odometer
   function buildOdo(el){
@@ -1074,6 +1083,6 @@ footer .wrap{display:grid;gap:14px}
 })();
 </script>
 <script src="bugyy.js" defer></script>
-<script>addEventListener('DOMContentLoaded', function(){ if (window.mountBugyy) window.bugyyDestroy = window.mountBugyy({ name: 'Bugyy', storageKey: 'bugyy-cat-v1', below: 'header.nav' }); });</script>
+<script>addEventListener('DOMContentLoaded', function(){ if (window.mountBugyy) window.bugyyDestroy = window.mountBugyy({ name: 'Bugyy', storageKey: 'bugyy-cat-v1', below: 'header.nav', ignoreReducedMotion: true }); });</script>
 </body>
 </html>
