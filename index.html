@@ -2,28 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Iqbal Apriansyah · SDET</title>
-<meta name="description" content="Iqbal Apriansyah, SDET with almost 5 years in QA. End-to-end automation for Android, iOS, web and API with WebdriverIO, Appium, Playwright and Cypress.">
+<meta name="description" content="Iqbal Apriansyah, SDET at PT Astra Digital Mobil (OLX Indonesia). Mobile, web and API test automation with WebdriverIO, Appium and Playwright.">
 <meta property="og:title" content="Iqbal Apriansyah · SDET">
 <meta property="og:description" content="Mobile, web, and API tests in one codebase you can trust.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://iqbalaprs-hub.github.io/assets/iqbal.webp">
 <meta name="theme-color" content="#FDFCFC">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23000'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23000'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' stroke='%2334d399' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#FDFCFC; --surface:#F5F3F1; --surface-2:#F0EFEF; --card:#FFFFFF;
+  --bg:#FDFCFC; --surface:#F5F3F1; --surface-2:#ECEAE7; --card:#FFFFFF;
   --ink:#000; --ink-2:rgba(0,0,0,.72); --muted:rgba(0,0,0,.56); --line:rgba(0,0,0,.08);
-  --blue:#7DA6E3; --red:#E14C2E; --green:#1F9D55;
+  --blue:#7DA6E3; --red:#E14C2E; --pass:#16A34A; --pass-soft:#DCFCE7; --mint:#34D399;
   --grad:linear-gradient(90deg,var(--blue) 30%,var(--red) 65%);
   --ring:0 0 0 .5px rgba(0,0,0,.125),0 1px 1px rgba(0,0,0,.04),0 2px 4px rgba(0,0,0,.04);
   --display:"Inter Tight","Inter",system-ui,sans-serif;
   --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
-  --r-sm:12px; --r:20px; --r-lg:32px;
+  --r:20px; --r-lg:28px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
@@ -32,255 +33,398 @@ img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
-.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left))}
 @media(min-width:768px){.wrap{padding:0 32px}}
 .skip{position:absolute;left:-999px;top:8px;background:#000;color:#fff;padding:8px 14px;border-radius:999px;z-index:100}
 .skip:focus{left:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* type */
 .display{font-family:var(--display);font-weight:350;letter-spacing:-.02em;line-height:1.08}
-h1.display{font-size:clamp(40px,6.4vw,76px)}
-h2.display{font-size:clamp(32px,4.4vw,52px)}
+h1.display{font-size:clamp(38px,6.2vw,74px)}
+h2.display{font-size:clamp(30px,4.2vw,50px)}
 h3{font-family:var(--display);font-weight:450;font-size:20px;letter-spacing:-.01em;line-height:1.25}
 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-.lead{font-size:clamp(16px,1.6vw,18px);color:var(--ink-2);max-width:56ch}
+.lead{font-size:clamp(16px,1.5vw,18px);color:var(--ink-2);max-width:46ch}
 .muted{color:var(--muted)}
-.eyebrow{font:500 12px/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+
+/* signature: spec-file eyebrow */
+.spec{display:inline-flex;align-items:center;gap:8px;font:500 12px/1 var(--mono);color:var(--muted);margin-bottom:18px}
+.spec i{width:16px;height:16px;border-radius:5px;background:var(--pass-soft);display:grid;place-items:center}
+.spec i::after{content:"";width:6px;height:3px;border-left:1.6px solid var(--pass);border-bottom:1.6px solid var(--pass);transform:rotate(-45deg) translate(1px,-1px)}
 
 /* buttons & chips */
-.btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 22px;border-radius:999px;font-weight:500;font-size:15px;transition:transform .15s,background .15s,box-shadow .15s;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 22px;border-radius:999px;font-weight:500;font-size:15px;transition:transform .15s,background .15s;white-space:nowrap}
 .btn-dark{background:#000;color:#fff}
 .btn-dark:hover{background:#262626;transform:translateY(-1px)}
 .btn-light{background:var(--card);box-shadow:var(--ring)}
 .btn-light:hover{background:var(--surface);transform:translateY(-1px)}
-.btn-sm{height:36px;padding:0 16px;font-size:14px}
-.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--card);box-shadow:var(--ring);font-size:13px;line-height:1.2}
+.btn-sm{min-height:38px;padding:0 16px;font-size:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:6px 12px;border-radius:999px;background:var(--card);box-shadow:var(--ring);font-size:13px;line-height:1.2}
+a.chip:hover,button.chip:hover{background:var(--surface)}
 .tag{display:inline-block;font:500 11.5px/1 var(--mono);padding:6px 9px;border-radius:999px;background:var(--surface);color:var(--ink-2)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
 
 /* banner + header */
 .banner{background:#000;color:#fff;font-size:13px}
-.banner .wrap{display:flex;align-items:center;justify-content:center;gap:12px;min-height:40px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px;text-align:center}
+.banner .wrap{display:flex;align-items:center;justify-content:center;gap:10px;min-height:40px;padding-top:6px;padding-bottom:6px;text-align:center}
 .banner b{font-weight:600}
 .banner .sep{opacity:.4}
-.banner a.pill{background:#fff;color:#000;border-radius:999px;padding:4px 12px;font-weight:500}
+.banner a.pill{background:#fff;color:#000;border-radius:999px;padding:8px 14px;font-weight:500;display:inline-flex;gap:6px;align-items:center}
 .banner a.pill:hover{background:#e7e5e4}
-.live{display:inline-block;width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 0 rgba(52,211,153,.6);animation:pulse 2s infinite}
-@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+.hide-sm{display:none}
+@media(min-width:720px){.hide-sm{display:inline}}
+.live{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--mint);animation:pulse 2s infinite;flex:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.6)}70%{box-shadow:0 0 0 8px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
 header.nav{position:sticky;top:0;z-index:50;background:rgba(253,252,252,.82);backdrop-filter:saturate(1.6) blur(14px);-webkit-backdrop-filter:saturate(1.6) blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
 header.nav.scrolled{border-color:var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{display:flex;align-items:center;gap:10px;font:500 17px var(--display);letter-spacing:-.01em}
-.logo-mark{width:28px;height:28px;border-radius:8px;background:#000;display:grid;place-items:center}
-.nav-links{display:none;gap:4px}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font:500 17px var(--display);letter-spacing:-.01em;white-space:nowrap}
+.logo-mark{width:30px;height:30px;border-radius:9px;background:#000;display:grid;place-items:center;flex:none}
+.logo small{font:500 12px var(--mono);color:var(--muted);letter-spacing:0}
+@media(max-width:360px){.logo small{display:none}}
+.nav-links{display:none;gap:2px}
 .nav-links a{padding:8px 12px;border-radius:999px;font-size:14px;color:var(--ink-2)}
 .nav-links a:hover{background:var(--surface);color:#000}
 .nav-right{display:flex;align-items:center;gap:8px}
-.menu-btn{width:40px;height:40px;border-radius:999px;display:grid;place-items:center}
+.cov{display:none;align-items:center;gap:8px;font:500 12px var(--mono);color:var(--muted);padding:0 10px}
+.cov .track{width:44px;height:4px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+.cov .track i{display:block;height:100%;width:0;background:var(--pass);border-radius:4px}
+@media(min-width:1100px){.cov{display:flex}}
+.menu-btn{width:44px;height:44px;border-radius:999px;display:grid;place-items:center}
 .menu-btn:hover{background:var(--surface)}
-.mobile-menu{display:none;border-top:1px solid var(--line);padding:8px 16px 16px;background:var(--bg)}
+.mobile-menu{display:none;border-top:1px solid var(--line);padding:4px 16px 16px;background:var(--bg)}
 .mobile-menu.open{display:grid}
-.mobile-menu a{padding:12px 4px;border-bottom:1px solid var(--line);font-size:16px}
-@media(min-width:900px){.nav-links{display:flex}.menu-btn,.mobile-menu,.mobile-menu.open{display:none}}
+.mobile-menu a{padding:14px 4px;border-bottom:1px solid var(--line);font-size:16px}
+@media(min-width:960px){.nav-links{display:flex}.menu-btn,.mobile-menu,.mobile-menu.open{display:none}}
 
 /* sections */
 section{padding:72px 0}
-@media(min-width:900px){section{padding:112px 0}}
+@media(min-width:900px){section{padding:104px 0}}
 .divider{border-top:1px solid var(--line)}
-.sec-head{display:grid;gap:20px;margin-bottom:48px}
-@media(min-width:900px){.sec-head{grid-template-columns:1.1fr 1fr;align-items:end}.sec-head .lead{justify-self:end}}
-.dots{background-image:repeating-radial-gradient(circle,#D7D6D6 0,#D7D6D6 1px,transparent 1px,transparent 6px);background-size:18px 18px;background-color:var(--bg)}
-.dots{background-image:radial-gradient(circle,#DEDCDA 1px,transparent 1.3px)}
+.sec-head{display:grid;gap:16px;margin-bottom:40px}
+@media(min-width:900px){.sec-head{grid-template-columns:1.2fr 1fr;align-items:end;margin-bottom:48px}.sec-head .lead{justify-self:end}}
+.gridbg{background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:32px 32px;background-position:center}
 
 /* hero */
-.hero{padding:48px 0 72px}
-@media(min-width:900px){.hero{padding:72px 0 104px}}
+.hero{padding:64px 0 64px}
+@media(min-width:900px){.hero{padding:64px 0 96px}}
 .hero-grid{display:grid;gap:40px;align-items:center}
-.hero-grid>*,.ai-row>*,.process>*{min-width:0}
-@media(min-width:960px){.hero-grid{grid-template-columns:1.05fr 1fr;gap:56px}}
-.badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;margin-bottom:24px;padding:4px 12px 4px 4px;border-radius:999px;box-shadow:var(--ring);background:var(--card)}
-.badge .new{font:500 11px/1 var(--mono);padding:5px 8px;border-radius:999px;background:var(--surface);text-transform:uppercase;letter-spacing:.06em}
-.hero h1{margin-bottom:24px}
-.hero .lead{margin-bottom:32px}
-.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.hero-grid>*,.ai-row>*,.process>*,.about>*,.p-olx>*{min-width:0}
+@media(min-width:980px){.hero-grid{grid-template-columns:1.05fr 1fr;gap:56px}}
+.badge{display:inline-flex;align-items:center;gap:10px;font-size:13px;margin-bottom:22px;padding:4px 14px 4px 4px;border-radius:999px;box-shadow:var(--ring);background:var(--card);max-width:100%}
+.badge img{width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:50% 12%;background:var(--surface);flex:none}
+.badge span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge b{font-weight:600}
+.rotator{display:grid;margin-bottom:22px}
+.rot{grid-area:1/1;opacity:0;transform:translateY(-.12em);filter:blur(8px);transition:opacity .3s ease,transform .3s ease,filter .3s ease;pointer-events:none}
+/* outgoing line fades first, incoming waits for it: a clean blink, never two lines on top of each other */
+.rot.on{opacity:1;transform:none;filter:none;pointer-events:auto;transition:opacity .6s ease .32s,transform .6s ease .32s,filter .6s ease .32s}
+.rot .caret{display:inline-block;width:.06em;height:.82em;margin-left:.08em;background:var(--pass);vertical-align:-.06em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero .lead{margin-bottom:28px}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
 .checks{list-style:none;display:grid;gap:8px;font-size:14px;color:var(--ink-2)}
 .checks li{display:flex;gap:10px;align-items:center}
-.checks svg{flex:none}
+.checks svg{flex:none;color:var(--pass)}
 
-/* terminal card */
-.term{position:relative;background:#0B0B0C;color:#E7E5E4;border-radius:var(--r-lg);padding:20px;box-shadow:0 30px 60px -30px rgba(0,0,0,.45);overflow:hidden;min-height:440px;display:flex;flex-direction:column}
+/* terminal */
+.term{position:relative;background:#0B0B0C;color:#E7E5E4;border-radius:var(--r-lg);padding:18px;box-shadow:0 30px 60px -30px rgba(0,0,0,.45);overflow:hidden;min-height:380px;display:flex;flex-direction:column}
+@media(min-width:600px){.term{padding:22px;min-height:440px}}
 .term::before{content:"";position:absolute;inset:-40% -20% auto auto;width:70%;height:80%;background:radial-gradient(closest-side,rgba(125,166,227,.28),transparent);pointer-events:none}
 .term::after{content:"";position:absolute;inset:auto auto -40% -20%;width:70%;height:70%;background:radial-gradient(closest-side,rgba(225,76,46,.22),transparent);pointer-events:none}
-.term-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;position:relative;z-index:1}
+.term-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;position:relative;z-index:1;gap:8px}
 .lights{display:flex;gap:6px}
 .lights i{width:11px;height:11px;border-radius:50%;background:#3a3a3c}
-.term-title{font:500 12px var(--mono);color:#a8a29e}
-.term-body{font:400 12.5px/1.75 var(--mono);flex:1;position:relative;z-index:1;overflow:hidden}
-@media(min-width:480px){.term-body{font-size:13px}}
+.term-title{font:500 12px var(--mono);color:#a8a29e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.term-body{font:400 11.5px/1.8 var(--mono);flex:1;position:relative;z-index:1;overflow:hidden}
+@media(min-width:420px){.term-body{font-size:12.5px}}
+@media(min-width:1100px){.term-body{font-size:13px}}
 .term-line{opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .term-line.on{opacity:1;transform:none}
-.t-dim{color:#78716c}.t-ok{color:#4ade80}.t-blue{color:#93b8ee}.t-red{color:#f08a73}
-.plat{display:inline-block;font-size:10.5px;padding:0 6px;border-radius:4px;background:#1f1f22;color:#a8a29e;margin-left:6px;vertical-align:1px}
+.t-dim{color:#78716c}.t-ok{color:#4ade80}.t-blue{color:#93b8ee}
+.plat{display:inline-block;font-size:10px;padding:0 6px;border-radius:4px;background:#1f1f22;color:#a8a29e;margin-left:6px;vertical-align:1px}
 .term-foot{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px}
 .bar{flex:1;height:4px;border-radius:4px;background:#232326;overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:var(--grad);transition:width .4s}
-.replay{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#000;border-radius:999px;padding:8px 14px 8px 8px;font-size:13px;font-weight:500}
-.replay span{width:24px;height:24px;border-radius:50%;background:#000;display:grid;place-items:center}
-.hero-note{display:flex;gap:12px;align-items:center;margin-top:14px;font-size:13px;color:var(--muted)}
+.replay{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#000;border-radius:999px;min-height:40px;padding:6px 14px 6px 6px;font-size:13px;font-weight:500;transition:transform .15s}
+.replay:hover{transform:translateY(-1px)}
+.replay:active{transform:scale(.97)}
+.replay span{width:28px;height:28px;border-radius:50%;background:#000;display:grid;place-items:center}
+.hero-note{display:flex;gap:10px;align-items:center;margin-top:14px;font-size:13px;color:var(--muted)}
 .hero-note b{color:#000;font-weight:500}
 
 /* trusted + stats */
-.trusted{padding:48px 0 0;text-align:center}
-.logos{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 40px;margin:24px 0 56px;font:450 clamp(18px,2.2vw,24px) var(--display);letter-spacing:-.01em;color:rgba(0,0,0,.45)}
-.logos span{transition:color .2s}.logos span:hover{color:#000}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:40px 16px;padding-bottom:72px}
-@media(min-width:900px){.stats{grid-template-columns:repeat(4,1fr);padding-bottom:104px}}
+.trusted{padding:44px 0 0;text-align:center}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:10px 36px;margin:22px 0 52px;font:450 clamp(17px,2.1vw,23px) var(--display);letter-spacing:-.01em;color:rgba(0,0,0,.42)}
+.logos .hl{color:#000}
+.logos small{font:500 11px var(--mono);color:var(--muted);letter-spacing:0;margin-left:6px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:36px 16px;padding-bottom:64px}
+@media(min-width:900px){.stats{grid-template-columns:repeat(4,1fr);padding-bottom:96px}}
 .stat{text-align:center;display:grid;justify-items:center;gap:10px}
 .stat-ico{width:36px;height:36px;border-radius:10px;box-shadow:var(--ring);display:grid;place-items:center;background:var(--card)}
 .odo{font:300 clamp(44px,6vw,64px)/1 var(--display);letter-spacing:-.03em;display:flex;height:1em;overflow:hidden}
 .odo .col{display:flex;flex-direction:column;transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
-.odo .col span,.odo .sym{height:1em;line-height:1em}
-.stat p{font-size:14px;color:var(--muted);max-width:22ch}
+.odo .col span{height:1em;line-height:1em}
+.stat p{font-size:14px;color:var(--muted);max-width:20ch}
 
-/* bento capabilities */
+/* about */
+.about{display:grid;gap:32px;align-items:center}
+@media(min-width:900px){.about{grid-template-columns:.9fr 1.1fr;gap:64px}}
+.portrait{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;max-height:600px;background:radial-gradient(70% 60% at 30% 25%,rgba(125,166,227,.55),transparent 70%),radial-gradient(70% 60% at 80% 80%,rgba(225,76,46,.45),transparent 70%),#EEE9E4}
+.portrait::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.06) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(#000,transparent 85%);-webkit-mask-image:linear-gradient(#000,transparent 85%)}
+.portrait img{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:94%;width:auto;max-width:none;filter:drop-shadow(0 20px 30px rgba(0,0,0,.18));mask-image:linear-gradient(#000 80%,transparent);-webkit-mask-image:linear-gradient(#000 80%,transparent)}
+.portrait .stamp{position:absolute;left:16px;top:16px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:999px;padding:7px 12px;font:500 12px var(--mono)}
+.portrait .stamp i{width:8px;height:8px;border-radius:50%;background:var(--pass)}
+.about h2{margin-bottom:16px}
+.about .lead{margin-bottom:24px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+
+/* bento */
 .bento{display:grid;gap:16px}
-@media(min-width:760px){.bento{grid-template-columns:repeat(6,1fr)}
-  .b-a{grid-column:span 3}.b-b{grid-column:span 3}.b-c{grid-column:span 2}.b-d{grid-column:span 2}.b-e{grid-column:span 2}.b-f{grid-column:span 6}}
+@media(min-width:760px){.bento{grid-template-columns:repeat(6,1fr)}.b-a,.b-b{grid-column:span 3}.b-c,.b-d,.b-e{grid-column:span 2}.b-f{grid-column:span 6}}
 .card{background:var(--surface);border-radius:var(--r-lg);padding:24px;position:relative;overflow:hidden}
-@media(min-width:900px){.card{padding:32px}}
-.card .ico{width:40px;height:40px;border-radius:12px;background:var(--card);box-shadow:var(--ring);display:grid;place-items:center;margin-bottom:56px}
-.card h3{margin-bottom:8px}
-.card p{color:var(--ink-2);font-size:15px;max-width:48ch}
-.card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+@media(min-width:900px){.card{padding:30px}}
+.card .ico{width:40px;height:40px;border-radius:12px;background:var(--card);box-shadow:var(--ring);display:grid;place-items:center;margin-bottom:40px}
+.card h3{margin-bottom:6px}
+.card p{color:var(--ink-2);font-size:15px;max-width:44ch}
+.card .tags{margin-top:16px}
 .card .tags .tag{background:var(--card);box-shadow:var(--ring)}
-.viz{margin-top:24px;background:var(--card);border-radius:var(--r);box-shadow:var(--ring);padding:16px;font:400 12.5px/1.7 var(--mono);overflow-x:auto;white-space:nowrap}
-.phones{display:flex;gap:12px;justify-content:center;margin-top:24px}
-.phone{width:84px;height:156px;border-radius:18px;background:#111;padding:6px;box-shadow:0 12px 24px -12px rgba(0,0,0,.4)}
-.phone .scr{height:100%;border-radius:13px;background:var(--card);padding:10px 7px;display:grid;gap:6px;align-content:start}
-.phone .scr i{display:block;height:8px;border-radius:4px;background:var(--surface-2)}
-.phone .scr i.hi{background:var(--grad);height:18px;border-radius:6px}
-.phone .scr i.ok{width:60%;background:#bbf7d0}
-.phone.web{width:150px}
-.pipe{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.pipe .st{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:var(--surface);font-size:12px}
-.pipe .st i{width:8px;height:8px;border-radius:50%;background:var(--green)}
-.pipe .ln{width:16px;height:1px;background:rgba(0,0,0,.2)}
-.ai-row{display:grid;gap:16px}
-@media(min-width:900px){.ai-row{grid-template-columns:1fr 1.1fr;align-items:center}}
+.viz{margin-top:20px;background:var(--card);border-radius:var(--r);box-shadow:var(--ring);padding:16px;font:400 12.5px/1.7 var(--mono);overflow-x:auto;white-space:nowrap}
 .k{color:#7c3aed}.s{color:#b45309}.c{color:var(--muted)}.n{color:#0369a1}
+
+/* device mockups (generic UI, no real app) */
+.stage{display:flex;gap:18px;justify-content:center;align-items:flex-end;margin-top:28px;perspective:900px}
+.dev-wrap{display:grid;justify-items:center;gap:10px}
+.dev-wrap small{font:500 11px var(--mono);color:var(--muted)}
+.device{position:relative;width:122px;height:248px;background:linear-gradient(145deg,#2b2b30,#0c0c0e);padding:6px;box-shadow:inset 0 0 0 1.5px #3a3a40,0 22px 34px -16px rgba(0,0,0,.5);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.device::before,.device::after{content:"";position:absolute;width:3px;border-radius:2px;background:#26262a}
+.device::before{right:-3px;top:62px;height:34px}
+.device::after{left:-3px;top:52px;height:22px;box-shadow:0 30px 0 #26262a}
+.ios{border-radius:30px}
+.android{border-radius:20px}
+.stage:hover .ios,.ios:active{transform:rotateY(14deg) rotateX(4deg) translateY(-4px)}
+.stage:hover .android,.android:active{transform:rotateY(-14deg) rotateX(4deg) translateY(-4px)}
+.scr{position:relative;height:100%;background:#fff;overflow:hidden;display:flex;flex-direction:column}
+.ios .scr{border-radius:24px}
+.android .scr{border-radius:15px}
+.island{position:absolute;top:7px;left:50%;transform:translateX(-50%);width:36px;height:11px;border-radius:8px;background:#000;z-index:3}
+.punch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:#000;z-index:3}
+.sbar{display:flex;justify-content:space-between;align-items:center;padding:7px 12px 0;font:600 7.5px/1 var(--sans);height:20px;flex:none}
+.android .sbar{padding:7px 10px 0}
+.sicons{display:flex;gap:3px;align-items:center}
+.sicons .sig{display:flex;gap:1px;align-items:flex-end;height:6px}
+.sicons .sig i{width:1.5px;background:#000;border-radius:1px}
+.sicons .bat{width:12px;height:6px;border:1px solid #000;border-radius:2px;position:relative}
+.sicons .bat::after{content:"";position:absolute;inset:1px 3px 1px 1px;background:#000;border-radius:1px}
+.ui{flex:1;padding:8px 9px;display:flex;flex-direction:column;gap:6px}
+.ui .appbar{display:flex;justify-content:space-between;align-items:center}
+.ui .appbar i{display:block;height:7px;width:34px;border-radius:4px;background:#111}
+.ui .appbar b{width:12px;height:12px;border-radius:50%;background:var(--surface-2)}
+.ui .search{height:14px;border-radius:7px;background:var(--surface)}
+.ui .banner-sk{height:44px;border-radius:9px;background:var(--grad);opacity:.85}
+.ui .row{display:flex;gap:6px;align-items:center}
+.ui .row .th{width:22px;height:22px;border-radius:6px;background:var(--surface-2);flex:none}
+.ui .row .ln{flex:1;display:grid;gap:3px}
+.ui .row .ln i{display:block;height:5px;border-radius:3px;background:var(--surface-2)}
+.ui .row .ln i:last-child{width:60%}
+.ui .cta{margin-top:auto;height:20px;border-radius:7px;background:#111;position:relative;display:grid;place-items:center;color:#fff;font:600 7px var(--sans);animation:cta 4.8s infinite}
+.ui .cta::before{content:"Continue"}
+.ui .cta::after{content:"✓ passed";position:absolute;opacity:0;animation:ctatxt 4.8s infinite}
+@keyframes cta{0%,58%{background:#111}62%,92%{background:var(--pass)}100%{background:#111}}
+@keyframes ctatxt{0%,58%{opacity:0}62%,92%{opacity:1}100%{opacity:0}}
+.ui .cta{color:transparent}
+.ui .cta::before{color:#fff;transition:opacity .2s;animation:ctabefore 4.8s infinite}
+@keyframes ctabefore{0%,58%{opacity:1}62%,92%{opacity:0}100%{opacity:1}}
+.ui .cta::after{color:#fff}
+.tap{position:absolute;width:18px;height:18px;border-radius:50%;background:rgba(125,166,227,.35);border:1.5px solid rgba(91,141,214,.9);z-index:4;left:20%;top:30%;animation:tap 4.8s infinite;pointer-events:none}
+@keyframes tap{0%{left:70%;top:24%;transform:scale(1);opacity:0}10%{opacity:1}22%{left:40%;top:36%;transform:scale(1)}26%{transform:scale(.7)}30%{transform:scale(1)}44%{left:56%;top:62%}48%{transform:scale(.7)}52%{transform:scale(1);left:56%;top:62%}56%{left:46%;top:84%;transform:scale(1)}60%{transform:scale(.6)}66%{transform:scale(1.6);opacity:0}100%{left:46%;top:84%;opacity:0}}
+.home-ind{height:12px;display:grid;place-items:center;flex:none}
+.home-ind i{width:38px;height:3px;border-radius:2px;background:#111}
+.navbar{height:16px;display:flex;justify-content:center;gap:16px;align-items:center;flex:none}
+.navbar i{width:6px;height:6px;border:1.2px solid #555}
+.navbar i:nth-child(1){border-radius:1px;transform:rotate(45deg) scale(.8);border-width:0 0 1.2px 1.2px}
+.navbar i:nth-child(2){border-radius:50%}
+.navbar i:nth-child(3){border-radius:1.5px}
+.android .tap{animation-delay:-2.4s}
+.android .ui .cta,.android .ui .cta::before,.android .ui .cta::after{animation-delay:-2.4s}
+
+/* browser mockup */
+.bstage{position:relative;margin-top:28px;padding-bottom:18px;padding-right:34px;perspective:900px}
+.browser{background:#fff;border-radius:14px;box-shadow:var(--ring),0 22px 34px -18px rgba(0,0,0,.35);overflow:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.bstage:hover .browser{transform:rotateY(-6deg) rotateX(3deg)}
+.btop{display:flex;align-items:center;gap:8px;padding:9px 11px;background:#F4F2EF;border-bottom:1px solid var(--line)}
+.btop .lights i{width:9px;height:9px}
+.btop .lights i:nth-child(1){background:#ff5f57}.btop .lights i:nth-child(2){background:#febc2e}.btop .lights i:nth-child(3){background:#28c840}
+.url{flex:1;height:20px;border-radius:6px;background:#fff;box-shadow:var(--ring);font:500 10px/20px var(--mono);color:var(--muted);padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.url b{color:var(--pass);font-weight:500}
+.bpage{position:relative;padding:12px;display:grid;gap:9px;min-height:168px}
+.bnav{display:flex;justify-content:space-between;align-items:center}
+.bnav i{display:block;height:8px;width:48px;border-radius:4px;background:#111}
+.bnav span{display:flex;gap:6px}
+.bnav span b{width:26px;height:6px;border-radius:3px;background:var(--surface-2)}
+.bhero{height:44px;border-radius:9px;background:var(--grad);opacity:.85}
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.bgrid div{height:40px;border-radius:7px;background:var(--surface)}
+.bpage .cta{justify-self:start;width:84px;height:20px;border-radius:7px;position:relative;display:grid;place-items:center;font:600 8px var(--sans);color:transparent;animation:cta 4.8s infinite;animation-delay:-1.2s}
+.bpage .cta::before{content:"Submit";color:#fff;animation:ctabefore 4.8s infinite;animation-delay:-1.2s}
+.bpage .cta::after{content:"✓ passed";position:absolute;color:#fff;opacity:0;animation:ctatxt 4.8s infinite;animation-delay:-1.2s}
+.bpage .tap{animation-delay:-1.2s}
+.mweb{position:absolute;right:0;bottom:0;width:70px;height:136px;border-radius:16px;padding:4px;background:linear-gradient(145deg,#2b2b30,#0c0c0e);box-shadow:0 16px 26px -12px rgba(0,0,0,.5)}
+.mweb .scr{border-radius:12px;padding:12px 6px 6px;gap:5px;display:flex;flex-direction:column}
+.mweb .scr i{display:block;height:5px;border-radius:3px;background:var(--surface-2)}
+.mweb .scr i.h{height:22px;background:var(--grad);opacity:.85;border-radius:5px}
+.mweb .scr i.ok{margin-top:auto;height:10px;background:var(--pass);border-radius:4px}
+.pipe{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:16px}
+.pipe .st{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:var(--card);box-shadow:var(--ring);font-size:12px}
+.pipe .st i{width:8px;height:8px;border-radius:50%;background:var(--pass)}
+.pipe .ln{width:14px;height:1px;background:rgba(0,0,0,.2)}
+.ai-row{display:grid;gap:16px}
+@media(min-width:900px){.ai-row{grid-template-columns:1fr 1.15fr;align-items:center}}
 
 /* experience */
 .exp{display:grid;gap:16px}
 @media(min-width:900px){.exp{grid-template-columns:repeat(2,1fr)}}
 .role{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--ring);padding:24px;display:flex;flex-direction:column;gap:14px}
-@media(min-width:900px){.role{padding:32px}}
-.role-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
-.role .co{font:450 24px/1.2 var(--display);letter-spacing:-.015em}
+@media(min-width:900px){.role{padding:30px}}
+.role-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.role .co{font:450 23px/1.2 var(--display);letter-spacing:-.015em}
 .role .when{font:500 12px var(--mono);color:var(--muted);padding-top:6px}
-.role .title{font-size:14px;color:var(--muted)}
-.role ul{list-style:none;display:grid;gap:10px;font-size:15px;color:var(--ink-2)}
+.role .title{font-size:14px;color:var(--muted);margin-top:2px}
+.role .title b{font-weight:500;color:inherit}
+.role ul{list-style:none;display:grid;gap:9px;font-size:15px;color:var(--ink-2)}
 .role li{display:flex;gap:10px}
-.role li svg{flex:none;margin-top:4px}
+.role li svg{flex:none;margin-top:5px}
 .role.now{background:#000;color:#fff;box-shadow:none}
-.role.now .title,.role.now .when{color:rgba(255,255,255,.6)}
-.role.now ul{color:rgba(255,255,255,.82)}
+.role.now .title,.role.now .when{color:rgba(255,255,255,.62)}
+.role.now .title b{color:#fff}
+.role.now ul{color:rgba(255,255,255,.84)}
 .role.now .tag{background:#1c1c1e;color:#d6d3d1}
-.now-pill{font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:5px 9px;border-radius:999px;background:#34d399;color:#000}
+.now-pill{font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:6px 9px;border-radius:999px;background:var(--mint);color:#000}
 
 /* projects */
 .projects{display:grid;gap:16px}
-@media(min-width:900px){.projects{grid-template-columns:repeat(3,1fr)}.p-feat{grid-column:span 2}}
-.proj{border-radius:var(--r-lg);overflow:hidden;background:var(--card);box-shadow:var(--ring);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+@media(min-width:900px){.projects{grid-template-columns:repeat(3,1fr)}.p-olx{grid-column:span 3}}
+.proj{border-radius:var(--r-lg);overflow:hidden;background:var(--card);box-shadow:var(--ring);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
 .proj:hover{transform:translateY(-3px);box-shadow:var(--ring),0 18px 40px -20px rgba(0,0,0,.25)}
-.proj-art{height:180px;position:relative;overflow:hidden}
-.p-feat .proj-art{height:240px}
-.proj-art .lbl{position:absolute;left:16px;bottom:16px;font:500 11px/1 var(--mono);background:rgba(255,255,255,.9);padding:6px 9px;border-radius:999px}
-.proj-body{padding:24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.proj-art{position:relative;height:200px;overflow:hidden;background:var(--surface)}
+.proj-art img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.proj:hover .proj-art img{transform:scale(1.04)}
+.proj-art .lbl{position:absolute;left:14px;bottom:14px;font:500 11px/1 var(--mono);background:rgba(255,255,255,.92);padding:7px 10px;border-radius:999px}
+.pass-stamp{position:absolute;right:14px;top:14px;display:inline-flex;align-items:center;gap:6px;font:600 10.5px/1 var(--mono);letter-spacing:.06em;color:var(--pass);background:rgba(255,255,255,.94);padding:7px 10px;border-radius:999px}
+.pass-stamp::before{content:"✓"}
+.proj-body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.proj-body .co-line{font:500 12px var(--mono);color:var(--muted)}
 .proj-body p{color:var(--ink-2);font-size:15px}
-.proj-body .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px}
-.outcome{font-size:14px;display:flex;gap:8px;align-items:center;color:#000;font-weight:500}
-.art-1{background:radial-gradient(120% 90% at 10% 10%,#9cc0f2 0,transparent 55%),radial-gradient(90% 90% at 90% 80%,#e14c2e 0,transparent 55%),#f4d9c9}
-.art-2{background:radial-gradient(80% 80% at 80% 20%,#f5c86a 0,transparent 60%),radial-gradient(90% 90% at 10% 90%,#4f9a5f 0,transparent 60%),#dfe8c6}
-.art-3{background:radial-gradient(90% 90% at 20% 20%,#ff8a5c 0,transparent 55%),radial-gradient(90% 90% at 90% 90%,#c2185b 0,transparent 55%),#f6b38f}
-.art-4{background:radial-gradient(90% 90% at 80% 10%,#6b7280 0,transparent 55%),#111}
-.art-5{background:radial-gradient(90% 90% at 10% 80%,#7da6e3 0,transparent 60%),radial-gradient(70% 70% at 90% 10%,#c4b5fd 0,transparent 60%),#e8eefb}
-.mini-term{position:absolute;inset:24px 24px auto auto;width:min(78%,420px);background:rgba(11,11,12,.88);color:#e7e5e4;border-radius:14px;padding:14px 16px;font:400 12px/1.7 var(--mono);box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
-.gherkin{position:absolute;inset:20px;background:rgba(255,255,255,.88);border-radius:14px;padding:14px 16px;font:400 12px/1.7 var(--mono)}
+.proj-body .tags{margin-top:auto;padding-top:10px}
+.proj-body a.ext{font-size:14px;font-weight:500;display:inline-flex;gap:6px;align-items:center;min-height:32px}
+.proj-body a.ext:hover{text-decoration:underline}
+.p-olx{display:grid}
+@media(min-width:760px){.p-olx{grid-template-columns:minmax(260px,.75fr) 1.25fr}}
+.p-olx .proj-art{height:340px;background:#1d5fe0}
+@media(min-width:760px){.p-olx .proj-art{height:auto;min-height:440px}}
+.p-olx .proj-art img{object-position:50% 18%}
+.p-olx .proj-body{padding:26px;gap:14px}
+@media(min-width:900px){.p-olx .proj-body{padding:36px}}
+.areas{list-style:none;display:grid;gap:8px}
+@media(min-width:560px){.areas{grid-template-columns:1fr 1fr}}
+.areas li{display:flex;gap:10px;align-items:center;font-size:14.5px;padding:11px 12px;border-radius:12px;background:var(--surface)}
+.areas li svg{flex:none;color:var(--pass)}
+.plat-row{display:flex;flex-wrap:wrap;gap:8px}
+.art-saas{display:grid;place-items:center;background:radial-gradient(80% 80% at 10% 90%,rgba(125,166,227,.6),transparent 60%),radial-gradient(70% 70% at 90% 10%,rgba(196,181,253,.7),transparent 60%),#E8EEFB}
+.saas{width:82%;background:#fff;border-radius:12px;box-shadow:0 18px 30px -16px rgba(0,0,0,.3);display:grid;grid-template-columns:42px 1fr;overflow:hidden;height:136px}
+.saas .side{background:#111;padding:10px 8px;display:grid;gap:7px;align-content:start}
+.saas .side i{height:5px;border-radius:3px;background:#3a3a3e}
+.saas .side i:first-child{background:var(--mint);width:60%}
+.saas .main{padding:10px;display:grid;gap:7px;align-content:start}
+.saas .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.saas .kpis div{height:26px;border-radius:6px;background:var(--surface)}
+.saas .chart{height:40px;border-radius:6px;background:linear-gradient(180deg,rgba(125,166,227,.35),transparent),var(--surface);clip-path:polygon(0 80%,15% 60%,30% 68%,45% 35%,60% 45%,75% 20%,90% 30%,100% 10%,100% 100%,0 100%)}
+.saas .rows i{display:block;height:5px;border-radius:3px;background:var(--surface-2);margin-top:5px}
 
 /* stack */
-.stack{display:grid;gap:16px}
+.stack{display:grid;gap:14px}
 @media(min-width:760px){.stack{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1080px){.stack{grid-template-columns:repeat(3,1fr)}}
-.stack-group{background:var(--surface);border-radius:var(--r);padding:24px}
-.stack-group h3{font-size:16px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.stack-group{background:var(--surface);border-radius:var(--r);padding:22px}
+.stack-group h3{font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
 .stack-group h3 .n{font:500 11px var(--mono);color:var(--muted)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);margin-bottom:40px}
-.marquee-track{display:flex;gap:40px;width:max-content;animation:scroll 40s linear infinite;font:300 clamp(28px,4vw,44px)/1.2 var(--display);letter-spacing:-.02em;color:rgba(0,0,0,.18)}
+.stack-group .chip{min-height:32px}
+.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);margin-bottom:36px}
+.marquee-track{display:flex;gap:40px;width:max-content;animation:scroll 40s linear infinite;font:300 clamp(26px,4vw,44px)/1.2 var(--display);letter-spacing:-.02em;color:rgba(0,0,0,.18)}
 .marquee-track span:nth-child(3n+1){color:rgba(0,0,0,.75)}
 @keyframes scroll{to{transform:translateX(-50%)}}
 
 /* process */
 .process{display:grid;gap:40px;align-items:center}
 @media(min-width:960px){.process{grid-template-columns:1fr 1fr;gap:72px}}
-.steps{list-style:none;display:grid;gap:28px;margin-top:32px}
-.steps li{display:grid;grid-template-columns:32px 1fr;gap:16px}
+.steps{list-style:none;display:grid;gap:24px;margin-top:28px}
+.steps li{display:grid;grid-template-columns:32px 1fr;gap:14px}
 .steps .num{width:28px;height:28px;border-radius:50%;background:#000;color:#fff;display:grid;place-items:center;font:500 13px var(--mono)}
-.steps h3{font-size:18px;margin-bottom:4px}
+.steps h3{font-size:18px;margin-bottom:2px}
 .steps p{color:var(--ink-2);font-size:15px}
-.ci-art{border-radius:var(--r-lg);padding:28px;background:radial-gradient(100% 80% at 0% 0%,#a9c6f0 0,transparent 60%),radial-gradient(80% 80% at 100% 100%,#f2a48f 0,transparent 60%),#efe6df;min-height:420px;display:grid;align-content:end}
-.ci-card{background:var(--card);border-radius:var(--r);box-shadow:0 20px 40px -24px rgba(0,0,0,.35);padding:18px}
-.ci-card .hd{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:12px}
-.ci-card .ok{font:500 11px/1 var(--mono);color:var(--green);background:#dcfce7;padding:5px 8px;border-radius:999px}
-.job{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);font-size:13.5px}
+.ci-art{border-radius:var(--r-lg);padding:22px;background:radial-gradient(100% 80% at 0% 0%,#a9c6f0 0,transparent 60%),radial-gradient(80% 80% at 100% 100%,#f2a48f 0,transparent 60%),#efe6df;min-height:380px;display:grid;align-content:end}
+@media(min-width:600px){.ci-art{padding:28px;min-height:420px}}
+.ci-card{background:var(--card);border-radius:var(--r);box-shadow:0 20px 40px -24px rgba(0,0,0,.35);padding:16px}
+.ci-card .hd{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:10px;gap:8px}
+.ci-card .ok{font:500 11px/1 var(--mono);color:var(--pass);background:var(--pass-soft);padding:5px 8px;border-radius:999px}
+.job{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:13.5px}
 .job span:first-child{display:flex;gap:10px;align-items:center}
-.job .t{font:400 12px var(--mono);color:var(--muted)}
+.job .t{font:400 12px var(--mono);color:var(--muted);white-space:nowrap}
 
 /* engagement */
 .plans{display:grid;gap:16px}
-@media(min-width:760px){.plans{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:760px){.plans{grid-template-columns:repeat(2,1fr)}}
 .plan{border-radius:var(--r-lg);background:var(--card);box-shadow:var(--ring);overflow:hidden;display:flex;flex-direction:column}
-.plan-head{padding:24px;color:#fff;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.plan-head{padding:24px;color:#fff;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;position:relative;gap:16px}
 .plan-head::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");mix-blend-mode:overlay;pointer-events:none}
-.plan-head > *{position:relative;z-index:1}
-.plan-head h3{font-size:24px;display:flex;gap:10px;align-items:center}
-.plan-head .pop{font:500 10.5px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;background:#fff;color:#000;padding:5px 8px;border-radius:999px}
-.plan-head .big{font:300 30px/1.1 var(--display);letter-spacing:-.02em}
-.plan-head small{opacity:.85;font-size:13px}
+.plan-head>*{position:relative;z-index:1}
+.plan-head h3{font-size:26px}
+.plan-head small{opacity:.88;font-size:14px}
 .ph-1{background:radial-gradient(90% 90% at 80% 10%,#d9e86a 0,transparent 60%),radial-gradient(90% 90% at 10% 100%,#1f7a3d 0,transparent 60%),#4c9a3c}
-.ph-2{background:radial-gradient(90% 90% at 80% 20%,#f8c14b 0,transparent 55%),radial-gradient(90% 90% at 0% 100%,#c2410c 0,transparent 60%),#e07a24}
 .ph-3{background:radial-gradient(90% 90% at 70% 20%,#4b5563 0,transparent 60%),#111}
-.plan-body{padding:24px;display:grid;gap:18px;flex:1;align-content:start}
-.plan-body ul{list-style:none;display:grid;gap:12px;font-size:14.5px;color:var(--ink-2)}
+.plan-body{padding:24px;display:grid;gap:18px;flex:1;align-content:space-between}
+.plan-body ul{list-style:none;display:grid;gap:12px;font-size:15px;color:var(--ink-2)}
 .plan-body li{display:flex;gap:10px}
-.plan-body li svg{flex:none;margin-top:3px}
-.plan-body .btn{justify-content:center;width:100%}
+.plan-body li svg{flex:none;margin-top:4px;color:var(--pass)}
+.plan-body .btn{width:100%}
+.work-note{margin-top:20px;font-size:14px;color:var(--muted);text-align:center}
 
 /* education */
-.edu{display:grid;gap:16px}
+.edu{display:grid;gap:14px}
 @media(min-width:760px){.edu{grid-template-columns:repeat(3,1fr)}}
-.edu-card{border-radius:var(--r);box-shadow:var(--ring);background:var(--card);padding:24px;display:grid;gap:6px}
+.edu-card{border-radius:var(--r);box-shadow:var(--ring);background:var(--card);padding:22px;display:grid;gap:6px}
 .edu-card .y{font:500 12px var(--mono);color:var(--muted)}
+.edu-card h3{font-size:18px}
 .edu-card .g{font-size:14px;color:var(--ink-2)}
 
 /* faq */
-.faq-grid{display:grid;gap:32px}
+.faq-grid{display:grid;gap:24px}
 @media(min-width:960px){.faq-grid{grid-template-columns:1fr 1.4fr;gap:72px}}
 details{border-bottom:1px solid var(--line)}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font:450 18px/1.35 var(--display);letter-spacing:-.01em}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;min-height:56px;font:450 18px/1.35 var(--display);letter-spacing:-.01em}
 summary::-webkit-details-marker{display:none}
-summary .pm{flex:none;width:28px;height:28px;border-radius:50%;box-shadow:var(--ring);display:grid;place-items:center;transition:transform .2s}
+summary .pm{flex:none;width:30px;height:30px;border-radius:50%;box-shadow:var(--ring);display:grid;place-items:center;transition:transform .2s}
 details[open] summary .pm{transform:rotate(45deg)}
-details p{padding:0 0 22px;color:var(--ink-2);max-width:62ch}
+details p{padding:0 0 20px;color:var(--ink-2);max-width:58ch}
 
 /* final cta */
-.final{text-align:center;padding:96px 0}
-@media(min-width:900px){.final{padding:140px 0}}
-.final h2{max-width:16ch;margin:0 auto 20px}
-.final .lead{margin:0 auto 32px}
+.final{text-align:center;padding:88px 0}
+@media(min-width:900px){.final{padding:128px 0}}
+.final h2{max-width:15ch;margin:0 auto 18px}
+.final .lead{margin:0 auto 28px}
 .final .cta-row{justify-content:center}
-.contacts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px}
-footer{border-top:1px solid var(--line);padding:28px 0;font-size:13px;color:var(--muted)}
-footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.contacts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:28px 0 calc(28px + env(safe-area-inset-bottom));font-size:13px;color:var(--muted)}
+footer .wrap{display:grid;gap:14px}
+@media(min-width:800px){footer .wrap{grid-template-columns:auto 1fr;align-items:center}}
+.ai-credit{display:flex;gap:10px;align-items:flex-start;color:var(--ink-2)}
+@media(min-width:800px){.ai-credit{justify-self:end;text-align:right;align-items:center}}
+.ai-credit .spark{flex:none;width:26px;height:26px;border-radius:8px;background:var(--grad);display:grid;place-items:center}
+.ai-credit b{font-weight:500;color:#000}
 
 /* reveal */
 .rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
@@ -288,9 +432,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;transition:none}
-  .marquee-track,.live{animation:none}
+  .marquee-track,.live,.tap,.ui .cta,.ui .cta::before,.ui .cta::after,.bpage .cta,.bpage .cta::before,.bpage .cta::after,.rot .caret{animation:none}
+  .rot{transform:none;filter:none;transition:opacity .3s ease}
+  .rot.on{transform:none;filter:none;transition:opacity .5s ease .32s}
   .odo .col{transition:none}
-  .term-line{transition:none}
+  .device,.browser{transition:none}
 }
 </style>
 </head>
@@ -300,28 +446,30 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <div class="banner">
   <div class="wrap">
     <span class="live" aria-hidden="true"></span>
-    <b>Open to work</b><span class="sep">|</span>
-    <span>Middle to Senior SDET roles</span><span class="sep">|</span>
-    <span>Jakarta · Remote · Overseas</span>
-    <a class="pill" href="#contact">Let's talk</a>
+    <b>Open to work</b>
+    <span class="sep hide-sm">|</span><span class="hide-sm">Full-time &amp; freelance SDET</span>
+    <span class="sep hide-sm">|</span><span class="hide-sm">Jakarta · Remote</span>
+    <a class="pill" href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>Download CV</a>
   </div>
 </div>
 
 <header class="nav" id="top">
   <div class="wrap">
     <a href="#top" class="logo" aria-label="Iqbal Apriansyah, home">
-      <span class="logo-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
-      Iqbal Apriansyah
+      <span class="logo-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+      Iqbal <small>/sdet</small>
     </a>
     <nav class="nav-links" aria-label="Main">
+      <a href="#about">About</a>
       <a href="#capabilities">What I test</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#stack">Stack</a>
-      <a href="#process">Process</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-right">
+      <span class="cov" aria-hidden="true">coverage <span class="track"><i id="covBar"></i></span><span id="covNum">0%</span></span>
       <a class="btn btn-dark btn-sm" href="#contact">Hire me</a>
       <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" id="menuBtn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
@@ -329,12 +477,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
   </div>
   <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
+    <a href="#about">About</a>
     <a href="#capabilities">What I test</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
     <a href="#stack">Stack</a>
-    <a href="#process">Process</a>
     <a href="#faq">FAQ</a>
+    <a href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">Download CV ↓</a>
   </nav>
 </header>
 
@@ -344,17 +493,30 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="badge rv"><span class="new">Now</span>SDET at OLX Indonesia</span>
-      <h1 class="display rv"><span class="grad">Mobile, web, and API tests</span> in one codebase you can trust</h1>
-      <p class="lead rv">I'm Iqbal, an SDET with almost five years in QA. I build end-to-end suites in TypeScript with WebdriverIO, Appium and Playwright, run them on real devices in CI, and keep them green for every squad that depends on them.</p>
+      <span class="badge rv"><img src="assets/iqbal.webp" alt="" width="28" height="28"><span>SDET at <b>PT Astra Digital Mobil</b> · OLX</span></span>
+      <h1 class="display rotator rv" id="rotator">
+        <span class="sr">Mobile, web, and API tests in one codebase you can trust</span>
+        <span class="rot on" aria-hidden="true"><span class="grad">Mobile, web, and API tests</span> in one codebase you can trust<span class="caret"></span></span>
+        <span class="rot" aria-hidden="true"><span class="grad">Android, iOS, and web,</span> covered by one test suite<span class="caret"></span></span>
+        <span class="rot" aria-hidden="true"><span class="grad">Catch the bug</span> before your users do<span class="caret"></span></span>
+        <span class="rot" aria-hidden="true"><span class="grad">Real devices, real flows,</span> real confidence<span class="caret"></span></span>
+        <span class="rot" aria-hidden="true"><span class="grad">Automation</span> your squads keep using<span class="caret"></span></span>
+        <span class="rot" aria-hidden="true"><span class="grad">Green builds</span> you can believe in<span class="caret"></span></span>
+        <span class="rot" aria-hidden="true"><span class="grad">Seller flows,</span> tested every release<span class="caret"></span></span>
+        <span class="rot" aria-hidden="true"><span class="grad">From test design</span> to a green pipeline<span class="caret"></span></span>
+        <span class="rot" aria-hidden="true"><span class="grad">Fewer flaky tests,</span> more confident releases<span class="caret"></span></span>
+        <span class="rot" aria-hidden="true"><span class="grad">Quality built in,</span> not bolted on<span class="caret"></span></span>
+      </h1>
+      <p class="lead rv">I'm Iqbal, an SDET with almost 5 years in QA. I automate mobile, web and API tests and run them on real devices in CI.</p>
       <div class="cta-row rv">
         <a class="btn btn-dark" href="#contact">Get in touch</a>
-        <a class="btn btn-light" href="#projects">See projects</a>
+        <a class="btn btn-light" href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>Download CV</a>
       </div>
       <ul class="checks rv">
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Android, iOS, desktop web and mobile web</li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Smoke and regression on a real-device cloud</li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Based in Bekasi, open to remote and relocation</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Real-device cloud in CI</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Bekasi, open to remote</li>
       </ul>
     </div>
 
@@ -368,10 +530,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="term-body" id="termBody" aria-hidden="true"></div>
         <div class="term-foot">
           <div class="bar" aria-hidden="true"><i id="termBar"></i></div>
-          <button class="replay" id="replay"><span><svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><path d="M6 4l14 8-14 8z"/></svg></span>Replay run</button>
+          <button class="replay" id="replay" type="button"><span><svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><path d="M6 4l14 8-14 8z"/></svg></span>Replay run</button>
         </div>
       </div>
-      <p class="hero-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21l1.4-7L2 9.3l7-.8z"/></svg><span><b>0 defects reported</b> after the E-Katalog v6 production release</span></p>
+      <p class="hero-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21l1.4-7L2 9.3l7-.8z"/></svg><span><b>0 defects reported</b> after the e-Katalog v6 release</span></p>
     </div>
   </div>
 </section>
@@ -380,80 +542,137 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <div class="divider"></div>
 <div class="trusted">
   <div class="wrap">
-    <p class="muted rv">Shipped quality for teams at</p>
+    <p class="muted rv">Shipped quality for</p>
     <div class="logos rv">
-      <span>OLX Indonesia</span><span>Telkom Indonesia</span><span>LKPP E-Katalog</span><span>SIRCLO</span><span>Wehelpyou</span>
+      <span class="hl">PT Astra Digital Mobil<small>OLX</small></span><span>Telkom Indonesia<small>GovTech</small></span><span>SIRCLO</span><span>Wehelpyou</span>
     </div>
     <div class="stats">
       <div class="stat rv">
         <span class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-        <div class="odo" data-value="5" data-suffix="">5</div>
-        <p>years in QA, Dec 2021 to today</p>
+        <div class="odo" data-value="5">5</div><p>years in QA</p>
       </div>
       <div class="stat rv">
         <span class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span>
-        <div class="odo" data-value="4">4</div>
-        <p>platforms covered by one TypeScript suite</p>
+        <div class="odo" data-value="4">4</div><p>platforms, one test suite</p>
       </div>
       <div class="stat rv">
         <span class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.5a3.5 3.5 0 010 7M18 14.8c1.9.7 3.1 2.4 3.5 5.2"/></svg></span>
-        <div class="odo" data-value="18">18</div>
-        <p>QA engineers trained in API automation</p>
+        <div class="odo" data-value="18">18</div><p>QA engineers trained</p>
       </div>
       <div class="stat rv">
         <span class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
-        <div class="odo" data-value="0">0</div>
-        <p>defects reported after a national gov-tech release</p>
+        <div class="odo" data-value="0">0</div><p>defects after a gov-tech release</p>
       </div>
     </div>
   </div>
 </div>
 
+<!-- ABOUT -->
+<section id="about" class="divider">
+  <div class="wrap about">
+    <div class="portrait rv">
+      <img src="assets/iqbal.webp" alt="Portrait of Iqbal Apriansyah" width="640" height="1000" loading="lazy">
+      <span class="stamp"><i></i>available · UTC+7</span>
+    </div>
+    <div>
+      <p class="spec rv"><i></i>about.spec.ts</p>
+      <h2 class="display rv">Hi, I'm Iqbal. <span class="grad">I break things</span> before your users can.</h2>
+      <p class="lead rv">SDET at PT Astra Digital Mobil, testing the OLX Indonesia apps on Android, iOS and web. Before that: government procurement, e-commerce SaaS and delivery apps.</p>
+      <div class="facts rv">
+        <span class="chip">📍 Bekasi, Indonesia</span>
+        <span class="chip">🧪 Since Dec 2021</span>
+        <span class="chip">🗣 English · Indonesian</span>
+      </div>
+      <div class="cta-row rv">
+        <a class="btn btn-dark" href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>Download CV (PDF)</a>
+        <a class="btn btn-light" href="https://www.linkedin.com/in/iqbal-apriansyah-84753a21b" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CAPABILITIES -->
 <section id="capabilities" class="divider">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="display rv"><span class="grad">One SDET,</span> your full quality stack</h2>
-      <p class="lead rv">From the first login test to the last regression run before release. Pick the layer, I'll cover it.</p>
+      <div><p class="spec rv"><i></i>capabilities.spec.ts</p>
+      <h2 class="display rv"><span class="grad">One SDET,</span> your full quality stack</h2></div>
+      <p class="lead rv">Pick the layer. I'll cover it.</p>
     </div>
 
     <div class="bento">
       <article class="card b-a rv">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span>
-        <h3>Mobile end-to-end</h3>
-        <p>WebdriverIO and Appium on Android (UiAutomator2) and iOS (XCUITest), with a shared screen-object layer so one flow runs on both.</p>
-        <div class="phones" aria-hidden="true">
-          <div class="phone"><div class="scr"><i class="hi"></i><i></i><i></i><i style="width:70%"></i><i class="ok"></i></div></div>
-          <div class="phone"><div class="scr"><i></i><i class="hi"></i><i style="width:80%"></i><i></i><i class="ok"></i></div></div>
-          <div class="phone web"><div class="scr"><i style="width:40%"></i><i class="hi"></i><i></i><i style="width:85%"></i><i class="ok"></i></div></div>
+        <h3>Mobile: Android &amp; iOS</h3>
+        <p>Both OSes at PT Astra Digital Mobil (OLX), from one WebdriverIO + Appium codebase.</p>
+        <div class="stage" aria-hidden="true">
+          <div class="dev-wrap">
+            <div class="device android"><div class="scr">
+              <span class="punch"></span>
+              <div class="sbar"><span>12:30</span><span class="sicons"><span class="sig"><i style="height:2px"></i><i style="height:4px"></i><i style="height:6px"></i></span><span class="bat"></span></span></div>
+              <div class="ui"><div class="appbar"><i></i><b></b></div><div class="search"></div><div class="banner-sk"></div>
+                <div class="row"><span class="th"></span><span class="ln"><i></i><i></i></span></div>
+                <div class="row"><span class="th"></span><span class="ln"><i></i><i></i></span></div>
+                <div class="cta"></div></div>
+              <div class="navbar"><i></i><i></i><i></i></div>
+              <span class="tap"></span>
+            </div></div>
+            <small>Android · UiAutomator2</small>
+          </div>
+          <div class="dev-wrap">
+            <div class="device ios"><div class="scr">
+              <span class="island"></span>
+              <div class="sbar"><span>9:41</span><span class="sicons"><span class="sig"><i style="height:2px"></i><i style="height:4px"></i><i style="height:6px"></i></span><span class="bat"></span></span></div>
+              <div class="ui"><div class="appbar"><i></i><b></b></div><div class="search"></div><div class="banner-sk"></div>
+                <div class="row"><span class="th"></span><span class="ln"><i></i><i></i></span></div>
+                <div class="row"><span class="th"></span><span class="ln"><i></i><i></i></span></div>
+                <div class="cta"></div></div>
+              <div class="home-ind"><i></i></div>
+              <span class="tap"></span>
+            </div></div>
+            <small>iOS · XCUITest</small>
+          </div>
         </div>
       </article>
 
       <article class="card b-b rv">
-        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h10M4 17h7"/><path d="M15 15l2 2 4-4"/></svg></span>
-        <h3>API and GraphQL</h3>
-        <p>REST and GraphQL suites in Ruby with Cucumber, Postman and Swagger. I also use the API to seed test data, like a live auction, so UI tests start from a known state.</p>
-        <div class="viz" aria-hidden="true"><span class="c"># seed a live auction, then assert in the app</span><br><span class="k">const</span> auction = <span class="k">await</span> api.post(<span class="s">'/auctions'</span>, { status: <span class="s">'LIVE'</span> });<br><span class="k">await</span> AuctionScreen.open(auction.id);<br><span class="k">await</span> expect(AuctionScreen.bidButton).toBeDisplayed();</div>
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/></svg></span>
+        <h3>Web: desktop &amp; mobile web</h3>
+        <p>Playwright for both, plus Cypress and Selenium where teams already use them.</p>
+        <div class="bstage" aria-hidden="true">
+          <div class="browser">
+            <div class="btop"><div class="lights"><i></i><i></i><i></i></div><div class="url"><b>https://</b>app.example.test/sell</div></div>
+            <div class="bpage">
+              <div class="bnav"><i></i><span><b></b><b></b><b></b></span></div>
+              <div class="bhero"></div>
+              <div class="bgrid"><div></div><div></div><div></div></div>
+              <div class="cta"></div>
+              <span class="tap"></span>
+            </div>
+          </div>
+          <div class="mweb"><div class="scr"><i class="h"></i><i></i><i style="width:70%"></i><i></i><i class="ok"></i></div></div>
+        </div>
       </article>
 
       <article class="card b-c rv">
-        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/></svg></span>
-        <h3>Web end-to-end</h3>
-        <p>Playwright for desktop and mobile web, plus Cypress and Selenium where the team already uses them.</p>
-        <div class="tags"><span class="tag">Playwright</span><span class="tag">Cypress</span><span class="tag">Selenium</span></div>
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h10M4 17h7"/><path d="M15 15l2 2 4-4"/></svg></span>
+        <h3>API &amp; GraphQL</h3>
+        <p>REST and GraphQL suites, plus API-seeded test data.</p>
+        <div class="tags"><span class="tag">Postman</span><span class="tag">Cucumber</span><span class="tag">GraphQL</span></div>
       </article>
 
       <article class="card b-d rv">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 12h3M14 12h3"/></svg></span>
-        <h3>CI and device cloud</h3>
-        <p>Smoke on every build and regression on real devices in LambdaTest, wired through GitHub Actions and Docker.</p>
-        <div class="pipe" style="margin-top:18px" aria-hidden="true"><span class="st"><i></i>build</span><span class="ln"></span><span class="st"><i></i>smoke</span><span class="ln"></span><span class="st"><i></i>regression</span></div>
+        <h3>CI &amp; device cloud</h3>
+        <p>Smoke on every build, regression on real devices.</p>
+        <div class="pipe" aria-hidden="true"><span class="st"><i></i>build</span><span class="ln"></span><span class="st"><i></i>smoke</span><span class="ln"></span><span class="st"><i></i>regression</span></div>
       </article>
 
       <article class="card b-e rv">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
-        <h3>Visual and network checks</h3>
-        <p>Visual regression catches the layout bugs assertions miss. Network-log checks catch the wrong call behind a screen that looks right.</p>
+        <h3>Visual &amp; network checks</h3>
+        <p>Catch layout bugs and wrong API calls that assertions miss.</p>
       </article>
 
       <article class="card b-f rv">
@@ -461,16 +680,16 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <div>
             <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg></span>
             <h3>AI-assisted test design, with guardrails</h3>
-            <p>I turn test designs into test specs with AI, and every generated step is checked against real screen objects, so it can't invent a locator that doesn't exist.</p>
+            <p>Test designs become specs fast. Every locator is checked against real screen objects, so nothing is invented.</p>
           </div>
           <div class="viz" aria-hidden="true">
             <span class="c">// test design → spec</span><br>
-            <span class="k">it</span>(<span class="s">'buys a highlight package for an active ad'</span>, <span class="k">async</span> () =&gt; {<br>
+            <span class="k">it</span>(<span class="s">'boosts an active ad'</span>, <span class="k">async</span> () =&gt; {<br>
             &nbsp;&nbsp;<span class="k">await</span> LoginFlow.asSeller();<br>
             &nbsp;&nbsp;<span class="k">await</span> MyAdsScreen.open(ad.id);<br>
-            &nbsp;&nbsp;<span class="k">await</span> PackageFlow.buy(<span class="s">'highlight'</span>);<br>
-            &nbsp;&nbsp;<span class="c">// guardrail: locator must exist in screen objects</span><br>
-            &nbsp;&nbsp;<span class="k">await</span> expect(MyAdsScreen.badge(<span class="s">'Highlight'</span>)).toBeDisplayed();<br>
+            &nbsp;&nbsp;<span class="k">await</span> EnhanceFlow.buy(<span class="s">'highlight'</span>);<br>
+            &nbsp;&nbsp;<span class="c">// guardrail: locator must exist</span><br>
+            &nbsp;&nbsp;<span class="k">await</span> expect(MyAdsScreen.badge).toBeDisplayed();<br>
             });
           </div>
         </div>
@@ -483,34 +702,35 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section id="experience" class="divider">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="display rv">Where I've <span class="grad">shipped quality</span></h2>
-      <p class="lead rv">Marketplace, national procurement, e-commerce and services. Manual testing first, then automation that teams keep using.</p>
+      <div><p class="spec rv"><i></i>experience.spec.ts</p>
+      <h2 class="display rv">Where I've <span class="grad">shipped quality</span></h2></div>
+      <p class="lead rv">Marketplace, gov-tech, SaaS and delivery.</p>
     </div>
     <div class="exp">
       <article class="role now rv">
         <div class="role-top">
-          <div><div class="co">OLX Indonesia</div><div class="title">SDET · Astra Digital Mobil · Jakarta</div></div>
+          <div><div class="co">PT Astra Digital Mobil</div><div class="title">SDET · <b>OLX Indonesia</b> · Jakarta</div></div>
           <span class="now-pill">Nov 2025 – now</span>
         </div>
         <ul>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>End-to-end tests for the OLX marketplace and dealer auction app on Android, iOS, desktop web and mobile web, from one TypeScript codebase.</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Built the shared user-flow layer (login, post ad, package purchase) used by the B2C, C2B and Commerce squads.</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Smoke and regression on LambdaTest real devices in CI, with visual regression and network-log checks.</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>E2E for OLX on Android, iOS and web, in one TypeScript codebase.</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Shared flow layer used by B2C, C2B and Commerce squads.</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Real-device runs in CI, visual and network checks.</li>
         </ul>
-        <div class="chips"><span class="tag">WebdriverIO</span><span class="tag">Appium</span><span class="tag">Playwright</span><span class="tag">LambdaTest</span><span class="tag">Jira</span></div>
+        <div class="tags"><span class="tag">WebdriverIO</span><span class="tag">Appium</span><span class="tag">Playwright</span><span class="tag">LambdaTest</span></div>
       </article>
 
       <article class="role rv">
         <div class="role-top">
-          <div><div class="co">GovTech Procurement, Telkom Indonesia</div><div class="title">QA Engineer · South Jakarta</div></div>
+          <div><div class="co">Telkom Indonesia</div><div class="title">QA Engineer · GovTech Procurement</div></div>
           <span class="when">Mar 2023 – Oct 2025</span>
         </div>
         <ul>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Tested E-Katalog v6 and Daftar Hitam for national government procurement, from test planning through UAT with LKPP to production. No defects reported after release.</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>BDD automation in Ruby and Cucumber for REST, GraphQL and UI, with automation PRs every sprint.</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Trained 18 QA engineers in API test automation and improved internal QA tooling.</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>e-Katalog v6 from test plan to UAT with LKPP. 0 defects after release.</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>BDD automation in Ruby for REST, GraphQL and UI.</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Trained 18 QA engineers in API automation.</li>
         </ul>
-        <div class="chips"><span class="tag">Ruby</span><span class="tag">Cucumber</span><span class="tag">GraphQL</span><span class="tag">REST</span></div>
+        <div class="tags"><span class="tag">Ruby</span><span class="tag">Cucumber</span><span class="tag">GraphQL</span></div>
       </article>
 
       <article class="role rv">
@@ -519,10 +739,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <span class="when">May 2022 – Mar 2023</span>
         </div>
         <ul>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Test cases and API tests with Postman and Swagger.</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Cypress regression suite in JavaScript, plus quarterly QA mentoring.</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Cypress regression and API tests for the commerce SaaS.</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Quarterly QA mentoring.</li>
         </ul>
-        <div class="chips"><span class="tag">Cypress</span><span class="tag">Postman</span><span class="tag">Swagger</span></div>
+        <div class="tags"><span class="tag">Cypress</span><span class="tag">Postman</span></div>
       </article>
 
       <article class="role rv">
@@ -531,10 +751,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <span class="when">Dec 2021 – Apr 2022</span>
         </div>
         <ul>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Manual and Katalon Studio regression for web and mobile (iOS and Android).</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Turned PRDs and business requirements into test plans and UI test cases.</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Manual testing of the delivery app on iOS and Android.</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>PRDs turned into test plans and UI test cases.</li>
         </ul>
-        <div class="chips"><span class="tag">Katalon</span><span class="tag">Manual QA</span></div>
+        <div class="tags"><span class="tag">Manual QA</span><span class="tag">Katalon</span></div>
       </article>
     </div>
   </div>
@@ -544,80 +764,65 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section id="projects" class="divider">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="display rv"><span class="grad">Selected work</span> and what it changed</h2>
-      <p class="lead rv">Company work is described, not shown. The code stays with the teams who own it.</p>
+      <div><p class="spec rv"><i></i>projects.spec.ts</p>
+      <h2 class="display rv"><span class="grad">Products</span> I've tested</h2></div>
+      <p class="lead rv">Real platforms, real users. One per company.</p>
     </div>
     <div class="projects">
-      <article class="proj p-feat rv">
-        <div class="proj-art art-1">
-          <div class="mini-term" aria-hidden="true">
-            <span class="t-dim">$</span> npm run test:smoke -- --platform=all<br>
-            <span class="t-ok">✓</span> android <span class="t-dim">· 12 specs</span><br>
-            <span class="t-ok">✓</span> ios <span class="t-dim">· 12 specs</span><br>
-            <span class="t-ok">✓</span> desktop-web <span class="t-dim">· 12 specs</span><br>
-            <span class="t-ok">✓</span> mobile-web <span class="t-dim">· 12 specs</span>
-          </div>
-          <span class="lbl">OLX Indonesia · 2025–now</span>
+      <article class="proj p-olx rv">
+        <div class="proj-art">
+          <img src="assets/olx.webp" alt="OLX Indonesia app promotional image" loading="lazy" width="762" height="1600">
+          <span class="pass-stamp">PASSED</span>
         </div>
         <div class="proj-body">
-          <h3>Cross-platform E2E framework for a marketplace</h3>
-          <p>One TypeScript codebase that drives Android, iOS, desktop web and mobile web. WebdriverIO and Appium for mobile, Playwright for web, and a shared user-flow layer so three squads write tests against the same login, post-ad and purchase flows.</p>
-          <span class="outcome"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Shared by B2C, C2B and Commerce squads</span>
-          <div class="tags"><span class="tag">TypeScript</span><span class="tag">WebdriverIO</span><span class="tag">Appium</span><span class="tag">Playwright</span><span class="tag">LambdaTest</span></div>
+          <span class="co-line">PT Astra Digital Mobil · 2025 – now</span>
+          <h3 style="font-size:26px">OLX Indonesia: seller side</h3>
+          <p>Everything a seller touches, tested on every platform.</p>
+          <div class="plat-row"><span class="chip">🤖 Android</span><span class="chip">📱 iOS</span><span class="chip">🖥 Desktop &amp; mobile web</span></div>
+          <ul class="areas">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Enhance My Ads</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Post ad: used motorcycles</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Post ad: used cars</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Post ad: new cars</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>New-car brand pages</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Shared seller flow layer</li>
+          </ul>
+          <div class="tags"><span class="tag">TypeScript</span><span class="tag">WebdriverIO</span><span class="tag">Appium</span><span class="tag">Playwright</span></div>
         </div>
       </article>
 
       <article class="proj rv">
-        <div class="proj-art art-2">
-          <div class="gherkin" aria-hidden="true">
-            <span class="k">Feature:</span> Product catalog<br>
-            &nbsp;&nbsp;<span class="k">Scenario:</span> Vendor lists a product<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="n">Given</span> a verified vendor<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="n">When</span> they submit a product<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="n">Then</span> it appears for review
-          </div>
-          <span class="lbl">Telkom · LKPP</span>
-        </div>
+        <div class="proj-art"><img src="assets/ekatalog.webp" alt="e-Katalog INAPROC homepage" loading="lazy" width="1200" height="885" style="object-position:0 0"><span class="pass-stamp">PASSED</span><span class="lbl">Web</span></div>
         <div class="proj-body">
-          <h3>E-Katalog v6 BDD suite</h3>
-          <p>Cucumber scenarios in Ruby covering REST, GraphQL and UI for Indonesia's national procurement catalog, carried from test plan to UAT with LKPP.</p>
-          <span class="outcome"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>0 defects reported after release</span>
+          <span class="co-line">Telkom Indonesia · 2023 – 2025</span>
+          <h3>e-Katalog (INAPROC)</h3>
+          <p>National procurement catalog. I covered the whole seller side, end to end.</p>
+          <a class="ext" href="https://katalog.inaproc.id/" target="_blank" rel="noopener">katalog.inaproc.id ↗</a>
           <div class="tags"><span class="tag">Ruby</span><span class="tag">Cucumber</span><span class="tag">GraphQL</span></div>
         </div>
       </article>
 
       <article class="proj rv">
-        <div class="proj-art art-3"><span class="lbl">Internal training</span></div>
+        <div class="proj-art art-saas" aria-hidden="false">
+          <div class="saas" aria-hidden="true"><div class="side"><i></i><i></i><i></i><i></i></div><div class="main"><div class="kpis"><div></div><div></div><div></div></div><div class="chart"></div><div class="rows"><i></i><i style="width:70%"></i></div></div></div>
+          <span class="pass-stamp">PASSED</span><span class="lbl">Web · SaaS</span>
+        </div>
         <div class="proj-body">
-          <h3>API automation training</h3>
-          <p>Taught API test automation with Ruby to QA engineers who had only tested manually, from first request to assertions in CI.</p>
-          <span class="outcome"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>18 engineers trained</span>
-          <div class="tags"><span class="tag">Ruby</span><span class="tag">REST</span><span class="tag">Mentoring</span></div>
+          <span class="co-line">SIRCLO · 2022 – 2023</span>
+          <h3>Commerce SaaS</h3>
+          <p>Store-management SaaS for brands. Cypress regression and API tests.</p>
+          <div class="tags"><span class="tag">Cypress</span><span class="tag">Postman</span><span class="tag">Swagger</span></div>
         </div>
       </article>
 
       <article class="proj rv">
-        <div class="proj-art art-4">
-          <div class="mini-term" style="inset:20px;width:auto;background:transparent;box-shadow:none" aria-hidden="true">
-            <span class="t-dim">$</span> npx playwright test<br>
-            <span class="t-ok">✓</span> Chromium <span class="t-ok">✓</span> Firefox <span class="t-ok">✓</span> WebKit<br>
-            <span class="t-dim">trace · video · screenshot on failure</span>
-          </div>
-          <span class="lbl">Personal</span>
-        </div>
+        <div class="proj-art"><img src="assets/wehelpyou.webp" alt="Wehelpyou Delivery website hero" loading="lazy" width="1200" height="563" style="object-position:30% 50%"><span class="pass-stamp">PASSED</span><span class="lbl">Mobile · Manual</span></div>
         <div class="proj-body">
-          <h3>SauceDemo checkout with Playwright</h3>
-          <p>Page objects plus a scenario layer for login, sorting, cart and checkout, with negative login and form cases. Runs on three browser engines.</p>
-          <div class="tags"><span class="tag">Playwright</span><span class="tag">TypeScript</span><span class="tag">POM</span></div>
-        </div>
-      </article>
-
-      <article class="proj rv">
-        <div class="proj-art art-5"><span class="lbl">SIRCLO · 2022–2023</span></div>
-        <div class="proj-body">
-          <h3>E-commerce regression in Cypress</h3>
-          <p>A JavaScript Cypress regression suite and Postman collections built from Swagger specs, so every release had the same checks.</p>
-          <div class="tags"><span class="tag">Cypress</span><span class="tag">JavaScript</span><span class="tag">Postman</span></div>
+          <span class="co-line">Wehelpyou · 2021 – 2022</span>
+          <h3>Wehelpyou Delivery</h3>
+          <p>Delivery app on iOS and Android, tested manually flow by flow.</p>
+          <a class="ext" href="https://www.wehelpyou.id/" target="_blank" rel="noopener">wehelpyou.id ↗</a>
+          <div class="tags"><span class="tag">Manual QA</span><span class="tag">Katalon</span></div>
         </div>
       </article>
     </div>
@@ -634,15 +839,16 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="display rv">The <span class="grad">stack</span> I work in</h2>
-      <p class="lead rv">Tools I've used on production projects. If your team uses something else, I learn it on the job.</p>
+      <div><p class="spec rv"><i></i>stack.spec.ts</p>
+      <h2 class="display rv">The <span class="grad">stack</span> I work in</h2></div>
+      <p class="lead rv">Used on production projects.</p>
     </div>
     <div class="stack">
       <div class="stack-group rv"><h3>Languages <span class="n">05</span></h3><div class="chips"><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Ruby</span><span class="chip">Python</span><span class="chip">SQL</span></div></div>
       <div class="stack-group rv"><h3>Mobile <span class="n">06</span></h3><div class="chips"><span class="chip">WebdriverIO</span><span class="chip">Appium</span><span class="chip">UiAutomator2</span><span class="chip">XCUITest</span><span class="chip">Appium Inspector</span><span class="chip">Jasmine</span></div></div>
       <div class="stack-group rv"><h3>Web <span class="n">04</span></h3><div class="chips"><span class="chip">Playwright</span><span class="chip">Cypress</span><span class="chip">Selenium</span><span class="chip">Katalon Studio</span></div></div>
-      <div class="stack-group rv"><h3>API <span class="n">06</span></h3><div class="chips"><span class="chip">REST</span><span class="chip">GraphQL</span><span class="chip">Postman</span><span class="chip">Swagger</span><span class="chip">Cucumber (BDD)</span><span class="chip">Chai.js</span></div></div>
-      <div class="stack-group rv"><h3>CI and infra <span class="n">06</span></h3><div class="chips"><span class="chip">GitHub Actions</span><span class="chip">LambdaTest</span><span class="chip">Docker</span><span class="chip">Rundeck</span><span class="chip">Git</span><span class="chip">PostgreSQL</span></div></div>
+      <div class="stack-group rv"><h3>API <span class="n">06</span></h3><div class="chips"><span class="chip">REST</span><span class="chip">GraphQL</span><span class="chip">Postman</span><span class="chip">Swagger</span><span class="chip">Cucumber</span><span class="chip">Chai.js</span></div></div>
+      <div class="stack-group rv"><h3>CI &amp; infra <span class="n">06</span></h3><div class="chips"><span class="chip">GitHub Actions</span><span class="chip">LambdaTest</span><span class="chip">Docker</span><span class="chip">Rundeck</span><span class="chip">Git</span><span class="chip">PostgreSQL</span></div></div>
       <div class="stack-group rv"><h3>Test management <span class="n">04</span></h3><div class="chips"><span class="chip">Jira</span><span class="chip">AIO Tests</span><span class="chip">Confluence</span><span class="chip">Squash</span></div></div>
     </div>
   </div>
@@ -653,20 +859,21 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <div class="wrap process">
     <div class="ci-art rv" aria-hidden="true">
       <div class="ci-card">
-        <div class="hd"><b style="font-weight:500">release/2026.11 · pipeline</b><span class="ok">PASSED</span></div>
-        <div class="job"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Seed test data via API</span><span class="t">14s</span></div>
-        <div class="job"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Smoke · Android + iOS</span><span class="t">2m 40s</span></div>
-        <div class="job"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Smoke · desktop + mobile web</span><span class="t">1m 52s</span></div>
-        <div class="job"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Visual regression</span><span class="t">48s</span></div>
-        <div class="job"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Results synced to Jira</span><span class="t">3s</span></div>
+        <div class="hd"><b style="font-weight:500">release · pipeline</b><span class="ok">PASSED</span></div>
+        <div class="job"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Seed data via API</span><span class="t">14s</span></div>
+        <div class="job"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Smoke · Android + iOS</span><span class="t">2m 40s</span></div>
+        <div class="job"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Smoke · web + mweb</span><span class="t">1m 52s</span></div>
+        <div class="job"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Visual regression</span><span class="t">48s</span></div>
+        <div class="job"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Synced to Jira</span><span class="t">3s</span></div>
       </div>
     </div>
     <div>
-      <h2 class="display rv">From spec to <span class="grad">green build</span> in three steps</h2>
+      <p class="spec rv"><i></i>process.spec.ts</p>
+      <h2 class="display rv">Spec to <span class="grad">green build</span> in three steps</h2>
       <ol class="steps">
-        <li class="rv"><span class="num">1</span><div><h3>Read the risk</h3><p>I turn the PRD into a test plan and start with the flows that cost money when they break: login, posting, payment.</p></div></li>
-        <li class="rv"><span class="num">2</span><div><h3>Automate the right layer</h3><p>API for test data, UI for user journeys, data-driven cases for the edges. Every case is traced back to Jira.</p></div></li>
-        <li class="rv"><span class="num">3</span><div><h3>Gate every build</h3><p>Smoke on each build, regression on real devices before release. A flaky test gets fixed, not retried until it passes.</p></div></li>
+        <li class="rv"><span class="num">1</span><div><h3>Read the risk</h3><p>Start with flows that cost money when they break.</p></div></li>
+        <li class="rv"><span class="num">2</span><div><h3>Automate the right layer</h3><p>API for data, UI for journeys, all traced in Jira.</p></div></li>
+        <li class="rv"><span class="num">3</span><div><h3>Gate every build</h3><p>Flaky tests get fixed, not retried.</p></div></li>
       </ol>
     </div>
   </div>
@@ -676,41 +883,31 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section id="work-together" class="divider">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="display rv"><span class="grad">Ways to work</span> together</h2>
-      <p class="lead rv">Onsite, hybrid or remote. Jakarta area first, remote from Indonesia, or relocation to Malaysia, Japan or the US.</p>
+      <div><p class="spec rv"><i></i>hire.spec.ts</p>
+      <h2 class="display rv">Open to <span class="grad">full-time</span> and freelance</h2></div>
+      <p class="lead rv">Onsite, hybrid or remote.</p>
     </div>
     <div class="plans">
       <article class="plan rv">
-        <div class="plan-head ph-1"><h3>Full-time <span class="pop">Preferred</span></h3><div><div class="big">Middle to Senior SDET</div><small>Product teams shipping mobile and web</small></div></div>
+        <div class="plan-head ph-1"><h3>Full-time</h3><small>Join your team as an SDET</small></div>
         <div class="plan-body">
           <ul>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Own the automation framework end to end</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Embed with squads, review PRs, mentor QA</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Two-month notice period</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Build and own your automation</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Work inside squads, review PRs</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Jakarta area, remote, or relocation</li>
           </ul>
           <a class="btn btn-dark" href="#contact">Talk about a role</a>
         </div>
       </article>
       <article class="plan rv">
-        <div class="plan-head ph-2"><h3>Contract</h3><div><div class="big">12 months or longer</div><small>For long-running programs</small></div></div>
+        <div class="plan-head ph-3"><h3>Freelance</h3><small>Scoped testing projects</small></div>
         <div class="plan-body">
           <ul>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Build or rescue a regression suite</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Hand over docs your team can maintain</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Partial US timezone overlap possible</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Playwright or WebdriverIO from zero</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>API suites for REST or GraphQL</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Fix a flaky test suite</li>
           </ul>
-          <a class="btn btn-light" href="#contact">Discuss a contract</a>
-        </div>
-      </article>
-      <article class="plan rv">
-        <div class="plan-head ph-3"><h3>Freelance</h3><div><div class="big">Scoped projects</div><small>Quoted per project, hours × rate</small></div></div>
-        <div class="plan-body">
-          <ul>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Set up Playwright or WebdriverIO from zero</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>API test suites for REST or GraphQL</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Audit an existing suite for flakiness</li>
-          </ul>
-          <a class="btn btn-light" href="#contact">Request a quote</a>
+          <a class="btn btn-light" href="#contact">Start a project</a>
         </div>
       </article>
     </div>
@@ -718,13 +915,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </section>
 
 <!-- EDUCATION -->
-<section id="education" class="divider" style="padding-top:72px;padding-bottom:72px">
+<section id="education" class="divider" style="padding-top:64px;padding-bottom:64px">
   <div class="wrap">
-    <p class="eyebrow rv" style="margin-bottom:20px">Education and certification</p>
+    <p class="spec rv"><i></i>education.spec.ts</p>
     <div class="edu">
-      <div class="edu-card rv"><span class="y">2021</span><h3>Bachelor of Information Systems</h3><span class="g">Nusa Mandiri University · GPA 3.62 / 4.00</span></div>
-      <div class="edu-card rv"><span class="y">2019</span><h3>Associate of Management Informatics</h3><span class="g">Bina Sarana Informatika University · GPA 3.47 / 4.00 · PPA scholarship 2018</span></div>
-      <div class="edu-card rv"><span class="y">Certificate</span><h3>PCAP: Programming Essentials in Python</h3><span class="g">Cisco Networking Academy &amp; OpenEDG Python Institute</span></div>
+      <div class="edu-card rv"><span class="y">2021</span><h3>B.Sc. Information Systems</h3><span class="g">Nusa Mandiri University · GPA 3.62</span></div>
+      <div class="edu-card rv"><span class="y">2019</span><h3>Assoc. Management Informatics</h3><span class="g">Bina Sarana Informatika · GPA 3.47 · PPA scholar</span></div>
+      <div class="edu-card rv"><span class="y">Certificate</span><h3>PCAP: Python Essentials</h3><span class="g">Cisco NetAcad &amp; Python Institute</span></div>
     </div>
   </div>
 </section>
@@ -733,33 +930,34 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section id="faq" class="divider">
   <div class="wrap faq-grid">
     <div>
-      <h2 class="display rv">Answers to <span class="grad">common questions</span></h2>
-      <p class="lead rv" style="margin-top:16px">Anything else, just ask.</p>
+      <p class="spec rv"><i></i>faq.spec.ts</p>
+      <h2 class="display rv">Quick <span class="grad">answers</span></h2>
     </div>
     <div class="rv">
-      <details open><summary>Are you open to remote work?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. Remote from Indonesia or for an overseas team, hybrid or onsite around Bekasi, Jakarta, Tangerang and Bogor, and relocation to Malaysia, Japan or the US.</p></details>
-      <details><summary>What's your notice period?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Two months from my current role.</p></details>
-      <details><summary>Which languages do you write tests in?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>TypeScript and JavaScript day to day, Ruby for BDD and API suites, Python for scripts, and SQL for checking data.</p></details>
-      <details><summary>Do you do performance or load testing?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>My focus is functional testing: manual and automated, across web, mobile and API. I've used JMeter at a basic level, but it isn't where I add the most value.</p></details>
-      <details><summary>Can you start automation from zero?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. I start with the riskiest flows, set up the framework and CI, then document it so the team can keep adding tests after I hand it over.</p></details>
-      <details><summary>What languages do you speak?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Indonesian (native) and English (professional working proficiency).</p></details>
+      <details open><summary>Open to remote?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. Remote, hybrid or onsite around Jakarta, or relocation to Malaysia, Japan or the US.</p></details>
+      <details><summary>Notice period?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Two months.</p></details>
+      <details><summary>Which languages do you test in?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>TypeScript and JavaScript daily, Ruby for BDD and API, Python and SQL for the rest.</p></details>
+      <details><summary>Performance testing?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>My focus is functional testing: web, mobile and API, manual and automated.</p></details>
+      <details><summary>Can you start automation from zero?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. Riskiest flows first, then framework, CI and docs your team can keep using.</p></details>
     </div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
-<section id="contact" class="final divider dots">
+<section id="contact" class="final divider gridbg">
   <div class="wrap">
-    <h2 class="display rv">Make your next release <span class="grad">boring</span></h2>
-    <p class="lead rv">Tell me about your product and where it breaks. Email or LinkedIn both reach me.</p>
+    <p class="spec rv"><i></i>contact.spec.ts</p>
+    <h2 class="display rv">Ship every release <span class="grad">without surprises</span></h2>
+    <p class="lead rv">Tell me where your product breaks.</p>
     <div class="cta-row rv">
       <a class="btn btn-dark" href="mailto:iqbalaprs8@gmail.com?subject=Let's%20talk%20about%20an%20SDET%20role">Email me</a>
-      <a class="btn btn-light" href="https://www.linkedin.com/in/iqbal-apriansyah-84753a21b" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-light" href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>Download CV</a>
     </div>
     <div class="contacts rv">
       <button class="chip" id="copyEmail" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg><span>iqbalaprs8@gmail.com</span></button>
+      <a class="chip" href="https://www.linkedin.com/in/iqbal-apriansyah-84753a21b" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg>LinkedIn</a>
       <a class="chip" href="https://github.com/Iqbalaprs" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 00-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 015.8 0C17.3 4.8 18.3 5.1 18.3 5.1c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0012 .5z"/></svg>GitHub</a>
-      <span class="chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Bekasi, Indonesia · UTC+7</span>
     </div>
   </div>
 </section>
@@ -767,8 +965,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <footer>
   <div class="wrap">
-    <span>© <span id="yr">2026</span> Iqbal Apriansyah</span>
-    <span>Hand-built static page · no trackers</span>
+    <span>© <span id="yr">2026</span> Iqbal Apriansyah · all checks passed ✓</span>
+    <p class="ai-credit">
+      <span class="spark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg></span>
+      <span><b>Idea, direction &amp; final QA by me. Built with an AI pair.</b> Same way I ship tests: AI drafts, I verify every line.</span>
+    </p>
   </div>
 </footer>
 
@@ -776,9 +977,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // header border on scroll
-  var nav = document.querySelector('header.nav');
-  addEventListener('scroll', function(){ nav.classList.toggle('scrolled', scrollY > 8); }, {passive:true});
+  // header border + coverage meter (scroll progress)
+  var nav = document.querySelector('header.nav'), covBar = document.getElementById('covBar'), covNum = document.getElementById('covNum');
+  function onScroll(){
+    nav.classList.toggle('scrolled', scrollY > 8);
+    var max = document.documentElement.scrollHeight - innerHeight;
+    var p = max > 0 ? Math.min(100, Math.round(scrollY / max * 100)) : 100;
+    covBar.style.width = p + '%'; covNum.textContent = p + '%';
+  }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
   // mobile menu
   var btn = document.getElementById('menuBtn'), menu = document.getElementById('mobile-menu');
@@ -787,23 +994,29 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     btn.setAttribute('aria-expanded', open);
     btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   });
-  menu.addEventListener('click', function(e){ if (e.target.tagName === 'A') btn.click(); });
+  menu.addEventListener('click', function(e){ if (e.target.tagName === 'A' && menu.classList.contains('open')) btn.click(); });
 
-  // odometer: wrap each digit in a rolling column
+  // rotating headline: crossfade every 3.2s, pauses on hover/focus
+  var rots = document.querySelectorAll('#rotator .rot'), ri = 0, paused = false, rotator = document.getElementById('rotator');
+  rotator.addEventListener('mouseenter', function(){ paused = true; });
+  rotator.addEventListener('mouseleave', function(){ paused = false; });
+  setInterval(function(){
+    if (paused || document.hidden) return;
+    rots[ri].classList.remove('on'); ri = (ri + 1) % rots.length; rots[ri].classList.add('on');
+  }, 3200);
+
+  // odometer
   function buildOdo(el){
     var v = el.dataset.value; el.textContent = ''; el.setAttribute('aria-label', v);
     v.split('').forEach(function(ch){
-      if (!/\d/.test(ch)) { var s = document.createElement('span'); s.className='sym'; s.textContent=ch; el.appendChild(s); return; }
       var col = document.createElement('span'); col.className = 'col'; col.dataset.d = ch; col.setAttribute('aria-hidden','true');
       for (var i = 0; i <= 9; i++) { var d = document.createElement('span'); d.textContent = i; col.appendChild(d); }
       el.appendChild(col);
     });
   }
   function rollOdo(el){ el.querySelectorAll('.col').forEach(function(c){ c.style.transform = 'translateY(-' + c.dataset.d + 'em)'; }); }
-  var odos = document.querySelectorAll('.odo');
-  odos.forEach(buildOdo);
+  var odos = document.querySelectorAll('.odo'); odos.forEach(buildOdo);
 
-  // reveal + odometer trigger
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       if (!en.isIntersecting) return;
@@ -819,24 +1032,25 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   // terminal demo run
   var lines = [
     ['<span class="t-dim">$</span> npx wdio run wdio.conf.ts <span class="t-blue">--suite smoke</span>', 500],
-    ['<span class="t-dim">Running 4 workers on LambdaTest real devices…</span>', 700],
-    ['<span class="t-ok">✓</span> login › with phone number and OTP<span class="plat">android</span>', 450],
-    ['<span class="t-ok">✓</span> login › with phone number and OTP<span class="plat">ios</span>', 350],
-    ['<span class="t-ok">✓</span> post ad › car listing with photos<span class="plat">android</span>', 500],
-    ['<span class="t-ok">✓</span> post ad › car listing with photos<span class="plat">ios</span>', 380],
-    ['<span class="t-ok">✓</span> package › buy highlight for active ad<span class="plat">web</span>', 420],
-    ['<span class="t-ok">✓</span> auction › bid on seeded live auction<span class="plat">mweb</span>', 460],
-    ['<span class="t-ok">✓</span> visual › listing page matches baseline<span class="plat">web</span>', 380],
-    ['<span class="t-ok">✓</span> network › search calls the v2 endpoint<span class="plat">mweb</span>', 380],
+    ['<span class="t-dim">4 workers on real devices…</span>', 650],
+    ['<span class="t-ok">✓</span> login › phone number + OTP<span class="plat">android</span>', 420],
+    ['<span class="t-ok">✓</span> login › phone number + OTP<span class="plat">ios</span>', 340],
+    ['<span class="t-ok">✓</span> post ad › used car with photos<span class="plat">android</span>', 480],
+    ['<span class="t-ok">✓</span> post ad › used motorcycle<span class="plat">ios</span>', 380],
+    ['<span class="t-ok">✓</span> enhance › boost an active ad<span class="plat">web</span>', 420],
+    ['<span class="t-ok">✓</span> brand page › new-car models load<span class="plat">mweb</span>', 440],
+    ['<span class="t-ok">✓</span> visual › listing matches baseline<span class="plat">web</span>', 380],
+    ['<span class="t-ok">✓</span> network › search hits v2 endpoint<span class="plat">mweb</span>', 380],
     ['', 250],
-    ['<span class="t-ok">Spec Files: 8 passed</span>, <span class="t-dim">0 failed</span>, <span class="t-dim">0 flaky</span>', 300],
-    ['<span class="t-dim">Report synced to Jira ·</span> <span class="t-blue">ready to release</span>', 0]
+    ['<span class="t-ok">8 passed</span>, <span class="t-dim">0 failed, 0 flaky</span>', 300],
+    ['<span class="t-dim">Synced to Jira ·</span> <span class="t-blue">ready to release</span>', 0]
   ];
   var body = document.getElementById('termBody'), bar = document.getElementById('termBar'), timer;
-  function run(){
+  // animate=false shows the final state at once (auto-run under reduced motion); a click always animates
+  function run(animate){
     clearTimeout(timer); body.innerHTML = ''; bar.style.width = '0';
     var els = lines.map(function(l){ var d = document.createElement('div'); d.className = 'term-line'; d.innerHTML = l[0] || '&nbsp;'; body.appendChild(d); return d; });
-    if (reduce) { els.forEach(function(e){ e.classList.add('on'); }); bar.style.width = '100%'; return; }
+    if (!animate) { els.forEach(function(e){ e.classList.add('on'); }); bar.style.width = '100%'; return; }
     var i = 0;
     (function step(){
       if (i >= els.length) return;
@@ -844,20 +1058,22 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       timer = setTimeout(step, lines[i++][1]);
     })();
   }
-  document.getElementById('replay').addEventListener('click', run);
-  run();
+  document.getElementById('replay').addEventListener('click', function(){ run(true); });
+  run(!reduce);
 
   // copy email
   var ce = document.getElementById('copyEmail');
   ce.addEventListener('click', function(){
     var label = ce.querySelector('span'), txt = label.textContent;
     (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function(){
-      label.textContent = 'Copied'; setTimeout(function(){ label.textContent = txt; }, 1400);
+      label.textContent = 'Copied ✓'; setTimeout(function(){ label.textContent = txt; }, 1400);
     }, function(){ location.href = 'mailto:' + txt; });
   });
 
   document.getElementById('yr').textContent = new Date().getFullYear();
 })();
 </script>
+<script src="bugyy.js" defer></script>
+<script>addEventListener('DOMContentLoaded', function(){ if (window.mountBugyy) window.bugyyDestroy = window.mountBugyy({ name: 'Bugyy', storageKey: 'bugyy-cat-v1', below: 'header.nav' }); });</script>
 </body>
 </html>
