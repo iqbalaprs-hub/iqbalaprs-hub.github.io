@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Iqbal Apriansyah · SDET</title>
-<meta name="description" content="Iqbal Apriansyah, SDET at PT Astra Digital Mobil (OLX Indonesia). Mobile, web and API test automation with WebdriverIO, Appium and Playwright.">
+<meta name="description" content="Iqbal Apriansyah, SDET. Mobile, web and API test automation on real devices with WebdriverIO, Appium and Playwright.">
 <meta property="og:title" content="Iqbal Apriansyah · SDET">
 <meta property="og:description" content="Mobile, web, and API tests in one codebase you can trust.">
 <meta property="og:type" content="website">
@@ -80,7 +80,7 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(253,252,252,.82);bac
 header.nav.scrolled{border-color:var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
 .logo{display:flex;align-items:center;gap:10px;font:500 17px var(--display);letter-spacing:-.01em;white-space:nowrap}
-.logo-mark{width:30px;height:30px;border-radius:9px;background:#000;display:grid;place-items:center;flex:none}
+.logo-mark{width:32px;height:32px;border-radius:50%;background:url(assets/iqbal.webp) 54% 6%/190% auto no-repeat,var(--surface-2);box-shadow:var(--ring);flex:none}
 .logo small{font:500 12px var(--mono);color:var(--muted);letter-spacing:0}
 @media(max-width:360px){.logo small{display:none}}
 .nav-links{display:none;gap:2px}
@@ -151,17 +151,12 @@ section{padding:72px 0}
 .replay:hover{transform:translateY(-1px)}
 .replay:active{transform:scale(.97)}
 .replay span{width:28px;height:28px;border-radius:50%;background:#000;display:grid;place-items:center}
-.hero-note{display:flex;gap:10px;align-items:center;margin-top:14px;font-size:13px;color:var(--muted)}
-.hero-note b{color:#000;font-weight:500}
 
 /* trusted + stats */
-.trusted{padding:44px 0 0;text-align:center}
-.logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:10px 36px;margin:22px 0 52px;font:450 clamp(17px,2.1vw,23px) var(--display);letter-spacing:-.01em;color:rgba(0,0,0,.42)}
-.logos .hl{color:#000}
-.logos small{font:500 11px var(--mono);color:var(--muted);letter-spacing:0;margin-left:6px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:36px 16px;padding-bottom:64px}
-@media(min-width:900px){.stats{grid-template-columns:repeat(4,1fr);padding-bottom:96px}}
-.stat{text-align:center;display:grid;justify-items:center;gap:10px}
+.trusted{padding:56px 0 0;text-align:center}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 12px;padding-bottom:64px}
+@media(min-width:900px){.stats{padding-bottom:96px}}
+.stat{text-align:center;display:grid;justify-items:center;align-content:start;gap:10px}
 .stat-ico{width:36px;height:36px;border-radius:10px;box-shadow:var(--ring);display:grid;place-items:center;background:var(--card)}
 .odo{font:300 clamp(44px,6vw,64px)/1 var(--display);letter-spacing:-.03em;display:flex;height:1em;overflow:hidden}
 .odo .col{display:flex;flex-direction:column;transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
@@ -282,26 +277,6 @@ section{padding:72px 0}
 .ai-row{display:grid;gap:16px}
 @media(min-width:900px){.ai-row{grid-template-columns:1fr 1.15fr;align-items:center}}
 
-/* experience */
-.exp{display:grid;gap:16px}
-@media(min-width:900px){.exp{grid-template-columns:repeat(2,1fr)}}
-.role{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--ring);padding:24px;display:flex;flex-direction:column;gap:14px}
-@media(min-width:900px){.role{padding:30px}}
-.role-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
-.role .co{font:450 23px/1.2 var(--display);letter-spacing:-.015em}
-.role .when{font:500 12px var(--mono);color:var(--muted);padding-top:6px}
-.role .title{font-size:14px;color:var(--muted);margin-top:2px}
-.role .title b{font-weight:500;color:inherit}
-.role ul{list-style:none;display:grid;gap:9px;font-size:15px;color:var(--ink-2)}
-.role li{display:flex;gap:10px}
-.role li svg{flex:none;margin-top:5px}
-.role.now{background:#000;color:#fff;box-shadow:none}
-.role.now .title,.role.now .when{color:rgba(255,255,255,.62)}
-.role.now .title b{color:#fff}
-.role.now ul{color:rgba(255,255,255,.84)}
-.role.now .tag{background:#1c1c1e;color:#d6d3d1}
-.now-pill{font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:6px 9px;border-radius:999px;background:var(--mint);color:#000}
-
 /* projects */
 .projects{display:grid;gap:16px}
 @media(min-width:900px){.projects{grid-template-columns:repeat(3,1fr)}.p-olx{grid-column:span 3}}
@@ -322,7 +297,7 @@ section{padding:72px 0}
 .p-olx{display:grid}
 @media(min-width:760px){.p-olx{grid-template-columns:minmax(260px,.75fr) 1.25fr}}
 .p-olx .proj-art{height:340px;background:#1d5fe0}
-@media(min-width:760px){.p-olx .proj-art{height:auto;min-height:440px}}
+@media(min-width:760px){.p-olx .proj-art{height:auto;min-height:440px}.p-olx .proj-art img{position:absolute;inset:0;object-position:50% 0}}
 .p-olx .proj-art img{object-position:50% 18%}
 .p-olx .proj-body{padding:26px;gap:14px}
 @media(min-width:900px){.p-olx .proj-body{padding:36px}}
@@ -351,6 +326,7 @@ section{padding:72px 0}
 .stack-group h3 .n{font:500 11px var(--mono);color:var(--muted)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .stack-group .chip{min-height:32px}
+.stack-group.wide{grid-column:1/-1}
 .marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);margin-bottom:36px}
 .marquee-track{display:flex;gap:40px;width:max-content;animation:scroll 40s linear infinite;font:300 clamp(26px,4vw,44px)/1.2 var(--display);letter-spacing:-.02em;color:rgba(0,0,0,.18)}
 .marquee-track span:nth-child(3n+1){color:rgba(0,0,0,.75)}
@@ -455,13 +431,12 @@ footer .wrap{display:grid;gap:14px}
 <header class="nav" id="top">
   <div class="wrap">
     <a href="#top" class="logo" aria-label="Iqbal Apriansyah, home">
-      <span class="logo-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+      <span class="logo-mark" aria-hidden="true"></span>
       Iqbal <small>/sdet</small>
     </a>
     <nav class="nav-links" aria-label="Main">
       <a href="#about">About</a>
       <a href="#capabilities">What I test</a>
-      <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#stack">Stack</a>
       <a href="#faq">FAQ</a>
@@ -477,7 +452,6 @@ footer .wrap{display:grid;gap:14px}
   <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
     <a href="#about">About</a>
     <a href="#capabilities">What I test</a>
-    <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
     <a href="#stack">Stack</a>
     <a href="#faq">FAQ</a>
@@ -491,7 +465,7 @@ footer .wrap{display:grid;gap:14px}
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="badge rv"><img src="assets/iqbal.webp" alt="" width="28" height="28"><span>SDET at <b>PT Astra Digital Mobil</b> · OLX</span></span>
+      <span class="badge rv"><img src="assets/iqbal.webp" alt="" width="28" height="28"><span><b>Iqbal Apriansyah</b> · SDET</span></span>
       <h1 class="display rotator rv" id="rotator">
         <span class="sr">I test with heuristics, not just checklists</span>
         <span class="sz" aria-hidden="true"><span class="grad">I test with heuristics,</span> not just checklists</span>
@@ -513,7 +487,7 @@ footer .wrap{display:grid;gap:14px}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>Download CV</a>
       </div>
       <ul class="checks rv">
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Android, iOS and web</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Android, iOS, web and API</li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Real-device cloud in CI</li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Bekasi, open to remote</li>
       </ul>
@@ -523,7 +497,7 @@ footer .wrap{display:grid;gap:14px}
       <div class="term" aria-label="Animated demo of a cross-platform test run">
         <div class="term-top">
           <div class="lights" aria-hidden="true"><i></i><i></i><i></i></div>
-          <span class="term-title">~/marketplace-e2e · demo run</span>
+          <span class="term-title">~/app-e2e · demo run</span>
           <span class="term-title">ts</span>
         </div>
         <div class="term-body" id="termBody" aria-hidden="true"></div>
@@ -532,7 +506,6 @@ footer .wrap{display:grid;gap:14px}
           <button class="replay" id="replay" type="button"><span><svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><path d="M6 4l14 8-14 8z"/></svg></span>Replay run</button>
         </div>
       </div>
-      <p class="hero-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21l1.4-7L2 9.3l7-.8z"/></svg><span><b>0 defects</b> after the e-Katalog v6 release</span></p>
     </div>
   </div>
 </section>
@@ -541,10 +514,6 @@ footer .wrap{display:grid;gap:14px}
 <div class="divider"></div>
 <div class="trusted">
   <div class="wrap">
-    <p class="muted rv">Shipped quality for</p>
-    <div class="logos rv">
-      <span class="hl">PT Astra Digital Mobil<small>OLX</small></span><span>Telkom Indonesia<small>GovTech</small></span><span>SIRCLO</span><span>Wehelpyou</span>
-    </div>
     <div class="stats">
       <div class="stat rv">
         <span class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
@@ -557,10 +526,6 @@ footer .wrap{display:grid;gap:14px}
       <div class="stat rv">
         <span class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.5a3.5 3.5 0 010 7M18 14.8c1.9.7 3.1 2.4 3.5 5.2"/></svg></span>
         <div class="odo" data-value="18">18</div><p>QA engineers trained</p>
-      </div>
-      <div class="stat rv">
-        <span class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
-        <div class="odo" data-value="0">0</div><p>defects after a gov-tech release</p>
       </div>
     </div>
   </div>
@@ -576,7 +541,7 @@ footer .wrap{display:grid;gap:14px}
     <div>
       <p class="spec rv"><i></i>about.spec.ts</p>
       <h2 class="display rv">Hi, I'm Iqbal. <span class="grad">I break things</span> before your users can.</h2>
-      <p class="lead rv">SDET at PT Astra Digital Mobil, testing OLX Indonesia on Android, iOS and web. Before that: gov-tech, e-commerce SaaS and delivery apps.</p>
+      <p class="lead rv">I build one test suite for Android, iOS, web and API, run it on real devices in CI, and help teams keep it green. Marketplace, gov-tech, SaaS and delivery apps so far.</p>
       <div class="facts rv">
         <span class="chip">📍 Bekasi, Indonesia</span>
         <span class="chip">🧪 Since Dec 2021</span>
@@ -604,7 +569,7 @@ footer .wrap{display:grid;gap:14px}
       <article class="card b-a rv">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span>
         <h3>Mobile: Android &amp; iOS</h3>
-        <p>Both at PT Astra Digital Mobil (OLX), one WebdriverIO + Appium codebase.</p>
+        <p>Both from one WebdriverIO + Appium codebase.</p>
         <div class="stage" aria-hidden="true">
           <div class="dev-wrap">
             <div class="device android"><div class="scr">
@@ -641,7 +606,7 @@ footer .wrap{display:grid;gap:14px}
         <p>Playwright for both, plus Cypress and Selenium when needed.</p>
         <div class="bstage" aria-hidden="true">
           <div class="browser">
-            <div class="btop"><div class="lights"><i></i><i></i><i></i></div><div class="url"><b>https://</b>app.example.test/sell</div></div>
+            <div class="btop"><div class="lights"><i></i><i></i><i></i></div><div class="url"><b>https://</b>app.example.test/checkout</div></div>
             <div class="bpage">
               <div class="bnav"><i></i><span><b></b><b></b><b></b></span></div>
               <div class="bhero"></div>
@@ -683,77 +648,15 @@ footer .wrap{display:grid;gap:14px}
           </div>
           <div class="viz" aria-hidden="true">
             <span class="c">// test design → spec</span><br>
-            <span class="k">it</span>(<span class="s">'boosts an active ad'</span>, <span class="k">async</span> () =&gt; {<br>
-            &nbsp;&nbsp;<span class="k">await</span> LoginFlow.asSeller();<br>
-            &nbsp;&nbsp;<span class="k">await</span> MyAdsScreen.open(ad.id);<br>
-            &nbsp;&nbsp;<span class="k">await</span> EnhanceFlow.buy(<span class="s">'highlight'</span>);<br>
+            <span class="k">it</span>(<span class="s">'pays with a saved card'</span>, <span class="k">async</span> () =&gt; {<br>
+            &nbsp;&nbsp;<span class="k">await</span> auth.signIn(testUser);<br>
+            &nbsp;&nbsp;<span class="k">await</span> cartPage.open();<br>
+            &nbsp;&nbsp;<span class="k">await</span> checkoutPage.payWith(<span class="s">'saved-card'</span>);<br>
             &nbsp;&nbsp;<span class="c">// guardrail: locator must exist</span><br>
-            &nbsp;&nbsp;<span class="k">await</span> expect(MyAdsScreen.badge).toBeDisplayed();<br>
+            &nbsp;&nbsp;<span class="k">await</span> expect(orderPage.status).toBeDisplayed();<br>
             });
           </div>
         </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience" class="divider">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><p class="spec rv"><i></i>experience.spec.ts</p>
-      <h2 class="display rv">Where I've <span class="grad">shipped quality</span></h2></div>
-      <p class="lead rv">Marketplace, gov-tech, SaaS and delivery.</p>
-    </div>
-    <div class="exp">
-      <article class="role now rv">
-        <div class="role-top">
-          <div><div class="co">PT Astra Digital Mobil</div><div class="title">SDET · <b>OLX Indonesia</b> · Jakarta</div></div>
-          <span class="now-pill">Nov 2025 – now</span>
-        </div>
-        <ul>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>OLX E2E on Android, iOS and web, one TypeScript codebase.</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Shared flow layer used by B2C, C2B and Commerce squads.</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Real-device CI runs with visual and network checks.</li>
-        </ul>
-        <div class="tags"><span class="tag">WebdriverIO</span><span class="tag">Appium</span><span class="tag">Playwright</span><span class="tag">LambdaTest</span></div>
-      </article>
-
-      <article class="role rv">
-        <div class="role-top">
-          <div><div class="co">Telkom Indonesia</div><div class="title">QA Engineer · GovTech Procurement</div></div>
-          <span class="when">Mar 2023 – Oct 2025</span>
-        </div>
-        <ul>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>e-Katalog v6 from test plan to UAT with LKPP. 0 defects after release.</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>BDD automation in Ruby for REST, GraphQL and UI.</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Trained 18 QA engineers in API automation.</li>
-        </ul>
-        <div class="tags"><span class="tag">Ruby</span><span class="tag">Cucumber</span><span class="tag">GraphQL</span></div>
-      </article>
-
-      <article class="role rv">
-        <div class="role-top">
-          <div><div class="co">SIRCLO</div><div class="title">QA Engineer · Tangerang</div></div>
-          <span class="when">May 2022 – Mar 2023</span>
-        </div>
-        <ul>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Cypress regression and API tests for the commerce SaaS.</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Quarterly QA mentoring.</li>
-        </ul>
-        <div class="tags"><span class="tag">Cypress</span><span class="tag">Postman</span></div>
-      </article>
-
-      <article class="role rv">
-        <div class="role-top">
-          <div><div class="co">Wehelpyou</div><div class="title">QA Staff · West Jakarta</div></div>
-          <span class="when">Dec 2021 – Apr 2022</span>
-        </div>
-        <ul>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Manual testing of the delivery app on iOS and Android.</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--pass)" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>PRDs into test plans and test cases.</li>
-        </ul>
-        <div class="tags"><span class="tag">Manual QA</span><span class="tag">Katalon</span></div>
       </article>
     </div>
   </div>
@@ -765,7 +668,7 @@ footer .wrap{display:grid;gap:14px}
     <div class="sec-head">
       <div><p class="spec rv"><i></i>projects.spec.ts</p>
       <h2 class="display rv"><span class="grad">Products</span> I've tested</h2></div>
-      <p class="lead rv">One per company.</p>
+      <p class="lead rv">One product per company, newest first.</p>
     </div>
     <div class="projects">
       <article class="proj p-olx rv">
@@ -774,28 +677,26 @@ footer .wrap{display:grid;gap:14px}
           <span class="pass-stamp">PASSED</span>
         </div>
         <div class="proj-body">
-          <span class="co-line">PT Astra Digital Mobil · 2025 – now</span>
-          <h3 style="font-size:26px">OLX Indonesia: seller side</h3>
-          <p>Every seller flow, on every platform.</p>
+          <span class="co-line">PT Astra Digital Mobil · SDET · 2025 – now</span>
+          <h3 style="font-size:26px">OLX Indonesia</h3>
+          <p>End-to-end automation on every platform: one TypeScript codebase, real-device CI, visual and network checks.</p>
           <div class="plat-row"><span class="chip">🤖 Android</span><span class="chip">📱 iOS</span><span class="chip">🖥 Desktop &amp; mobile web</span></div>
           <ul class="areas">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Enhance My Ads</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Post ad: used motorcycles</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Post ad: used cars</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Post ad: new cars</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>New-car brand pages</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Shared seller flow layer</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Ad posting, multiple categories</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Paid ad promotions</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Brand catalog pages</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Reusable flows across squads</li>
           </ul>
-          <div class="tags"><span class="tag">TypeScript</span><span class="tag">WebdriverIO</span><span class="tag">Appium</span><span class="tag">Playwright</span></div>
+          <div class="tags"><span class="tag">TypeScript</span><span class="tag">WebdriverIO</span><span class="tag">Appium</span><span class="tag">Playwright</span><span class="tag">LambdaTest</span></div>
         </div>
       </article>
 
       <article class="proj rv">
         <div class="proj-art"><img src="assets/ekatalog.webp" alt="e-Katalog INAPROC homepage" loading="lazy" width="1200" height="885" style="object-position:0 0"><span class="pass-stamp">PASSED</span><span class="lbl">Web</span></div>
         <div class="proj-body">
-          <span class="co-line">Telkom Indonesia · 2023 – 2025</span>
+          <span class="co-line">Telkom Indonesia · QA Engineer · 2023 – 2025</span>
           <h3>e-Katalog (INAPROC)</h3>
-          <p>National procurement catalog. Whole seller side, end to end.</p>
+          <p>National procurement catalog, from test plan to UAT. BDD automation for REST, GraphQL and UI. 0 defects after the v6 release.</p>
           <a class="ext" href="https://katalog.inaproc.id/" target="_blank" rel="noopener">katalog.inaproc.id ↗</a>
           <div class="tags"><span class="tag">Ruby</span><span class="tag">Cucumber</span><span class="tag">GraphQL</span></div>
         </div>
@@ -807,9 +708,9 @@ footer .wrap{display:grid;gap:14px}
           <span class="pass-stamp">PASSED</span><span class="lbl">Web · SaaS</span>
         </div>
         <div class="proj-body">
-          <span class="co-line">SIRCLO · 2022 – 2023</span>
+          <span class="co-line">SIRCLO · QA Engineer · 2022 – 2023</span>
           <h3>Commerce SaaS</h3>
-          <p>Commerce SaaS for brands. Cypress and API tests.</p>
+          <p>Commerce SaaS for brands. Cypress regression and API tests.</p>
           <div class="tags"><span class="tag">Cypress</span><span class="tag">Postman</span><span class="tag">Swagger</span></div>
         </div>
       </article>
@@ -817,9 +718,9 @@ footer .wrap{display:grid;gap:14px}
       <article class="proj rv">
         <div class="proj-art"><img src="assets/wehelpyou.webp" alt="Wehelpyou Delivery website hero" loading="lazy" width="1200" height="563" style="object-position:30% 50%"><span class="pass-stamp">PASSED</span><span class="lbl">Mobile · Manual</span></div>
         <div class="proj-body">
-          <span class="co-line">Wehelpyou · 2021 – 2022</span>
+          <span class="co-line">Wehelpyou · QA Staff · 2021 – 2022</span>
           <h3>Wehelpyou Delivery</h3>
-          <p>Delivery app on iOS and Android, tested manually.</p>
+          <p>Delivery app on iOS and Android. PRDs into test plans, tested manually.</p>
           <a class="ext" href="https://www.wehelpyou.id/" target="_blank" rel="noopener">wehelpyou.id ↗</a>
           <div class="tags"><span class="tag">Manual QA</span><span class="tag">Katalon</span></div>
         </div>
@@ -832,8 +733,8 @@ footer .wrap{display:grid;gap:14px}
 <section id="stack" class="divider">
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>WebdriverIO</span><span>Appium</span><span>Playwright</span><span>Cypress</span><span>Cucumber</span><span>LambdaTest</span><span>GitHub Actions</span><span>GraphQL</span><span>TypeScript</span>
-      <span>WebdriverIO</span><span>Appium</span><span>Playwright</span><span>Cypress</span><span>Cucumber</span><span>LambdaTest</span><span>GitHub Actions</span><span>GraphQL</span><span>TypeScript</span>
+      <span>WebdriverIO</span><span>Appium</span><span>Playwright</span><span>Cypress</span><span>Cucumber</span><span>LambdaTest</span><span>GitHub Actions</span><span>GraphQL</span><span>TypeScript</span><span>Claude Code</span>
+      <span>WebdriverIO</span><span>Appium</span><span>Playwright</span><span>Cypress</span><span>Cucumber</span><span>LambdaTest</span><span>GitHub Actions</span><span>GraphQL</span><span>TypeScript</span><span>Claude Code</span>
     </div>
   </div>
   <div class="wrap">
@@ -849,6 +750,7 @@ footer .wrap{display:grid;gap:14px}
       <div class="stack-group rv"><h3>API <span class="n">06</span></h3><div class="chips"><span class="chip">REST</span><span class="chip">GraphQL</span><span class="chip">Postman</span><span class="chip">Swagger</span><span class="chip">Cucumber</span><span class="chip">Chai.js</span></div></div>
       <div class="stack-group rv"><h3>CI &amp; infra <span class="n">06</span></h3><div class="chips"><span class="chip">GitHub Actions</span><span class="chip">LambdaTest</span><span class="chip">Docker</span><span class="chip">Rundeck</span><span class="chip">Git</span><span class="chip">PostgreSQL</span></div></div>
       <div class="stack-group rv"><h3>Test management <span class="n">04</span></h3><div class="chips"><span class="chip">Jira</span><span class="chip">AIO Tests</span><span class="chip">Confluence</span><span class="chip">Squash</span></div></div>
+      <div class="stack-group wide rv"><h3>AI <span class="n">03</span></h3><div class="chips"><span class="chip">Claude Code</span><span class="chip">MCP</span><span class="chip">OpenAI</span></div></div>
     </div>
   </div>
 </section>
@@ -934,7 +836,7 @@ footer .wrap{display:grid;gap:14px}
     </div>
     <div class="rv">
       <details open><summary>Open to remote?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. Remote, hybrid, onsite in Jakarta, or relocation to Malaysia, Japan or the US.</p></details>
-      <details><summary>Notice period?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Two months.</p></details>
+      <details><summary>Notice period?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>One month.</p></details>
       <details><summary>Which languages do you test in?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>TypeScript and JavaScript daily, Ruby for BDD and API, Python and SQL for the rest.</p></details>
       <details><summary>Performance testing?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Functional testing is my focus: web, mobile and API.</p></details>
       <details><summary>Can you start automation from zero?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. Riskiest flows first, then framework, CI and docs.</p></details>
@@ -967,7 +869,7 @@ footer .wrap{display:grid;gap:14px}
     <span>© <span id="yr">2026</span> Iqbal Apriansyah · all checks passed ✓</span>
     <p class="ai-credit">
       <span class="spark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg></span>
-      <span><b>Idea, direction &amp; final QA by me, built with an AI pair.</b> Like my tests: AI drafts, I verify.</span>
+      <span><b>Built with AI, verified by me.</b></span>
     </p>
   </div>
 </footer>
@@ -1042,14 +944,14 @@ footer .wrap{display:grid;gap:14px}
   var lines = [
     ['<span class="t-dim">$</span> npx wdio run wdio.conf.ts <span class="t-blue">--suite smoke</span>', 500],
     ['<span class="t-dim">4 workers on real devices…</span>', 650],
-    ['<span class="t-ok">✓</span> login › phone number + OTP<span class="plat">android</span>', 420],
-    ['<span class="t-ok">✓</span> login › phone number + OTP<span class="plat">ios</span>', 340],
-    ['<span class="t-ok">✓</span> post ad › used car with photos<span class="plat">android</span>', 480],
-    ['<span class="t-ok">✓</span> post ad › used motorcycle<span class="plat">ios</span>', 380],
-    ['<span class="t-ok">✓</span> enhance › boost an active ad<span class="plat">web</span>', 420],
-    ['<span class="t-ok">✓</span> brand page › new-car models load<span class="plat">mweb</span>', 440],
-    ['<span class="t-ok">✓</span> visual › listing matches baseline<span class="plat">web</span>', 380],
-    ['<span class="t-ok">✓</span> network › search hits v2 endpoint<span class="plat">mweb</span>', 380],
+    ['<span class="t-ok">✓</span> login › email + password<span class="plat">android</span>', 420],
+    ['<span class="t-ok">✓</span> login › email + password<span class="plat">ios</span>', 340],
+    ['<span class="t-ok">✓</span> search › filters narrow results<span class="plat">android</span>', 480],
+    ['<span class="t-ok">✓</span> cart › update item quantity<span class="plat">ios</span>', 380],
+    ['<span class="t-ok">✓</span> checkout › pay with saved card<span class="plat">web</span>', 420],
+    ['<span class="t-ok">✓</span> api › POST /orders returns 201<span class="plat">api</span>', 440],
+    ['<span class="t-ok">✓</span> visual › home matches baseline<span class="plat">web</span>', 380],
+    ['<span class="t-ok">✓</span> network › cart hits the right API<span class="plat">mweb</span>', 380],
     ['', 250],
     ['<span class="t-ok">8 passed</span>, <span class="t-dim">0 failed, 0 flaky</span>', 300],
     ['<span class="t-dim">Synced to Jira ·</span> <span class="t-blue">ready to release</span>', 0]
