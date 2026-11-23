@@ -658,7 +658,7 @@ footer .wrap{display:grid;gap:14px}
       <h1 class="display rotator rv" id="rotator">
         <span class="sr">I start with the flows users rely on most</span>
         <span class="sz" aria-hidden="true"><span class="grad">I start with the flows</span> users rely on most</span>
-        <span class="sz" aria-hidden="true"><span class="grad">I check that it works,</span> then how it feels</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I test for human experience:</span> how it feels</span>
         <span class="sz" aria-hidden="true"><span class="grad">I ask questions early,</span> before code exists</span>
         <span class="sz" aria-hidden="true"><span class="grad">I watch how people</span> actually use the app</span>
         <span class="sz" aria-hidden="true"><span class="grad">API checks first,</span> so UI tests stay small</span>
@@ -1199,7 +1199,7 @@ footer .wrap{display:grid;gap:14px}
 
   // headline: types a phrase, holds, deletes it, types the next; pauses while hovered or when motion is off
   // 15 principles: testing craft interleaved with the human-experience side (how the app feels to the person using it)
-  var PH = [["I start with the flows", " users rely on most"], ["I check that it works,", " then how it feels"], ["I ask questions early,", " before code exists"], ["I watch how people", " actually use the app"], ["API checks first,", " so UI tests stay small"], ["When users hesitate,", " I take note"], ["A flaky test", " is worth fixing properly"], ["I look for the moments", " users get stuck"], ["I write tests", " my teammates can read"], ["A slow screen", " is worth a bug report"], ["I test on real devices,", " because users do"], ["I check that errors", " tell users what to do"], ["My bug reports", " come with steps to reproduce"], ["Each missed bug", " teaches me something"], ["I share what I learn", " with my team"]];
+  var PH = [["I start with the flows", " users rely on most"], ["I test for human experience:", " how it feels"], ["I ask questions early,", " before code exists"], ["I watch how people", " actually use the app"], ["API checks first,", " so UI tests stay small"], ["When users hesitate,", " I take note"], ["A flaky test", " is worth fixing properly"], ["I look for the moments", " users get stuck"], ["I write tests", " my teammates can read"], ["A slow screen", " is worth a bug report"], ["I test on real devices,", " because users do"], ["I check that errors", " tell users what to do"], ["My bug reports", " come with steps to reproduce"], ["Each missed bug", " teaches me something"], ["I share what I learn", " with my team"]];
   var rotator = document.getElementById('rotator'), tA = document.getElementById('tA'), tB = document.getElementById('tB');
   var pi = 0, ci = (PH[0][0] + PH[0][1]).length, del = true, paused = false;
   rotator.addEventListener('mouseenter', function(){ paused = true; });
