@@ -157,8 +157,8 @@ section{padding:72px 0}
 .checks li{display:flex;gap:10px;align-items:center}
 .checks svg{flex:none;color:var(--pass)}
 
-/* hero visual: three short tests on open-source sandboxes (WebdriverIO demo app on a device cloud, Playwright's
-   TodoMVC demo, the restful-booker API). Steps play while the card is on screen and obey pause and reduced motion. */
+/* hero visual: one shopping flow on three open-source demo stores (Sauce Labs My Demo App on a device cloud,
+   SauceDemo in Playwright, the DummyJSON API). Steps play while the card is on screen and obey pause and reduced motion. */
 .sim{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--ring),0 30px 60px -36px rgba(0,0,0,.35);padding:16px}
 @media(min-width:600px){.sim{padding:22px}}
 .sim-head{display:grid;gap:2px;margin-bottom:12px}
@@ -201,7 +201,7 @@ section{padding:72px 0}
 .s-hl{position:relative;outline:2px solid #4F7FC9;outline-offset:1px}
 .s-as{position:relative;outline:1.5px dashed var(--pass);outline-offset:2px}
 .sim-mob .s-hl::after{content:"";position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px;border-radius:50%;background:rgba(79,127,201,.35);border:1.5px solid #4F7FC9;animation:tapx .9s ease-out both;pointer-events:none}
-/* layer 1: device-cloud session view (status, config, command list) beside the WebdriverIO demo app */
+/* layer 1: device-cloud session view (status, config, command list) beside the store app */
 .lt{display:grid;gap:5px;min-width:0;font-size:11px}
 .lt-head{display:flex;align-items:center;gap:8px;min-width:0}
 .lt-head b{font:600 11.5px var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -226,56 +226,70 @@ section{padding:72px 0}
 @media(min-width:420px){.sim-mob .sim-body{grid-template-columns:110px 1fr}}
 .dev-sim{width:100px;height:204px;justify-self:center}
 @media(min-width:420px){.dev-sim{width:110px;height:224px}}
-.ph{position:absolute;inset:0;padding:20px 8px 26px;display:flex;flex-direction:column;gap:5px;opacity:0;transition:opacity .25s;font:500 7.5px/1.25 var(--sans);color:#1F2933}
-.sim-mob[data-screen="home"] .ph-home,.sim-mob[data-screen="login"] .ph-login,.sim-mob[data-screen="alert"] .ph-login,.sim-mob[data-screen="alert"] .ph-alert{opacity:1}
-.ph-home{align-items:center;justify-content:center;text-align:center;gap:5px}
-.wd-logo{width:32px;height:32px;border-radius:50%;border:3px solid #EA5906}
+/* Sauce Labs "My Demo App" store: catalog, product page, cart; the header and cart badge stay put */
+.ph{position:absolute;inset:0;padding:42px 7px 8px;display:flex;flex-direction:column;gap:5px;opacity:0;transition:opacity .25s;font:500 7px/1.25 var(--sans);color:#1F2933;overflow:hidden}
+.sim-mob[data-screen="catalog"] .ph-cat,.sim-mob[data-screen="product"] .ph-pdp,.sim-mob[data-screen="cart"] .ph-cart{opacity:1}
+.sl-top{position:absolute;left:0;right:0;top:16px;z-index:2;height:22px;padding:0 9px;display:flex;justify-content:space-between;align-items:center;background:#fff;border-bottom:1px solid #EEF0F3}
+.sl-logo{width:42px;height:7px;border-radius:3px;background:#E2231A}
+.sl-cart{position:relative;width:13px;height:11px;border:1.5px solid #1F2933;border-radius:2px 2px 4px 4px}
+.sl-badge{position:absolute;right:-7px;top:-7px;display:none;place-items:center;width:11px;height:11px;border-radius:50%;background:#E2231A;color:#fff;font:700 6.5px/1 var(--sans)}
+.sim-mob[data-badge="2"] .sl-badge{display:grid}
 .ph-h{font-size:8.5px;font-weight:700}
-.ph-l{color:#475467}
-.wd-seg{display:flex;gap:3px;margin-bottom:5px}
-.wd-seg span{flex:1;padding:4px;border-radius:4px;text-align:center;background:#F2F4F7;color:#475467}
-.wd-seg span:first-child{background:#1F2933;color:#fff}
-.ph-in{min-height:17px;padding:4px 5px;border:1px solid #D0D5DD;border-radius:4px;font-family:var(--mono);white-space:nowrap;overflow:hidden}
+.ph-grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px 5px;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.sim-mob[data-scrolled="1"] .ph-grid2{transform:translateY(-44%)}
+.ph-card{display:grid;gap:2px}
+.ph-card i{display:block;height:44px;border-radius:5px;background:#EEF0F3}
+.ph-card b{font-weight:600}
+.ph-card span{color:#475467}
+.ph-img{height:64px;border-radius:6px;background:#EEF0F3}
+.ph-name{font-size:8px;font-weight:700}
+.ph-price{align-self:flex-start;padding:0 2px;font-size:9px;font-weight:700}
+.ph-qty{display:flex;align-items:center;gap:7px}
+.ph-qty span{width:15px;height:15px;border-radius:50%;border:1px solid #D0D5DD;display:grid;place-items:center;font-weight:700}
+.ph-qty b{min-width:8px;text-align:center;font-size:8.5px}
+.ph-btn{margin-top:4px;padding:6px;border-radius:5px;background:#E2231A;color:#fff;text-align:center;font-weight:700}
+.ph-line{display:grid;grid-template-columns:24px 1fr auto;gap:5px;align-items:center;padding-bottom:6px;border-bottom:1px solid #EEF0F3}
+.ph-line i{height:24px;border-radius:4px;background:#EEF0F3}
+.ph-line b{display:block}
+.ph-tot{display:flex;justify-content:space-between;align-items:center;margin-top:2px;font-weight:700}
+.ph-tot b{padding:0 2px;font-size:9.5px}
+.ph-swipe{position:absolute;left:50%;top:76%;z-index:3;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:rgba(79,127,201,.35);border:1.5px solid #4F7FC9;opacity:0;pointer-events:none}
+.sim-mob[data-swipe] .ph-swipe{animation:swipex .9s ease-in-out both}
+@keyframes swipex{0%{transform:translateY(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateY(-90px);opacity:0}}
 .s-tx:empty::before{content:attr(data-ph);color:#667085;font-family:var(--sans)}
-.ph-err{display:none;padding:0 1px;font-size:7px;color:#B42318}
-.sim-mob[data-err="1"] .ph-err{display:block}
-.ph-btn{margin-top:5px;padding:6px;border-radius:5px;background:#EA5906;color:#fff;text-align:center;font-weight:700}
-.ph-tabs{position:absolute;left:0;right:0;bottom:0;height:22px;display:flex;justify-content:space-around;align-items:center;border-top:1px solid #EEF0F3;background:#fff}
-.ph-tabs i{width:7px;height:7px;border-radius:2px;background:#C4C9D0}
-.ph-tabs i[data-t="tab-login"]{background:#EA5906}
-.ph-alert{z-index:2;justify-content:center;padding:10px;background:rgba(16,24,40,.45)}
-.ph-dlg{display:grid;gap:4px;padding:9px;border-radius:6px;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.25)}
-.ph-dlg b{justify-self:start;font-size:9.5px;padding:0 2px}
-.ph-dlg span{color:#475467}
-.ph-dlg i{justify-self:end;font-style:normal;font-weight:700;color:#C4320A}
-/* layer 2: Playwright UI mode, action list + snapshot of the TodoMVC demo */
+/* layer 2: Playwright UI mode, action list + snapshot of the SauceDemo store */
 .sim-web .sim-body{grid-template-rows:auto 1fr}
 .sim-web .browser{order:-1}
 @media(min-width:600px){.sim-web .sim-body{grid-template-columns:186px 1fr;grid-template-rows:none;align-items:start}.sim-web .browser{order:0}}
-.bw-view{height:150px;padding:8px 10px;background:#F5F5F5;font:400 9px/1.3 var(--sans);color:#1F2933;overflow:hidden}
-@media(min-width:600px){.bw-view{height:224px;font-size:10px;padding:10px 14px}}
-.td-title{display:block;margin-bottom:6px;text-align:center;font-size:2.6em;font-weight:200;line-height:1;color:#B83F45}
-.td-box{background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.14)}
-.td-in{display:block;padding:7px 8px 7px 22px;border-bottom:1px solid #EDEDED}
-.td-in .s-tx:empty::before{font-style:italic;color:#767676}
-.td-item{display:none;align-items:center;gap:7px;padding:6px 8px;border-bottom:1px solid #EDEDED}
-.sim-web[data-items="1"] .i1,.sim-web[data-items="2"] .i1,.sim-web[data-items="2"] .i2{display:flex}
-.sim-web[data-filter="active"][data-done="1"] .i1{display:none}
-.td-c{flex:none;width:10px;height:10px;border-radius:50%;border:1px solid #C9C9C9}
-.sim-web[data-done="1"] .i1{color:#767676;text-decoration:line-through}
-.sim-web[data-done="1"] .i1 .td-c{border-color:#3EA390;background:radial-gradient(#3EA390 38%,transparent 42%)}
-.td-foot{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:5px 8px;color:#555;font-size:.88em}
-.sim-web[data-items="0"] .td-foot{display:none}
-.td-f{display:flex;gap:3px}
-.td-f i{padding:1px 4px;border:1px solid transparent;border-radius:3px;font-style:normal}
-.td-f i:first-child,.sim-web[data-filter="active"] .td-f i[data-t="active"]{border-color:#E6C7C9}
-.sim-web[data-filter="active"] .td-f i:first-child{border-color:transparent}
-/* layer 3: restful-booker API, assertion log + the request/response of the running step */
+.bw-view{position:relative;height:150px;background:#fff;font:400 9px/1.3 var(--sans);color:#1F2933;overflow:hidden}
+@media(min-width:600px){.bw-view{height:224px;font-size:10px}}
+.sd{position:absolute;inset:0;padding:8px 10px;display:flex;flex-direction:column;gap:6px;opacity:0;transition:opacity .25s}
+@media(min-width:600px){.sd{padding:10px 14px;gap:8px}}
+.sim-web[data-screen="login"] .sd-login,.sim-web[data-screen="inventory"] .sd-inv,.sim-web[data-screen="cart"] .sd-cart{opacity:1}
+.sd-login{justify-content:center}
+.sd-brand{text-align:center;font:500 1.7em var(--display);margin-bottom:2px}
+.sd-in{display:block;padding:5px 7px;border-bottom:1px solid #D0D5DD;font-family:var(--mono)}
+.sd-btn{padding:5px;border-radius:4px;background:#3DDC91;color:#132322;text-align:center;font-weight:600}
+.sd-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:5px;border-bottom:1px solid #EDEDED}
+.sd-head b{font:500 1.25em var(--display)}
+.sd-cartic{position:relative;width:14px;height:12px;border:1.5px solid #1F2933;border-radius:2px 2px 4px 4px}
+.sd-badge{position:absolute;right:-7px;top:-7px;display:none;place-items:center;width:12px;height:12px;border-radius:50%;background:#E2231A;color:#fff;font:700 7px/1 var(--sans)}
+.sim-web[data-badge="1"] .sd-badge{display:grid}
+.sd-item{display:grid;grid-template-columns:28px 1fr auto;gap:7px;align-items:center;padding-bottom:5px;border-bottom:1px solid #F2F4F7}
+.sd-item i{height:28px;border-radius:4px;background:#EEF0F3}
+.sd-item b{display:block;font-weight:600;color:#18583A}
+.sd-add{padding:3px 6px;border:1px solid #132322;border-radius:4px;font-weight:600;white-space:nowrap}
+.sd-add .rm,.sim-web[data-added="1"] .sd-add[data-t="add"] .ad{display:none}
+.sim-web[data-added="1"] .sd-add[data-t="add"] .rm{display:inline}
+.sim-web[data-added="1"] .sd-add[data-t="add"]{border-color:#C8102E;color:#C8102E}
+.sd-q{display:grid;grid-template-columns:28px 1fr auto;gap:7px;color:#475467;font-size:.9em}
+.sd-p{padding:0 2px;font-weight:700}
+/* layer 3: DummyJSON store API, assertion log + the request/response of the running step */
 .sim-api .sim-body{grid-template-rows:auto 1fr}
 .api{order:-1;min-width:0;display:grid;gap:6px;align-content:start;padding:8px;border-radius:12px;background:var(--card);box-shadow:var(--ring);font:400 10.5px/1.45 var(--mono)}
 @media(min-width:600px){.sim-api .sim-body{grid-template-columns:1fr 1fr;grid-template-rows:none;align-items:start}.api{order:0;font-size:10px}}
 .api-x{display:none;gap:6px}
-.sim-api[data-x="auth"] .ax-auth,.sim-api[data-x="create"] .ax-create,.sim-api[data-x="get"] .ax-get,.sim-api[data-x="del"] .ax-del{display:grid}
+.sim-api[data-x="login"] .ax-login,.sim-api[data-x="product"] .ax-product,.sim-api[data-x="cart"] .ax-cart,.sim-api[data-x="missing"] .ax-missing{display:grid}
 .api-line{display:flex;align-items:center;gap:6px;padding:2px 4px;border-radius:6px}
 .api-line code{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
 .api-m{padding:1px 5px;border-radius:4px;background:#FEF0C7;color:#93370D;font-weight:600}
@@ -576,9 +590,9 @@ footer .wrap{display:grid;gap:14px}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;transition:none}
-  .sim-st{transition:none}
+  .sim-st,.ph-grid2{transition:none}
   .sim-log{scroll-behavior:auto}
-  .caret,.sim-log li.run::before,.sim-mob .s-hl::after,.tap,.ui .cta,.ui .cta::before,.ui .cta::after,.bpage .cta,.bpage .cta::before,.bpage .cta::after{animation:none}
+  .caret,.sim-log li.run::before,.sim-mob .s-hl::after,.sim-mob[data-swipe] .ph-swipe,.tap,.ui .cta,.ui .cta::before,.ui .cta::after,.bpage .cta,.bpage .cta::before,.bpage .cta::after{animation:none}
   .odo .col{transition:none}
   .device,.browser{transition:none}
 }
@@ -669,7 +683,7 @@ footer .wrap{display:grid;gap:14px}
 
     <div class="rv">
       <figure class="sim" id="sim">
-        <figcaption class="sim-head"><span class="sim-kicker">Example runs · open-source demo apps</span><span class="sim-title">Act, then assert, on every layer</span></figcaption>
+        <figcaption class="sim-head"><span class="sim-kicker">Example runs · open-source demo stores</span><span class="sim-title">Shopping cart, asserted on every layer</span></figcaption>
         <div class="sim-tabs" role="group" aria-label="Test layer">
           <button type="button" data-stage="0" aria-pressed="true">Mobile<span>WDIO</span></button>
           <button type="button" data-stage="1" aria-pressed="false">Web<span>Playwright</span></button>
@@ -678,103 +692,114 @@ footer .wrap{display:grid;gap:14px}
         <div class="sim-stage">
           <div class="sim-st sim-mob is-on">
             <div class="lt">
-              <div class="lt-head"><span class="lt-pill" data-bind="status">Passed</span><b>login.spec.ts › rejects a bad email, then logs in</b></div>
-              <div class="lt-meta"><span class="lt-chip">Physical</span>Pixel 8 · Android 14<span class="lt-app"> · WDIO demo app</span><span class="lt-time">Time <b data-bind="time">0:09</b></span></div>
+              <div class="lt-head"><span class="lt-pill" data-bind="status">Passed</span><b>cart.spec.ts › adds 2 jackets, checks the total</b></div>
+              <div class="lt-meta"><span class="lt-chip">Physical</span>Pixel 8 · Android 14<span class="lt-app"> · My Demo App</span><span class="lt-time">Time <b data-bind="time">0:09</b></span></div>
               <div class="lt-tabs"><span>All Commands</span><span>Logs</span><span>Network</span><span class="lt-count">✓ <b data-bind="passed">8 of 8 passed</b></span></div>
             </div>
             <div class="sim-body">
               <div class="device android dev-sim" aria-hidden="true"><div class="scr">
                 <span class="punch"></span>
-                <div class="ph ph-home"><span class="wd-logo"></span><span class="ph-h">WebdriverIO</span><span class="ph-l">Native demo app</span></div>
-                <div class="ph ph-login">
-                  <div class="wd-seg"><span>Login</span><span>Sign up</span></div>
-                  <span class="ph-in" data-t="email"><span class="s-tx" data-type="email" data-ph="Email"></span></span>
-                  <span class="ph-err" data-t="err">Please enter a valid email address</span>
-                  <span class="ph-in" data-t="password"><span class="s-tx" data-type="password" data-ph="Password"></span></span>
-                  <span class="ph-btn" data-t="login-btn">LOGIN</span>
+                <div class="sl-top"><b class="sl-logo"></b><span class="sl-cart" data-t="cart-btn"><i class="sl-badge" data-t="badge">2</i></span></div>
+                <div class="ph ph-cat"><span class="ph-h">Products</span>
+                  <div class="ph-grid2">
+                    <span class="ph-card"><i></i><b>Backpack</b><span>$29.99</span></span>
+                    <span class="ph-card"><i></i><b>Bike Light</b><span>$9.99</span></span>
+                    <span class="ph-card"><i></i><b>Bolt T-Shirt</b><span>$15.99</span></span>
+                    <span class="ph-card"><i></i><b>Onesie</b><span>$7.99</span></span>
+                    <span class="ph-card" data-t="item"><i></i><b>Fleece Jacket</b><span>$49.99</span></span>
+                    <span class="ph-card"><i></i><b>Red T-Shirt</b><span>$15.99</span></span>
+                  </div>
                 </div>
-                <div class="ph-tabs"><i></i><i></i><i data-t="tab-login"></i><i></i><i></i><i></i></div>
-                <div class="ph ph-alert"><div class="ph-dlg"><b data-t="alert-title">Success</b><span>You are logged in!</span><i>OK</i></div></div>
+                <div class="ph ph-pdp"><span class="ph-img"></span><span class="ph-name">Sauce Labs Fleece Jacket</span><span class="ph-price" data-t="price">$49.99</span>
+                  <div class="ph-qty"><span>−</span><b data-bind="qty">2</b><span data-t="plus">+</span></div>
+                  <span class="ph-btn" data-t="add">Add To Cart</span></div>
+                <div class="ph ph-cart"><span class="ph-h">My Cart</span>
+                  <div class="ph-line"><i></i><span><b>Fleece Jacket</b>Qty 2</span><span>$49.99</span></div>
+                  <div class="ph-tot"><span>Total: 2 items</span><b data-t="total">$99.98</b></div>
+                  <span class="ph-btn">Proceed To Checkout</span></div>
+                <span class="ph-swipe"></span>
               </div></div>
               <ol class="sim-log lt-log">
-                <li><span class="lt-c">click()</span><time></time><code><em>accessibility id</em>~Login</code></li>
-                <li><span class="lt-c">setValue(<span class="s">'not-an-email'</span>)</span><time></time><code><em>accessibility id</em>~input-email</code></li>
-                <li><span class="lt-c">click()</span><time></time><code><em>accessibility id</em>~button-LOGIN</code></li>
-                <li><span class="lt-c">toBeDisplayed()</span><time></time><code><em>-android uiautomator</em>text("Please enter a valid email address")</code></li>
-                <li><span class="lt-c">setValue(<span class="s">'qa@example.com'</span>)</span><time></time><code><em>accessibility id</em>~input-email</code></li>
-                <li><span class="lt-c">setValue(password)</span><time></time><code><em>accessibility id</em>~input-password</code></li>
-                <li><span class="lt-c">click()</span><time></time><code><em>accessibility id</em>~button-LOGIN</code></li>
-                <li><span class="lt-c">toHaveText(<span class="s">'Success'</span>)</span><time></time><code><em>id</em>android:id/alertTitle</code></li>
+                <li><span class="lt-c">browser.swipe({ direction: <span class="s">'up'</span> })</span><time></time><code><em>gesture</em>catalog list</code></li>
+                <li><span class="lt-c">click()</span><time></time><code><em>-android uiautomator</em>text("Sauce Labs Fleece Jacket")</code></li>
+                <li><span class="lt-c">toHaveText(<span class="s">'$49.99'</span>)</span><time></time><code><em>accessibility id</em>~product price</code></li>
+                <li><span class="lt-c">click()</span><time></time><code><em>accessibility id</em>~counter plus button</code></li>
+                <li><span class="lt-c">click()</span><time></time><code><em>accessibility id</em>~Add To Cart button</code></li>
+                <li><span class="lt-c">toHaveText(<span class="s">'2'</span>)</span><time></time><code><em>accessibility id</em>~cart badge</code></li>
+                <li><span class="lt-c">click()</span><time></time><code><em>accessibility id</em>~cart badge</code></li>
+                <li><span class="lt-c">toHaveText(<span class="s">'$99.98'</span>)</span><time></time><code><em>accessibility id</em>~total price</code></li>
               </ol>
             </div>
           </div>
           <div class="sim-st sim-web">
-            <div class="sim-bar"><i aria-hidden="true"></i>todo.spec.ts<span>Playwright UI mode · chromium</span></div>
+            <div class="sim-bar"><i aria-hidden="true"></i>cart.spec.ts<span>Playwright UI mode · chromium</span></div>
             <div class="sim-body">
               <ol class="sim-log">
-                <li><code><b>goto</b> <span class="s">'/todomvc'</span></code><time></time></li>
-                <li><code><b>fill</b> getByPlaceholder(<span class="s">'What needs to be done?'</span>)</code><time></time></li>
-                <li><code><b>press</b> <span class="s">'Enter'</span></code><time></time></li>
-                <li><code><b>fill</b> getByPlaceholder(<span class="s">'What needs to be done?'</span>)</code><time></time></li>
-                <li><code><b>press</b> <span class="s">'Enter'</span></code><time></time></li>
-                <li><code><b>check</b> getByTestId(<span class="s">'todo-item'</span>).first().getByRole(<span class="s">'checkbox'</span>)</code><time></time></li>
-                <li><code><b>click</b> getByRole(<span class="s">'link'</span>, { name: <span class="s">'Active'</span> })</code><time></time></li>
-                <li><code><b>expect.toHaveText</b> getByTestId(<span class="s">'todo-title'</span>)</code><time></time></li>
-                <li><code><b>expect.toHaveText</b> getByTestId(<span class="s">'todo-count'</span>)</code><time></time></li>
+                <li><code><b>goto</b> <span class="s">'/'</span></code><time></time></li>
+                <li><code><b>fill</b> getByTestId(<span class="s">'username'</span>)</code><time></time></li>
+                <li><code><b>fill</b> getByTestId(<span class="s">'password'</span>)</code><time></time></li>
+                <li><code><b>click</b> getByTestId(<span class="s">'login-button'</span>)</code><time></time></li>
+                <li><code><b>click</b> getByTestId(<span class="s">'add-to-cart-sauce-labs-backpack'</span>)</code><time></time></li>
+                <li><code><b>expect.toHaveText</b> getByTestId(<span class="s">'shopping-cart-badge'</span>)</code><time></time></li>
+                <li><code><b>click</b> getByTestId(<span class="s">'shopping-cart-link'</span>)</code><time></time></li>
+                <li><code><b>expect.toHaveText</b> getByTestId(<span class="s">'inventory-item-price'</span>)</code><time></time></li>
               </ol>
               <div class="browser" aria-hidden="true">
-                <div class="btop"><div class="lights"><i></i><i></i><i></i></div><div class="url"><b>demo.playwright.dev</b>/todomvc/<span data-bind="path">#/active</span></div></div>
+                <div class="btop"><div class="lights"><i></i><i></i><i></i></div><div class="url"><b>www.saucedemo.com</b>/<span data-bind="path">cart.html</span></div></div>
                 <div class="bw-view">
-                  <span class="td-title">todos</span>
-                  <div class="td-box">
-                    <span class="td-in" data-t="input"><span class="s-tx" data-type="todo" data-ph="What needs to be done?"></span></span>
-                    <span class="td-item i1"><i class="td-c" data-t="check1"></i>Write API tests</span>
-                    <span class="td-item i2" data-t="item2"><i class="td-c"></i>Fix flaky test</span>
-                    <div class="td-foot"><span data-t="count" data-bind="count">1 item left</span><span class="td-f"><i>All</i><i data-t="active">Active</i><i>Completed</i></span></div>
-                  </div>
+                  <div class="sd sd-login"><span class="sd-brand">Swag Labs</span>
+                    <span class="sd-in" data-t="user"><span class="s-tx" data-type="user" data-ph="Username"></span></span>
+                    <span class="sd-in" data-t="pass"><span class="s-tx" data-type="pass" data-ph="Password"></span></span>
+                    <span class="sd-btn" data-t="login">Login</span></div>
+                  <div class="sd sd-inv"><div class="sd-head"><b>Swag Labs</b><span class="sd-cartic" data-t="cart-link"><i class="sd-badge" data-t="badge">1</i></span></div>
+                    <div class="sd-item"><i></i><span><b>Sauce Labs Backpack</b>$29.99</span><span class="sd-add" data-t="add"><span class="ad">Add to cart</span><span class="rm">Remove</span></span></div>
+                    <div class="sd-item"><i></i><span><b>Sauce Labs Bike Light</b>$9.99</span><span class="sd-add"><span class="ad">Add to cart</span></span></div></div>
+                  <div class="sd sd-cart"><div class="sd-head"><b>Your Cart</b><span class="sd-cartic"><i class="sd-badge">1</i></span></div>
+                    <div class="sd-q"><span>QTY</span><span>Description</span></div>
+                    <div class="sd-item"><span>1</span><span><b>Sauce Labs Backpack</b>carry.allTheThings()</span><span class="sd-p" data-t="price">$29.99</span></div>
+                    <span class="sd-btn">Checkout</span></div>
                 </div>
               </div>
             </div>
           </div>
           <div class="sim-st sim-api">
-            <div class="sim-bar"><i aria-hidden="true"></i>booking.api.spec.ts<span>restful-booker · Playwright request</span></div>
+            <div class="sim-bar"><i aria-hidden="true"></i>cart.api.spec.ts<span>dummyjson.com · Playwright request</span></div>
             <div class="sim-body">
               <ol class="sim-log">
-                <li><code>request.post(<span class="s">'/auth'</span>, { data: creds })</code></li>
-                <li><code>expect(auth.ok())<wbr>.toBeTruthy()</code></li>
-                <li><code>request.post(<span class="s">'/booking'</span>, { data: booking })</code></li>
-                <li><code>expect(created.booking)<wbr>.toMatchObject(booking)</code></li>
-                <li><code>request.get(<wbr><span class="s">`/booking/${id}`</span>)</code></li>
-                <li><code>expect(found)<wbr>.toMatchObject({ firstname: <span class="s">'Ada'</span> })</code></li>
-                <li><code>request.delete(<wbr><span class="s">`/booking/${id}`</span>) <span class="c">// no token</span></code></li>
-                <li><code>expect(del.status())<wbr>.toBe(403)</code></li>
+                <li><code>request.post(<span class="s">'/auth/login'</span>, { data: creds })</code></li>
+                <li><code>expect(login.ok())<wbr>.toBeTruthy()</code></li>
+                <li><code>request.get(<span class="s">'/products/1'</span>)</code></li>
+                <li><code>request.post(<span class="s">'/carts/add'</span>, { data: { userId: 1, products } })</code></li>
+                <li><code>expect(cart.totalQuantity)<wbr>.toBe(2)</code></li>
+                <li><code>expect(cart.total)<wbr>.toBeCloseTo(product.price * 2)</code></li>
+                <li><code>request.get(<wbr><span class="s">'/products/9999'</span>)</code></li>
+                <li><code>expect(missing.status())<wbr>.toBe(404)</code></li>
               </ol>
               <div class="api" aria-hidden="true">
-                <div class="api-x ax-auth">
-                  <div class="api-line"><span class="api-m">POST</span><code>/auth</code><span class="api-sc" data-t="status">200</span></div>
-                  <pre data-t="req">{ "username": "admin",
-  "password": "••••••" }</pre>
-                  <pre class="api-res" data-t="body">{ "token": "8f1c2a7d" }</pre>
+                <div class="api-x ax-login">
+                  <div class="api-line"><span class="api-m">POST</span><code>/auth/login</code><span class="api-sc" data-t="status">200</span></div>
+                  <pre data-t="req">{ "username": "emilys",
+  "password": "••••••••" }</pre>
+                  <pre class="api-res" data-t="body">{ "id": 1,
+  "accessToken": "eyJhbGciOi…" }</pre>
                 </div>
-                <div class="api-x ax-create">
-                  <div class="api-line"><span class="api-m">POST</span><code>/booking</code><span class="api-sc" data-t="status">200</span></div>
-                  <pre data-t="req">{ "firstname": "Ada",
-  "lastname": "Lovelace",
-  "totalprice": 120,
-  "bookingdates": { … } }</pre>
-                  <pre class="api-res" data-t="body">{ "bookingid": 42,
-  "booking": { "firstname": "Ada", … } }</pre>
+                <div class="api-x ax-product">
+                  <div class="api-line" data-t="req"><span class="api-m get">GET</span><code>/products/1</code><span class="api-sc" data-t="status">200</span></div>
+                  <pre class="api-res" data-t="body">{ "id": 1,
+  "title": "Essence Mascara Lash Princess",
+  "price": 9.99 }</pre>
                 </div>
-                <div class="api-x ax-get">
-                  <div class="api-line" data-t="req"><span class="api-m get">GET</span><code>/booking/42</code><span class="api-sc" data-t="status">200</span></div>
-                  <pre class="api-res" data-t="body">{ "firstname": "Ada",
-  "lastname": "Lovelace",
-  "totalprice": 120 }</pre>
+                <div class="api-x ax-cart">
+                  <div class="api-line"><span class="api-m">POST</span><code>/carts/add</code><span class="api-sc" data-t="status">201</span></div>
+                  <pre data-t="req">{ "userId": 1,
+  "products": [{ "id": 1, "quantity": 2 }] }</pre>
+                  <pre class="api-res">{ "totalProducts": 1,
+  <span data-t="qty">"totalQuantity": 2</span>,
+  <span data-t="total">"total": 19.98</span> }</pre>
                 </div>
-                <div class="api-x ax-del">
-                  <div class="api-line" data-t="req"><span class="api-m del">DELETE</span><code>/booking/42</code><span class="api-sc bad" data-t="status">403</span></div>
-                  <pre>Cookie: none</pre>
-                  <pre class="api-res" data-t="body">Forbidden</pre>
+                <div class="api-x ax-missing">
+                  <div class="api-line" data-t="req"><span class="api-m get">GET</span><code>/products/9999</code><span class="api-sc bad" data-t="status">404</span></div>
+                  <pre class="api-res" data-t="body">{ "message": "Product with id '9999' not found" }</pre>
                 </div>
               </div>
             </div>
@@ -1198,37 +1223,36 @@ footer .wrap{display:grid;gap:14px}
   function rollOdo(el){ el.querySelectorAll('.col').forEach(function(c){ c.style.transform = 'translateY(-' + c.dataset.d + 'em)'; }); }
   var odos = document.querySelectorAll('.odo'); odos.forEach(buildOdo);
 
-  // hero simulation: three short tests on open-source sandboxes (the WebdriverIO native demo app on a device cloud,
-  // Playwright's TodoMVC demo, the restful-booker API). A step may change screen state (set), mark the target it acts
-  // on (hl) or the element it asserts (as), and type into a field (type). The HTML holds the finished state.
+  // hero simulation: one shopping flow on three open-source demo stores (Sauce Labs My Demo App on a device cloud,
+  // SauceDemo in Playwright, the DummyJSON API). A step may change screen state (set), mark the target it acts on (hl)
+  // or the element it asserts (as), type into a field (type) or swipe. The HTML holds the finished state.
   var FLOW = [
     { name: 'Mobile', done: 'commands passed on a real device', steps: [
-      { hl: 'tab-login', set: { screen: 'home', err: '' } },
-      { hl: 'email', type: ['email', 'not-an-email'], set: { screen: 'login' } },
-      { hl: 'login-btn', set: { err: '1' } },
-      { as: 'err' },
-      { hl: 'email', type: ['email', 'qa@example.com'] },
-      { hl: 'password', type: ['password', '••••••••'] },
-      { hl: 'login-btn', set: { err: '' } },
-      { as: 'alert-title', set: { screen: 'alert' } } ] },
+      { swipe: true, set: { screen: 'catalog', scrolled: '1', qty: '1', badge: '' } },
+      { hl: 'item' },
+      { as: 'price', set: { screen: 'product' } },
+      { hl: 'plus', set: { qty: '2' } },
+      { hl: 'add', set: { badge: '2' } },
+      { as: 'badge' },
+      { hl: 'cart-btn' },
+      { as: 'total', set: { screen: 'cart' } } ] },
     { name: 'Web', done: 'actions passed in Chromium', steps: [
-      { set: { items: '0', done: '', filter: '', count: '', path: '#/' } },
-      { hl: 'input', type: ['todo', 'Write API tests'] },
-      { hl: 'input', type: ['todo', ''], set: { items: '1', count: '1 item left' } },
-      { hl: 'input', type: ['todo', 'Fix flaky test'] },
-      { hl: 'input', type: ['todo', ''], set: { items: '2', count: '2 items left' } },
-      { hl: 'check1', set: { done: '1', count: '1 item left' } },
-      { hl: 'active', set: { filter: 'active', path: '#/active' } },
-      { as: 'item2' },
-      { as: 'count' } ] },
-    { name: 'API', done: 'checks passed, including a 403 negative test', steps: [
-      { hl: 'req', set: { x: 'auth', res: '' } }, { as: 'status', set: { res: '1' } },
-      { hl: 'req', set: { x: 'create', res: '' } }, { as: 'body', set: { res: '1' } },
-      { hl: 'req', set: { x: 'get', res: '' } }, { as: 'body', set: { res: '1' } },
-      { hl: 'req', set: { x: 'del', res: '' } }, { as: 'status', set: { res: '1' } } ] }
+      { set: { screen: 'login', badge: '', added: '', path: '' } },
+      { hl: 'user', type: ['user', 'standard_user'] },
+      { hl: 'pass', type: ['pass', '••••••••••••'] },
+      { hl: 'login' },
+      { hl: 'add', set: { screen: 'inventory', added: '1', badge: '1', path: 'inventory.html' } },
+      { as: 'badge' },
+      { hl: 'cart-link' },
+      { as: 'price', set: { screen: 'cart', path: 'cart.html' } } ] },
+    { name: 'API', done: 'checks passed, including a 404 negative test', steps: [
+      { hl: 'req', set: { x: 'login', res: '' } }, { as: 'status', set: { res: '1' } },
+      { hl: 'req', set: { x: 'product', res: '1' } },
+      { hl: 'req', set: { x: 'cart', res: '' } }, { as: 'qty', set: { res: '1' } }, { as: 'total' },
+      { hl: 'req', set: { x: 'missing', res: '' } }, { as: 'status', set: { res: '1' } } ] }
   ];
   // how long a step stays on screen; the logs print these real durations, not invented ones
-  function simDur(step){ return step.type && step.type[1] ? 1500 : step.as ? 1100 : 900; }
+  function simDur(step){ return step.type && step.type[1] ? 1500 : step.as || step.swipe ? 1100 : 900; }
   function simFmt(ms){ return ms < 1000 ? ms + 'ms' : (ms / 1000).toFixed(1) + 's'; }
   var sim = document.getElementById('sim'), simStages = sim.querySelectorAll('.sim-st'), simTabs = sim.querySelectorAll('[data-stage]'), simSum = document.getElementById('simSum');
   var simT = [], simCur = 0, simVisible = false;
@@ -1240,7 +1264,10 @@ footer .wrap{display:grid;gap:14px}
     simTabs.forEach(function(t, i){ t.setAttribute('aria-pressed', i === s); });
     // screen state = every `set` up to this step, written as data-* attributes the CSS reads
     steps.forEach(function(x, i){ for (var key in x.set || {}) { keys[key] = 1; if (i <= k) state[key] = x.set[key]; } });
+    // starting a run: clear the screen state first so the first step animates in (the catalog scroll, the login form)
+    if (k === 0 && animate) { for (var kk in keys) st.dataset[kk] = ''; void st.offsetWidth; }
     for (var key in keys) st.dataset[key] = state[key] || '';
+    st.toggleAttribute('data-swipe', !!(animate && k < n && step.swipe));
     st.querySelectorAll('[data-t]').forEach(function(e){
       e.classList.toggle('s-hl', k < n && e.dataset.t === step.hl);
       e.classList.toggle('s-as', e.dataset.t === step.as);
