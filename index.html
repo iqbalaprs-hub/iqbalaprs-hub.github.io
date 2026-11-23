@@ -321,9 +321,11 @@ section{padding:72px 0}
 .pass-stamp::before{content:"✓"}
 .proj-body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
 .proj-body .co-line{font:500 12px var(--mono);color:var(--muted)}
-/* official logos, same optical height; the OLX mark carries its tagline so it sits taller */
+/* official logos, same optical height; two-line marks (OLX, INAPROC) sit taller */
 .brand-logo{display:block;align-self:flex-start;height:24px;width:auto;margin-bottom:6px}
-.brand-logo.olx{height:40px}
+.brand-logo.tall{height:40px}
+/* some marks have black type, so in dark mode every logo sits on the same white chip */
+[data-theme="dark"] .brand-logo{box-sizing:content-box;background:#fff;padding:5px 8px;border-radius:8px}
 .proj-body p{color:var(--ink-2);font-size:15px}
 .proj-body .tags{margin-top:auto;padding-top:10px}
 .proj-body a.ext{font-size:14px;font-weight:500;display:inline-flex;gap:6px;align-items:center;min-height:32px}
@@ -767,7 +769,7 @@ footer .wrap{display:grid;gap:14px}
           <span class="pass-stamp">PASSED</span><span class="lbl">Android · iOS · Web</span>
         </div>
         <div class="proj-body">
-          <img class="brand-logo olx" src="assets/logo-olx.webp" alt="OLX" width="148" height="109">
+          <img class="brand-logo tall" src="assets/logo-olx.webp" alt="OLX" width="148" height="109">
           <span class="co-line">PT Astra Digital Mobil · SDET · since 2025</span>
           <h3 style="font-size:26px">OLX Indonesia</h3>
           <p class="shots-label">Live in production · <a href="https://www.olx.co.id/" target="_blank" rel="noopener">OLX app ↗</a></p>
@@ -815,6 +817,7 @@ footer .wrap{display:grid;gap:14px}
           <span class="pass-stamp">PASSED</span><span class="lbl">Web</span>
         </div>
         <div class="proj-body">
+          <img class="brand-logo tall" src="assets/logo-ekatalog.webp" alt="INAPROC Katalog Elektronik" width="430" height="119">
           <span class="co-line">Telkom Indonesia · QA Engineer · 2023 to 2025</span>
           <h3>e-Katalog (INAPROC)</h3>
           <p>National procurement catalog, from test plan to UAT. BDD automation for REST, GraphQL and UI. No defects reported after the v6 release.</p>
