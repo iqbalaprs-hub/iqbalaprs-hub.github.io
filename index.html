@@ -321,6 +321,9 @@ section{padding:72px 0}
 .pass-stamp::before{content:"✓"}
 .proj-body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
 .proj-body .co-line{font:500 12px var(--mono);color:var(--muted)}
+/* official logos, same optical height; the OLX mark carries its tagline so it sits taller */
+.brand-logo{display:block;align-self:flex-start;height:24px;width:auto;margin-bottom:6px}
+.brand-logo.olx{height:40px}
 .proj-body p{color:var(--ink-2);font-size:15px}
 .proj-body .tags{margin-top:auto;padding-top:10px}
 .proj-body a.ext{font-size:14px;font-weight:500;display:inline-flex;gap:6px;align-items:center;min-height:32px}
@@ -343,7 +346,6 @@ section{padding:72px 0}
 @media(min-width:560px){.areas{grid-template-columns:1fr 1fr}}
 .areas li{display:flex;gap:10px;align-items:center;font-size:14.5px;padding:11px 12px;border-radius:12px;background:var(--surface)}
 .areas li svg{flex:none;color:var(--pass)}
-.plat-row{display:flex;flex-wrap:wrap;gap:8px}
 .art-saas{display:grid;place-items:center;background:radial-gradient(80% 80% at 10% 90%,rgba(125,166,227,.6),transparent 60%),radial-gradient(70% 70% at 90% 10%,rgba(196,181,253,.7),transparent 60%),#E8EEFB}
 .saas{width:82%;background:#fff;border-radius:12px;box-shadow:0 18px 30px -16px rgba(0,0,0,.3);display:grid;grid-template-columns:42px 1fr;overflow:hidden;height:136px}
 .saas .side{background:#111;padding:10px 8px;display:grid;gap:7px;align-content:start}
@@ -765,42 +767,37 @@ footer .wrap{display:grid;gap:14px}
           <span class="pass-stamp">PASSED</span><span class="lbl">Android · iOS · Web</span>
         </div>
         <div class="proj-body">
+          <img class="brand-logo olx" src="assets/logo-olx.webp" alt="OLX" width="148" height="109">
           <span class="co-line">PT Astra Digital Mobil · SDET · since 2025</span>
           <h3 style="font-size:26px">OLX Indonesia</h3>
-          <p>End-to-end tests in one TypeScript codebase, run on real devices in CI with visual and network checks.</p>
-          <div class="plat-row"><span class="chip">Android</span><span class="chip">iOS</span><span class="chip">Desktop &amp; mobile web</span></div>
-          <p class="shots-label">Features I tested, live in production · <a href="https://www.olx.co.id/" target="_blank" rel="noopener">see them in the OLX app ↗</a></p>
+          <p class="shots-label">Live in production · <a href="https://www.olx.co.id/" target="_blank" rel="noopener">OLX app ↗</a></p>
           <ul class="feats">
             <li class="feat">
               <span class="risk hi">High risk · used cars</span>
               <h4>Price guidance</h4>
-              <p>A market price range, the expected time to sell and an instant-sell estimate, shown before the ad goes live.</p>
-              <p><b>If it breaks:</b> a wrong range misprices the car.</p>
-              <ul><li>As a User, I see a price range for the car I entered</li><li>As a User, I can take the instant-sell offer or keep my own price</li></ul>
+              <p>Market range and instant-sell offer. If it breaks, cars get mispriced.</p>
+              <ul><li>As a User, I see a price range for my car</li></ul>
             </li>
             <li class="feat">
               <span class="risk hi">High risk · motorcycles</span>
               <h4>Price recommendation</h4>
-              <p>A recommended price with low and high bounds for the user's area, next to the price, down payment and tenor fields.</p>
-              <p><b>If it breaks:</b> a bike gets listed at the wrong price.</p>
-              <ul><li>As a User, I see a recommendation for my area</li><li>As a User, I can still set my own price</li></ul>
+              <p>Local range beside down payment and tenor. If it breaks, bikes get mispriced.</p>
+              <ul><li>As a User, I can still set my own price</li></ul>
             </li>
             <li class="feat">
               <span class="risk hi">High risk · motorcycles</span>
               <h4>Three-step ad form</h4>
-              <p>Product details with required fields per category, split over three steps.</p>
-              <p><b>If it breaks:</b> new listings stop.</p>
-              <ul><li>As a User, I can't continue while a required field is empty</li><li>As a User, I can go back a step and keep what I entered</li></ul>
+              <p>Required fields per category. If it breaks, listings stop.</p>
+              <ul><li>As a User, I can't skip a required field</li></ul>
             </li>
             <li class="feat">
               <span class="risk md">Medium risk · My Ads</span>
               <h4>My Ads filters</h4>
-              <p>Filter your own ads by status, category, republish history and expiry.</p>
-              <p><b>If it breaks:</b> users can't find their own ads.</p>
-              <ul><li>As a User, I see only ads that match every filter I picked</li><li>As a User, I can reset all filters in one tap</li></ul>
+              <p>Status, category, republish and expiry. If it breaks, ads go missing.</p>
+              <ul><li>As a User, I see only ads that match my filters</li></ul>
             </li>
           </ul>
-          <p class="feat-note">The checks are examples. Internal test cases stay with the team.</p>
+          <p class="feat-note">Example checks, not internal test cases.</p>
           <ul class="areas">
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Brand catalog pages</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Paid ad promotions</li>
@@ -832,6 +829,7 @@ footer .wrap{display:grid;gap:14px}
           <span class="pass-stamp">PASSED</span><span class="lbl">Web · SaaS</span>
         </div>
         <div class="proj-body">
+          <img class="brand-logo" src="assets/logo-sirclo.webp" alt="SIRCLO" width="277" height="72">
           <span class="co-line">SIRCLO · QA Engineer · 2022 to 2023</span>
           <h3>Commerce SaaS</h3>
           <p>Used by brands to sell online. Cypress regression and API tests.</p>
@@ -849,6 +847,7 @@ footer .wrap{display:grid;gap:14px}
           <span class="pass-stamp">PASSED</span><span class="lbl">Mobile · Manual</span>
         </div>
         <div class="proj-body">
+          <img class="brand-logo" src="assets/logo-wehelpyou.webp" alt="Wehelpyou" width="368" height="72">
           <span class="co-line">Wehelpyou · QA Staff · 2021 to 2022</span>
           <h3>Wehelpyou Delivery</h3>
           <p>Delivery app on iOS and Android. I turned PRDs into test plans and tested by hand.</p>
