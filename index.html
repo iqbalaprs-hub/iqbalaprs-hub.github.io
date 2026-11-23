@@ -327,12 +327,16 @@ section{padding:72px 0}
 .proj-body .tags{margin-top:auto;padding-top:10px}
 .proj-body a.ext{font-size:14px;font-weight:500;display:inline-flex;gap:6px;align-items:center;min-height:32px}
 .proj-body a.ext:hover{text-decoration:underline}
-.p-olx{display:grid}
-@media(min-width:760px){.p-olx{grid-template-columns:minmax(260px,.75fr) 1.25fr}}
-.p-olx .proj-art{height:340px;background:#1d5fe0}
-@media(min-width:760px){.p-olx .proj-art{height:auto;min-height:440px}.p-olx .proj-art img{position:absolute;inset:0;object-position:50% 0}}
-.p-olx .proj-art img{object-position:50% 18%}
 .p-olx .proj-body{padding:26px;gap:14px}
+/* real production screens as evidence; each opens full size */
+.proj-body .shots-label{font:500 12px var(--mono);color:var(--muted);margin-top:8px}
+.shots{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:20px 16px}
+@media(min-width:900px){.shots{grid-template-columns:repeat(4,1fr)}}
+.shots li{display:grid;gap:4px;align-content:start;font-size:13.5px;line-height:1.45;color:var(--ink-2)}
+.shots a{display:block;border-radius:16px;overflow:hidden;box-shadow:var(--ring);margin-bottom:8px}
+.shots img{width:100%;height:auto;transition:transform .3s}
+.shots a:hover img{transform:scale(1.03)}
+.shots b{font-weight:500;font-size:14px;color:var(--ink)}
 @media(min-width:900px){.p-olx .proj-body{padding:36px}}
 .areas{list-style:none;display:grid;gap:8px}
 @media(min-width:560px){.areas{grid-template-columns:1fr 1fr}}
@@ -350,16 +354,14 @@ section{padding:72px 0}
 .saas .chart{height:40px;border-radius:6px;background:linear-gradient(180deg,rgba(125,166,227,.35),transparent),var(--surface);clip-path:polygon(0 80%,15% 60%,30% 68%,45% 35%,60% 45%,75% 20%,90% 30%,100% 10%,100% 100%,0 100%)}
 .saas .rows i{display:block;height:5px;border-radius:3px;background:var(--surface-2);margin-top:5px}
 
-/* stack */
-.stack{display:grid;gap:14px}
+/* languages + test management, under the capability cards */
+.stack{display:grid;gap:16px;margin-top:16px}
 @media(min-width:760px){.stack{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1080px){.stack{grid-template-columns:repeat(3,1fr)}}
 .stack-group{background:var(--surface);border-radius:var(--r);padding:22px}
 .stack-group h3{font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
 .stack-group h3 .n{font:500 11px var(--mono);color:var(--muted)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .stack-group .chip{min-height:32px}
-.stack-group.wide{grid-column:1/-1}
 
 /* process */
 .process{display:grid;gap:40px;align-items:center}
@@ -377,24 +379,6 @@ section{padding:72px 0}
 .jobs svg{flex:none;margin-top:4px;color:var(--pass)}
 .jobs b{display:block;font-weight:500;font-size:14px}
 .jobs span{display:block;font-size:13px;color:var(--muted)}
-
-/* engagement */
-.plans{display:grid;gap:16px}
-@media(min-width:760px){.plans{grid-template-columns:repeat(2,1fr)}}
-.plan{border-radius:var(--r-lg);background:var(--card);box-shadow:var(--ring);overflow:hidden;display:flex;flex-direction:column}
-.plan-head{padding:24px;color:#fff;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;position:relative;gap:16px}
-.plan-head::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");mix-blend-mode:overlay;pointer-events:none}
-.plan-head>*{position:relative;z-index:1}
-.plan-head h3{font-size:26px}
-.plan-head small{opacity:.88;font-size:14px}
-.ph-1{background:radial-gradient(90% 90% at 80% 10%,#d9e86a 0,transparent 60%),radial-gradient(90% 90% at 10% 100%,#1f7a3d 0,transparent 60%),#4c9a3c}
-.ph-3{background:radial-gradient(90% 90% at 70% 20%,#4b5563 0,transparent 60%),#111}
-.plan-body{padding:24px;display:grid;gap:18px;flex:1;align-content:space-between}
-.plan-body ul{list-style:none;display:grid;gap:12px;font-size:15px;color:var(--ink-2)}
-.plan-body li{display:flex;gap:10px}
-.plan-body li svg{flex:none;margin-top:4px;color:var(--pass)}
-.plan-body .btn{width:100%}
-.work-note{margin-top:20px;font-size:14px;color:var(--muted);text-align:center}
 
 /* education */
 .edu{display:grid;gap:14px}
@@ -450,9 +434,7 @@ footer .wrap{display:grid;gap:14px}
     <span class="live" aria-hidden="true"></span>
     <b>Open to work</b>
     <span class="sep hide-sm">|</span><span class="hide-sm">Full-time &amp; freelance SDET</span>
-    <span class="sep hide-sm">|</span><span class="hide-sm">Jakarta · Remote</span>
-    <a class="pill" href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>Download CV</a>
+    <span class="sep hide-sm">|</span><span class="hide-sm">Bekasi, Jakarta area · Remote</span>
   </div>
 </div>
 
@@ -466,7 +448,6 @@ footer .wrap{display:grid;gap:14px}
       <a href="#about">About</a>
       <a href="#capabilities">What I test</a>
       <a href="#projects">Projects</a>
-      <a href="#stack">Stack</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-right">
@@ -485,9 +466,7 @@ footer .wrap{display:grid;gap:14px}
     <a href="#about">About</a>
     <a href="#capabilities">What I test</a>
     <a href="#projects">Projects</a>
-    <a href="#stack">Stack</a>
     <a href="#faq">FAQ</a>
-    <a href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">Download CV ↓</a>
   </nav>
 </header>
 
@@ -505,19 +484,19 @@ footer .wrap{display:grid;gap:14px}
         </button>
       </div>
       <h1 class="display rotator rv" id="rotator">
-        <span class="sr">The riskiest flows are the ones I test first</span>
-        <span class="sz" aria-hidden="true"><span class="grad">The riskiest flows</span> are the ones I test first</span>
-        <span class="sz" aria-hidden="true"><span class="grad">I use heuristics</span> to find what checklists miss</span>
-        <span class="sz" aria-hidden="true"><span class="grad">API checks first,</span> then UI tests on top</span>
-        <span class="sz" aria-hidden="true"><span class="grad">A flaky test</span> is a bug to fix</span>
-        <span class="sz" aria-hidden="true"><span class="grad">I automate what repeats,</span> then explore by hand</span>
-        <span class="sz" aria-hidden="true"><span class="grad">I read the requirement</span> before I write a test</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Coverage shows me</span> where the gaps are</span>
-        <span class="sz" aria-hidden="true"><span class="grad">A green build</span> should mean working software</span>
+        <span class="sr">I protect the flows that bring in revenue</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I protect the flows</span> that bring in revenue</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I review requirements</span> before code exists</span>
+        <span class="sz" aria-hidden="true"><span class="grad">API checks first,</span> so UI tests stay small</span>
+        <span class="sz" aria-hidden="true"><span class="grad">A flaky test</span> gets fixed at the root</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I write tests</span> developers can trust</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I measure quality</span> by bugs users never see</span>
+        <span class="sz" aria-hidden="true"><span class="grad">A green build</span> should mean ready to ship</span>
         <span class="sz" aria-hidden="true"><span class="grad">Every bug I report</span> has steps to reproduce</span>
-        <span class="typed" aria-hidden="true"><span class="grad" id="tA">The riskiest flows</span><span id="tB"> are the ones I test first</span><span class="caret"></span></span>
+        <span class="sz" aria-hidden="true"><span class="grad">I teach what I automate:</span> 18 engineers so far</span>
+        <span class="typed" aria-hidden="true"><span class="grad" id="tA">I protect the flows</span><span id="tB"> that bring in revenue</span><span class="caret"></span></span>
       </h1>
-      <p class="lead rv">I'm Iqbal, an SDET with almost 5 years in QA. I automate mobile, web and API tests on real devices.</p>
+      <p class="lead rv">I'm Iqbal, an SDET with 5 years in QA. I automate mobile, web and API tests on real devices.</p>
       <div class="cta-row rv">
         <a class="btn btn-dark" href="#contact">Get in touch</a>
         <a class="btn btn-light" href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">
@@ -586,8 +565,6 @@ footer .wrap{display:grid;gap:14px}
         <span class="chip">English · Indonesian</span>
       </div>
       <div class="cta-row rv">
-        <a class="btn btn-dark" href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>Download CV (PDF)</a>
         <a class="btn btn-light" href="https://www.linkedin.com/in/iqbal-apriansyah-84753a21b" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
@@ -608,6 +585,7 @@ footer .wrap{display:grid;gap:14px}
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span>
         <h3>Mobile: Android &amp; iOS</h3>
         <p>One WebdriverIO + Appium codebase for both, run on real devices.</p>
+        <div class="tags"><span class="tag">WebdriverIO</span><span class="tag">Appium</span><span class="tag">UiAutomator2</span><span class="tag">XCUITest</span><span class="tag">Appium Inspector</span><span class="tag">Jasmine</span></div>
         <div class="stage" aria-hidden="true">
           <div class="dev-wrap">
             <div class="device android"><div class="scr">
@@ -642,6 +620,7 @@ footer .wrap{display:grid;gap:14px}
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/></svg></span>
         <h3>Web: desktop &amp; mobile web</h3>
         <p>Playwright for desktop and mobile web. Cypress or Selenium when a project already uses them.</p>
+        <div class="tags"><span class="tag">Playwright</span><span class="tag">Cypress</span><span class="tag">Selenium</span><span class="tag">Katalon Studio</span></div>
         <div class="bstage" aria-hidden="true">
           <div class="browser">
             <div class="btop"><div class="lights"><i></i><i></i><i></i></div><div class="url"><b>https://</b>app.example.test/checkout</div></div>
@@ -661,13 +640,14 @@ footer .wrap{display:grid;gap:14px}
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h10M4 17h7"/><path d="M15 15l2 2 4-4"/></svg></span>
         <h3>API &amp; GraphQL</h3>
         <p>REST and GraphQL suites, plus test data seeded through the API.</p>
-        <div class="tags"><span class="tag">Postman</span><span class="tag">Cucumber</span><span class="tag">GraphQL</span></div>
+        <div class="tags"><span class="tag">REST</span><span class="tag">GraphQL</span><span class="tag">Postman</span><span class="tag">Swagger</span><span class="tag">Cucumber</span><span class="tag">Chai.js</span></div>
       </article>
 
       <article class="card b-d rv">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 12h3M14 12h3"/></svg></span>
         <h3>CI &amp; device cloud</h3>
         <p>Smoke tests on every build, full regression on real devices before a release.</p>
+        <div class="tags"><span class="tag">GitHub Actions</span><span class="tag">LambdaTest</span><span class="tag">Docker</span><span class="tag">Rundeck</span><span class="tag">Git</span><span class="tag">PostgreSQL</span></div>
         <div class="pipe" aria-hidden="true"><span class="st"><i></i>build</span><span class="ln"></span><span class="st"><i></i>smoke</span><span class="ln"></span><span class="st"><i></i>regression</span></div>
       </article>
 
@@ -682,7 +662,8 @@ footer .wrap{display:grid;gap:14px}
           <div>
             <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg></span>
             <h3>AI-assisted test design</h3>
-            <p>I use AI to turn test designs into draft specs, then check every locator against the real screen.</p>
+            <p>I use agentic AI to turn test designs into draft specs, then check every locator against the real screen.</p>
+            <div class="tags"><span class="tag">Claude Code</span><span class="tag">Hermes Agent</span><span class="tag">MCP</span></div>
           </div>
           <div class="viz" aria-hidden="true">
             <span class="c">// test design → spec</span><br>
@@ -697,6 +678,10 @@ footer .wrap{display:grid;gap:14px}
         </div>
       </article>
     </div>
+    <div class="stack">
+      <div class="stack-group rv"><h3>Languages <span class="n">05</span></h3><div class="chips"><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Ruby</span><span class="chip">Python</span><span class="chip">SQL</span></div></div>
+      <div class="stack-group rv"><h3>Test management <span class="n">04</span></h3><div class="chips"><span class="chip">Jira</span><span class="chip">AIO Tests</span><span class="chip">Confluence</span><span class="chip">Squash</span></div></div>
+    </div>
   </div>
 </section>
 
@@ -710,19 +695,20 @@ footer .wrap{display:grid;gap:14px}
     </div>
     <div class="projects">
       <article class="proj p-olx rv">
-        <div class="proj-art">
-          <img src="assets/olx.webp" alt="OLX Indonesia app promotional image" loading="lazy" width="762" height="1600">
-          <span class="pass-stamp">PASSED</span>
-        </div>
         <div class="proj-body">
           <span class="co-line">PT Astra Digital Mobil · SDET · since 2025</span>
           <h3 style="font-size:26px">OLX Indonesia</h3>
           <p>End-to-end tests in one TypeScript codebase, run on real devices in CI with visual and network checks.</p>
           <div class="plat-row"><span class="chip">Android</span><span class="chip">iOS</span><span class="chip">Desktop &amp; mobile web</span></div>
+          <p class="shots-label">Features I tested, live in production</p>
+          <ul class="shots">
+            <li><a href="assets/olx-car-price.webp" target="_blank" rel="noopener"><img src="assets/olx-car-price.webp" alt="Used-car ad price step with a market price range and an instant-sell estimate" width="499" height="798" loading="lazy"></a><b>Price guidance · used cars</b><span>Market price range, time to sell and an instant-sell estimate. A wrong range misprices the car.</span></li>
+            <li><a href="assets/olx-moto-form.webp" target="_blank" rel="noopener"><img src="assets/olx-moto-form.webp" alt="Step 2 of 3 of the motorcycle ad form with required product details" width="499" height="798" loading="lazy"></a><b>Ad posting · motorcycles</b><span>A three-step form with required fields per category. A broken step blocks new listings.</span></li>
+            <li><a href="assets/olx-my-ads.webp" target="_blank" rel="noopener"><img src="assets/olx-my-ads.webp" alt="My Ads filter sheet with status, category, republish and expiry filters" width="499" height="798" loading="lazy"></a><b>My Ads filters</b><span>Filter by status, category, republish history and expiry. Wrong results hide a user's own ads.</span></li>
+            <li><a href="assets/olx-new-cars.webp" target="_blank" rel="noopener"><img src="assets/olx-new-cars.webp" alt="New-car home with brand shortcuts and a make, model and type search" width="499" height="798" loading="lazy"></a><b>New-car catalog</b><span>Brand shortcuts and a search by make, model and type. A wrong brand mapping shows the wrong cars.</span></li>
+          </ul>
           <ul class="areas">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Ad posting, multiple categories</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Paid ad promotions</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Brand catalog pages</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Reusable flows across squads</li>
           </ul>
           <div class="tags"><span class="tag">TypeScript</span><span class="tag">WebdriverIO</span><span class="tag">Appium</span><span class="tag">Playwright</span><span class="tag">LambdaTest</span></div>
@@ -767,26 +753,6 @@ footer .wrap{display:grid;gap:14px}
   </div>
 </section>
 
-<!-- STACK -->
-<section id="stack" class="divider">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><p class="spec rv"><i></i>stack.spec.ts</p>
-      <h2 class="display rv">The <span class="grad">stack</span> I work in</h2></div>
-      <p class="lead rv">Used on production projects.</p>
-    </div>
-    <div class="stack">
-      <div class="stack-group rv"><h3>Languages <span class="n">05</span></h3><div class="chips"><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Ruby</span><span class="chip">Python</span><span class="chip">SQL</span></div></div>
-      <div class="stack-group rv"><h3>Mobile <span class="n">06</span></h3><div class="chips"><span class="chip">WebdriverIO</span><span class="chip">Appium</span><span class="chip">UiAutomator2</span><span class="chip">XCUITest</span><span class="chip">Appium Inspector</span><span class="chip">Jasmine</span></div></div>
-      <div class="stack-group rv"><h3>Web <span class="n">04</span></h3><div class="chips"><span class="chip">Playwright</span><span class="chip">Cypress</span><span class="chip">Selenium</span><span class="chip">Katalon Studio</span></div></div>
-      <div class="stack-group rv"><h3>API <span class="n">06</span></h3><div class="chips"><span class="chip">REST</span><span class="chip">GraphQL</span><span class="chip">Postman</span><span class="chip">Swagger</span><span class="chip">Cucumber</span><span class="chip">Chai.js</span></div></div>
-      <div class="stack-group rv"><h3>CI &amp; infra <span class="n">06</span></h3><div class="chips"><span class="chip">GitHub Actions</span><span class="chip">LambdaTest</span><span class="chip">Docker</span><span class="chip">Rundeck</span><span class="chip">Git</span><span class="chip">PostgreSQL</span></div></div>
-      <div class="stack-group rv"><h3>Test management <span class="n">04</span></h3><div class="chips"><span class="chip">Jira</span><span class="chip">AIO Tests</span><span class="chip">Confluence</span><span class="chip">Squash</span></div></div>
-      <div class="stack-group wide rv"><h3>Agentic AI <span class="n">03</span></h3><div class="chips"><span class="chip">Claude Code</span><span class="chip">Hermes Agent</span><span class="chip">MCP</span></div></div>
-    </div>
-  </div>
-</section>
-
 <!-- PROCESS -->
 <section id="process" class="divider">
   <div class="wrap process">
@@ -807,41 +773,6 @@ footer .wrap{display:grid;gap:14px}
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Results synced to Jira</b><span>Each result links back to its ticket.</span></div></li>
         </ol>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ENGAGEMENT -->
-<section id="work-together" class="divider">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><p class="spec rv"><i></i>hire.spec.ts</p>
-      <h2 class="display rv">Open to <span class="grad">full-time</span> and freelance</h2></div>
-      <p class="lead rv">Onsite, hybrid or remote.</p>
-    </div>
-    <div class="plans">
-      <article class="plan rv">
-        <div class="plan-head ph-1"><h3>Full-time</h3><small>Join your team as an SDET</small></div>
-        <div class="plan-body">
-          <ul>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Build and own your automation</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Work inside squads, review PRs</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Jakarta area, remote, or relocation</li>
-          </ul>
-          <a class="btn btn-dark" href="#contact">Talk about a role</a>
-        </div>
-      </article>
-      <article class="plan rv">
-        <div class="plan-head ph-3"><h3>Freelance</h3><small>Scoped testing projects</small></div>
-        <div class="plan-body">
-          <ul>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Playwright or WebdriverIO from zero</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>API suites for REST or GraphQL</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Fix a flaky test suite</li>
-          </ul>
-          <a class="btn btn-light" href="#contact">Start a project</a>
-        </div>
-      </article>
     </div>
   </div>
 </section>
@@ -880,7 +811,7 @@ footer .wrap{display:grid;gap:14px}
   <div class="wrap">
     <p class="spec rv"><i></i>contact.spec.ts</p>
     <h2 class="display rv">Fewer surprises <span class="grad">on release day</span></h2>
-    <p class="lead rv">Tell me what keeps breaking, and I'll tell you how I'd test it.</p>
+    <p class="lead rv">Tell me what keeps breaking, and I'll tell you how I'd test it. Open to full-time roles and scoped freelance work, onsite, hybrid or remote.</p>
     <div class="cta-row rv">
       <a class="btn btn-dark" href="mailto:iqbalaprs8@gmail.com?subject=Let's%20talk%20about%20an%20SDET%20role">Email me</a>
       <a class="btn btn-light" href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">
@@ -889,7 +820,7 @@ footer .wrap{display:grid;gap:14px}
     <div class="contacts rv">
       <button class="chip" id="copyEmail" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg><span>iqbalaprs8@gmail.com</span></button>
       <a class="chip" href="https://www.linkedin.com/in/iqbal-apriansyah-84753a21b" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg>LinkedIn</a>
-      <a class="chip" href="https://github.com/Iqbalaprs" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 00-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 015.8 0C17.3 4.8 18.3 5.1 18.3 5.1c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0012 .5z"/></svg>GitHub</a>
+      <a class="chip" href="https://github.com/iqbalaprs-hub" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 00-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 015.8 0C17.3 4.8 18.3 5.1 18.3 5.1c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0012 .5z"/></svg>GitHub</a>
     </div>
   </div>
 </section>
@@ -928,7 +859,7 @@ footer .wrap{display:grid;gap:14px}
   menu.addEventListener('click', function(e){ if (e.target.tagName === 'A' && menu.classList.contains('open')) btn.click(); });
 
   // headline: types a phrase, holds, deletes it, types the next; pauses while hovered or when motion is off
-  var PH = [["The riskiest flows", " are the ones I test first"], ["I use heuristics", " to find what checklists miss"], ["API checks first,", " then UI tests on top"], ["A flaky test", " is a bug to fix"], ["I automate what repeats,", " then explore by hand"], ["I read the requirement", " before I write a test"], ["Coverage shows me", " where the gaps are"], ["A green build", " should mean working software"], ["Every bug I report", " has steps to reproduce"]];
+  var PH = [["I protect the flows", " that bring in revenue"], ["I review requirements", " before code exists"], ["API checks first,", " so UI tests stay small"], ["A flaky test", " gets fixed at the root"], ["I write tests", " developers can trust"], ["I measure quality", " by bugs users never see"], ["A green build", " should mean ready to ship"], ["Every bug I report", " has steps to reproduce"], ["I teach what I automate:", " 18 engineers so far"]];
   var rotator = document.getElementById('rotator'), tA = document.getElementById('tA'), tB = document.getElementById('tB');
   var pi = 0, ci = (PH[0][0] + PH[0][1]).length, del = true, paused = false;
   rotator.addEventListener('mouseenter', function(){ paused = true; });
