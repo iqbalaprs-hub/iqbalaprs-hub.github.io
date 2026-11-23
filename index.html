@@ -6,7 +6,7 @@
 <title>Iqbal Apriansyah · SDET</title>
 <meta name="description" content="Iqbal Apriansyah, SDET. Mobile, web and API test automation on real devices with WebdriverIO, Appium and Playwright.">
 <meta property="og:title" content="Iqbal Apriansyah · SDET">
-<meta property="og:description" content="Mobile, web, and API tests in one codebase you can trust.">
+<meta property="og:description" content="SDET. Mobile, web and API test automation on real devices.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://iqbalaprs-hub.github.io/assets/iqbal.webp">
 <meta name="theme-color" content="#FDFCFC">
@@ -44,7 +44,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 h1.display{font-size:clamp(38px,6.2vw,74px)}
 h2.display{font-size:clamp(30px,4.2vw,50px)}
 h3{font-family:var(--display);font-weight:450;font-size:20px;letter-spacing:-.01em;line-height:1.25}
-.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+/* darker blue than --blue: #7DA6E3 is 2.4:1 on the page bg, #4F7FC9 keeps headings above 3:1 */
+.grad{background:linear-gradient(90deg,#4F7FC9 30%,var(--red) 65%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 .lead{font-size:clamp(16px,1.5vw,18px);color:var(--ink-2);max-width:46ch}
 .muted{color:var(--muted)}
 
@@ -399,7 +400,6 @@ footer .wrap{display:grid;gap:14px}
 @media(min-width:800px){footer .wrap{grid-template-columns:auto 1fr;align-items:center}}
 .ai-credit{display:flex;gap:10px;align-items:flex-start;color:var(--ink-2)}
 @media(min-width:800px){.ai-credit{justify-self:end;text-align:right;align-items:center}}
-.ai-credit .spark{flex:none;width:26px;height:26px;border-radius:8px;background:var(--grad);display:grid;place-items:center}
 .ai-credit b{font-weight:500;color:#000}
 
 /* reveal */
@@ -467,18 +467,17 @@ footer .wrap{display:grid;gap:14px}
     <div>
       <span class="badge rv"><img src="assets/iqbal.webp" alt="" width="28" height="28"><span><b>Iqbal Apriansyah</b> · SDET</span></span>
       <h1 class="display rotator rv" id="rotator">
-        <span class="sr">I test with heuristics, not just checklists</span>
-        <span class="sz" aria-hidden="true"><span class="grad">I test with heuristics,</span> not just checklists</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Risk decides</span> what gets tested first</span>
-        <span class="sz" aria-hidden="true"><span class="grad">A flaky test</span> is a bug, not bad luck</span>
-        <span class="sz" aria-hidden="true"><span class="grad">API checks first,</span> UI tests on top</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Automate the repeatable,</span> explore the risky</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Coverage is a metric,</span> not the goal</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Quality starts</span> at the requirement</span>
+        <span class="sr">The riskiest flows are the ones I test first</span>
+        <span class="sz" aria-hidden="true"><span class="grad">The riskiest flows</span> are the ones I test first</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I use heuristics</span> to find what checklists miss</span>
+        <span class="sz" aria-hidden="true"><span class="grad">API checks first,</span> then UI tests on top</span>
+        <span class="sz" aria-hidden="true"><span class="grad">A flaky test</span> is a bug to fix</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I automate what repeats,</span> then explore by hand</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I read the requirement</span> before I write a test</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Coverage shows me</span> where the gaps are</span>
         <span class="sz" aria-hidden="true"><span class="grad">A green build</span> should mean working software</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Every bug report</span> ships with steps to reproduce</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Test like a user,</span> verify like an engineer</span>
-        <span class="typed" aria-hidden="true"><span class="grad" id="tA">I test with heuristics,</span><span id="tB"> not just checklists</span><span class="caret"></span></span>
+        <span class="sz" aria-hidden="true"><span class="grad">Every bug I report</span> has steps to reproduce</span>
+        <span class="typed" aria-hidden="true"><span class="grad" id="tA">The riskiest flows</span><span id="tB"> are the ones I test first</span><span class="caret"></span></span>
       </h1>
       <p class="lead rv">I'm Iqbal, an SDET with almost 5 years in QA. I automate mobile, web and API tests on real devices.</p>
       <div class="cta-row rv">
@@ -521,7 +520,7 @@ footer .wrap{display:grid;gap:14px}
       </div>
       <div class="stat rv">
         <span class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span>
-        <div class="odo" data-value="4">4</div><p>platforms, one test suite</p>
+        <div class="odo" data-value="4">4</div><p>platforms, one codebase</p>
       </div>
       <div class="stat rv">
         <span class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.5a3.5 3.5 0 010 7M18 14.8c1.9.7 3.1 2.4 3.5 5.2"/></svg></span>
@@ -540,12 +539,12 @@ footer .wrap{display:grid;gap:14px}
     </div>
     <div>
       <p class="spec rv"><i></i>about.spec.ts</p>
-      <h2 class="display rv">Hi, I'm Iqbal. <span class="grad">I break things</span> before your users can.</h2>
-      <p class="lead rv">I build one test suite for Android, iOS, web and API, run it on real devices in CI, and help teams keep it green. Marketplace, gov-tech, SaaS and delivery apps so far.</p>
+      <h2 class="display rv">Hi, I'm Iqbal. <span class="grad">I find bugs early,</span> while they're still cheap to fix.</h2>
+      <p class="lead rv">I write automated tests for Android, iOS, web and API, and run them on real devices in CI. So far that's been marketplace, gov-tech, SaaS and delivery apps.</p>
       <div class="facts rv">
-        <span class="chip">📍 Bekasi, Indonesia</span>
-        <span class="chip">🧪 Since Dec 2021</span>
-        <span class="chip">🗣 English · Indonesian</span>
+        <span class="chip">Bekasi, Indonesia</span>
+        <span class="chip">In QA since Dec 2021</span>
+        <span class="chip">English · Indonesian</span>
       </div>
       <div class="cta-row rv">
         <a class="btn btn-dark" href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">
@@ -561,8 +560,8 @@ footer .wrap{display:grid;gap:14px}
   <div class="wrap">
     <div class="sec-head">
       <div><p class="spec rv"><i></i>capabilities.spec.ts</p>
-      <h2 class="display rv"><span class="grad">One SDET,</span> your full quality stack</h2></div>
-      <p class="lead rv">Pick the layer. I'll cover it.</p>
+      <h2 class="display rv">What I test, <span class="grad">layer by layer</span></h2></div>
+      <p class="lead rv">Each layer catches a different kind of bug.</p>
     </div>
 
     <div class="bento">
@@ -636,15 +635,15 @@ footer .wrap{display:grid;gap:14px}
       <article class="card b-e rv">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
         <h3>Visual &amp; network checks</h3>
-        <p>Catch layout bugs and wrong API calls.</p>
+        <p>Screenshot diffs for layout bugs, network checks for wrong API calls.</p>
       </article>
 
       <article class="card b-f rv">
         <div class="ai-row">
           <div>
             <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg></span>
-            <h3>AI-assisted test design, with guardrails</h3>
-            <p>Test designs become specs fast. Every locator is checked against real screen objects.</p>
+            <h3>AI-assisted test design</h3>
+            <p>I use AI to turn test designs into draft specs, then check every locator against the real screen.</p>
           </div>
           <div class="viz" aria-hidden="true">
             <span class="c">// test design → spec</span><br>
@@ -677,10 +676,10 @@ footer .wrap{display:grid;gap:14px}
           <span class="pass-stamp">PASSED</span>
         </div>
         <div class="proj-body">
-          <span class="co-line">PT Astra Digital Mobil · SDET · 2025 – now</span>
+          <span class="co-line">PT Astra Digital Mobil · SDET · since 2025</span>
           <h3 style="font-size:26px">OLX Indonesia</h3>
-          <p>End-to-end automation on every platform: one TypeScript codebase, real-device CI, visual and network checks.</p>
-          <div class="plat-row"><span class="chip">🤖 Android</span><span class="chip">📱 iOS</span><span class="chip">🖥 Desktop &amp; mobile web</span></div>
+          <p>End-to-end tests in one TypeScript codebase, run on real devices in CI with visual and network checks.</p>
+          <div class="plat-row"><span class="chip">Android</span><span class="chip">iOS</span><span class="chip">Desktop &amp; mobile web</span></div>
           <ul class="areas">
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Ad posting, multiple categories</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Paid ad promotions</li>
@@ -694,9 +693,9 @@ footer .wrap{display:grid;gap:14px}
       <article class="proj rv">
         <div class="proj-art"><img src="assets/ekatalog.webp" alt="e-Katalog INAPROC homepage" loading="lazy" width="1200" height="885" style="object-position:0 0"><span class="pass-stamp">PASSED</span><span class="lbl">Web</span></div>
         <div class="proj-body">
-          <span class="co-line">Telkom Indonesia · QA Engineer · 2023 – 2025</span>
+          <span class="co-line">Telkom Indonesia · QA Engineer · 2023 to 2025</span>
           <h3>e-Katalog (INAPROC)</h3>
-          <p>National procurement catalog, from test plan to UAT. BDD automation for REST, GraphQL and UI. 0 defects after the v6 release.</p>
+          <p>National procurement catalog, from test plan to UAT. BDD automation for REST, GraphQL and UI. No defects reported after the v6 release.</p>
           <a class="ext" href="https://katalog.inaproc.id/" target="_blank" rel="noopener">katalog.inaproc.id ↗</a>
           <div class="tags"><span class="tag">Ruby</span><span class="tag">Cucumber</span><span class="tag">GraphQL</span></div>
         </div>
@@ -708,7 +707,7 @@ footer .wrap{display:grid;gap:14px}
           <span class="pass-stamp">PASSED</span><span class="lbl">Web · SaaS</span>
         </div>
         <div class="proj-body">
-          <span class="co-line">SIRCLO · QA Engineer · 2022 – 2023</span>
+          <span class="co-line">SIRCLO · QA Engineer · 2022 to 2023</span>
           <h3>Commerce SaaS</h3>
           <p>Commerce SaaS for brands. Cypress regression and API tests.</p>
           <div class="tags"><span class="tag">Cypress</span><span class="tag">Postman</span><span class="tag">Swagger</span></div>
@@ -718,7 +717,7 @@ footer .wrap{display:grid;gap:14px}
       <article class="proj rv">
         <div class="proj-art"><img src="assets/wehelpyou.webp" alt="Wehelpyou Delivery website hero" loading="lazy" width="1200" height="563" style="object-position:30% 50%"><span class="pass-stamp">PASSED</span><span class="lbl">Mobile · Manual</span></div>
         <div class="proj-body">
-          <span class="co-line">Wehelpyou · QA Staff · 2021 – 2022</span>
+          <span class="co-line">Wehelpyou · QA Staff · 2021 to 2022</span>
           <h3>Wehelpyou Delivery</h3>
           <p>Delivery app on iOS and Android. PRDs into test plans, tested manually.</p>
           <a class="ext" href="https://www.wehelpyou.id/" target="_blank" rel="noopener">wehelpyou.id ↗</a>
@@ -770,11 +769,11 @@ footer .wrap{display:grid;gap:14px}
     </div>
     <div>
       <p class="spec rv"><i></i>process.spec.ts</p>
-      <h2 class="display rv">Spec to <span class="grad">green build</span> in three steps</h2>
+      <h2 class="display rv">From spec to <span class="grad">green build</span></h2>
       <ol class="steps">
-        <li class="rv"><span class="num">1</span><div><h3>Read the risk</h3><p>Start with flows that cost money when they break.</p></div></li>
-        <li class="rv"><span class="num">2</span><div><h3>Automate the right layer</h3><p>API for data, UI for journeys, all traced in Jira.</p></div></li>
-        <li class="rv"><span class="num">3</span><div><h3>Gate every build</h3><p>Flaky tests get fixed, not retried.</p></div></li>
+        <li class="rv"><span class="num">1</span><div><h3>Read the risk</h3><p>Start with the flows that cost money when they break.</p></div></li>
+        <li class="rv"><span class="num">2</span><div><h3>Automate the right layer</h3><p>API tests set up the data, UI tests cover the user journey. Each one links to a Jira ticket.</p></div></li>
+        <li class="rv"><span class="num">3</span><div><h3>Gate every build</h3><p>When a test is flaky, I find the cause instead of adding retries.</p></div></li>
       </ol>
     </div>
   </div>
@@ -848,8 +847,8 @@ footer .wrap{display:grid;gap:14px}
 <section id="contact" class="final divider gridbg">
   <div class="wrap">
     <p class="spec rv"><i></i>contact.spec.ts</p>
-    <h2 class="display rv">Ship every release <span class="grad">without surprises</span></h2>
-    <p class="lead rv">Tell me where your product breaks.</p>
+    <h2 class="display rv">Fewer surprises <span class="grad">on release day</span></h2>
+    <p class="lead rv">Tell me what keeps breaking, and I'll tell you how I'd test it.</p>
     <div class="cta-row rv">
       <a class="btn btn-dark" href="mailto:iqbalaprs8@gmail.com?subject=Let's%20talk%20about%20an%20SDET%20role">Email me</a>
       <a class="btn btn-light" href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">
@@ -868,7 +867,6 @@ footer .wrap{display:grid;gap:14px}
   <div class="wrap">
     <span>© <span id="yr">2026</span> Iqbal Apriansyah · all checks passed ✓</span>
     <p class="ai-credit">
-      <span class="spark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"/></svg></span>
       <span><b>Built with AI, verified by me.</b></span>
     </p>
   </div>
@@ -898,7 +896,7 @@ footer .wrap{display:grid;gap:14px}
   menu.addEventListener('click', function(e){ if (e.target.tagName === 'A' && menu.classList.contains('open')) btn.click(); });
 
   // headline: types a phrase, holds, deletes it, types the next; pauses while hovered
-  var PH = [["I test with heuristics,", " not just checklists"], ["Risk decides", " what gets tested first"], ["A flaky test", " is a bug, not bad luck"], ["API checks first,", " UI tests on top"], ["Automate the repeatable,", " explore the risky"], ["Coverage is a metric,", " not the goal"], ["Quality starts", " at the requirement"], ["A green build", " should mean working software"], ["Every bug report", " ships with steps to reproduce"], ["Test like a user,", " verify like an engineer"]];
+  var PH = [["The riskiest flows", " are the ones I test first"], ["I use heuristics", " to find what checklists miss"], ["API checks first,", " then UI tests on top"], ["A flaky test", " is a bug to fix"], ["I automate what repeats,", " then explore by hand"], ["I read the requirement", " before I write a test"], ["Coverage shows me", " where the gaps are"], ["A green build", " should mean working software"], ["Every bug I report", " has steps to reproduce"]];
   var rotator = document.getElementById('rotator'), tA = document.getElementById('tA'), tB = document.getElementById('tB');
   var pi = 0, ci = (PH[0][0] + PH[0][1]).length, del = true, paused = false;
   rotator.addEventListener('mouseenter', function(){ paused = true; });
