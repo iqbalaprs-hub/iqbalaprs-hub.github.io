@@ -656,23 +656,23 @@ footer .wrap{display:grid;gap:14px}
         </button>
       </div>
       <h1 class="display rotator rv" id="rotator">
-        <span class="sr">I protect the flows that bring in revenue</span>
-        <span class="sz" aria-hidden="true"><span class="grad">I protect the flows</span> that bring in revenue</span>
-        <span class="sz" aria-hidden="true"><span class="grad">I test that it works,</span> then how it feels</span>
-        <span class="sz" aria-hidden="true"><span class="grad">I review requirements</span> before code exists</span>
-        <span class="sz" aria-hidden="true"><span class="grad">I watch how people</span> really use the app</span>
+        <span class="sr">I start with the flows users rely on most</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I start with the flows</span> users rely on most</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I check that it works,</span> then how it feels</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I ask questions early,</span> before code exists</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I watch how people</span> actually use the app</span>
         <span class="sz" aria-hidden="true"><span class="grad">API checks first,</span> so UI tests stay small</span>
-        <span class="sz" aria-hidden="true"><span class="grad">If users hesitate,</span> I log it as a bug</span>
-        <span class="sz" aria-hidden="true"><span class="grad">A flaky test</span> gets fixed at the root</span>
-        <span class="sz" aria-hidden="true"><span class="grad">I test the moments</span> where users get stuck</span>
-        <span class="sz" aria-hidden="true"><span class="grad">I write tests</span> developers can read and fix</span>
-        <span class="sz" aria-hidden="true"><span class="grad">A slow screen</span> counts as a bug too</span>
-        <span class="sz" aria-hidden="true"><span class="grad">I track the bugs</span> that slip past testing</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Error messages</span> should tell users what to do</span>
-        <span class="sz" aria-hidden="true"><span class="grad">A green build</span> should mean ready to ship</span>
-        <span class="sz" aria-hidden="true"><span class="grad">Every bug I report</span> has steps to reproduce</span>
-        <span class="sz" aria-hidden="true"><span class="grad">I teach what I automate:</span> 18 engineers so far</span>
-        <span class="typed" aria-hidden="true"><span class="grad" id="tA">I protect the flows</span><span id="tB"> that bring in revenue</span><span class="caret"></span></span>
+        <span class="sz" aria-hidden="true"><span class="grad">When users hesitate,</span> I take note</span>
+        <span class="sz" aria-hidden="true"><span class="grad">A flaky test</span> is worth fixing properly</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I look for the moments</span> users get stuck</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I write tests</span> my teammates can read</span>
+        <span class="sz" aria-hidden="true"><span class="grad">A slow screen</span> is worth a bug report</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I test on real devices,</span> because users do</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I check that errors</span> tell users what to do</span>
+        <span class="sz" aria-hidden="true"><span class="grad">My bug reports</span> come with steps to reproduce</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Each missed bug</span> teaches me something</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I share what I learn</span> with my team</span>
+        <span class="typed" aria-hidden="true"><span class="grad" id="tA">I start with the flows</span><span id="tB"> users rely on most</span><span class="caret"></span></span>
       </h1>
       <p class="lead rv">I'm Iqbal, an SDET with 5 years in QA. I automate mobile, web and API tests, and run the app tests on real devices.</p>
       <div class="cta-row rv">
@@ -1199,7 +1199,7 @@ footer .wrap{display:grid;gap:14px}
 
   // headline: types a phrase, holds, deletes it, types the next; pauses while hovered or when motion is off
   // 15 principles: testing craft interleaved with the human-experience side (how the app feels to the person using it)
-  var PH = [["I protect the flows", " that bring in revenue"], ["I test that it works,", " then how it feels"], ["I review requirements", " before code exists"], ["I watch how people", " really use the app"], ["API checks first,", " so UI tests stay small"], ["If users hesitate,", " I log it as a bug"], ["A flaky test", " gets fixed at the root"], ["I test the moments", " where users get stuck"], ["I write tests", " developers can read and fix"], ["A slow screen", " counts as a bug too"], ["I track the bugs", " that slip past testing"], ["Error messages", " should tell users what to do"], ["A green build", " should mean ready to ship"], ["Every bug I report", " has steps to reproduce"], ["I teach what I automate:", " 18 engineers so far"]];
+  var PH = [["I start with the flows", " users rely on most"], ["I check that it works,", " then how it feels"], ["I ask questions early,", " before code exists"], ["I watch how people", " actually use the app"], ["API checks first,", " so UI tests stay small"], ["When users hesitate,", " I take note"], ["A flaky test", " is worth fixing properly"], ["I look for the moments", " users get stuck"], ["I write tests", " my teammates can read"], ["A slow screen", " is worth a bug report"], ["I test on real devices,", " because users do"], ["I check that errors", " tell users what to do"], ["My bug reports", " come with steps to reproduce"], ["Each missed bug", " teaches me something"], ["I share what I learn", " with my team"]];
   var rotator = document.getElementById('rotator'), tA = document.getElementById('tA'), tB = document.getElementById('tB');
   var pi = 0, ci = (PH[0][0] + PH[0][1]).length, del = true, paused = false;
   rotator.addEventListener('mouseenter', function(){ paused = true; });
