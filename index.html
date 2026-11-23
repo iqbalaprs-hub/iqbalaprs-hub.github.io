@@ -658,11 +658,17 @@ footer .wrap{display:grid;gap:14px}
       <h1 class="display rotator rv" id="rotator">
         <span class="sr">I protect the flows that bring in revenue</span>
         <span class="sz" aria-hidden="true"><span class="grad">I protect the flows</span> that bring in revenue</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I test that it works,</span> then how it feels</span>
         <span class="sz" aria-hidden="true"><span class="grad">I review requirements</span> before code exists</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I watch how people</span> really use the app</span>
         <span class="sz" aria-hidden="true"><span class="grad">API checks first,</span> so UI tests stay small</span>
+        <span class="sz" aria-hidden="true"><span class="grad">If users hesitate,</span> I log it as a bug</span>
         <span class="sz" aria-hidden="true"><span class="grad">A flaky test</span> gets fixed at the root</span>
+        <span class="sz" aria-hidden="true"><span class="grad">I test the moments</span> where users get stuck</span>
         <span class="sz" aria-hidden="true"><span class="grad">I write tests</span> developers can read and fix</span>
+        <span class="sz" aria-hidden="true"><span class="grad">A slow screen</span> counts as a bug too</span>
         <span class="sz" aria-hidden="true"><span class="grad">I track the bugs</span> that slip past testing</span>
+        <span class="sz" aria-hidden="true"><span class="grad">Error messages</span> should tell users what to do</span>
         <span class="sz" aria-hidden="true"><span class="grad">A green build</span> should mean ready to ship</span>
         <span class="sz" aria-hidden="true"><span class="grad">Every bug I report</span> has steps to reproduce</span>
         <span class="sz" aria-hidden="true"><span class="grad">I teach what I automate:</span> 18 engineers so far</span>
@@ -842,7 +848,7 @@ footer .wrap{display:grid;gap:14px}
     <div>
       <p class="spec rv"><i></i>about.spec.ts</p>
       <h2 class="display rv">Hi, I'm Iqbal. <span class="grad">I find bugs early,</span> while they're still cheap to fix.</h2>
-      <p class="lead rv">I write automated tests for Android, iOS, web and APIs, and run the app tests on real devices in CI. So far that's been marketplace, gov-tech, SaaS and delivery apps.</p>
+      <p class="lead rv">I write automated tests for Android, iOS, web and APIs, and run the app tests on real devices in CI. I also watch how people use the app, because a feature can pass every test and still confuse the person using it. So far that's been marketplace, gov-tech, SaaS and delivery apps.</p>
       <div class="facts rv">
         <span class="chip">Bekasi, Indonesia</span>
         <span class="chip">In QA since Dec 2021</span>
@@ -1192,7 +1198,8 @@ footer .wrap{display:grid;gap:14px}
   menu.addEventListener('click', function(e){ if (e.target.tagName === 'A' && menu.classList.contains('open')) btn.click(); });
 
   // headline: types a phrase, holds, deletes it, types the next; pauses while hovered or when motion is off
-  var PH = [["I protect the flows", " that bring in revenue"], ["I review requirements", " before code exists"], ["API checks first,", " so UI tests stay small"], ["A flaky test", " gets fixed at the root"], ["I write tests", " developers can read and fix"], ["I track the bugs", " that slip past testing"], ["A green build", " should mean ready to ship"], ["Every bug I report", " has steps to reproduce"], ["I teach what I automate:", " 18 engineers so far"]];
+  // 15 principles: testing craft interleaved with the human-experience side (how the app feels to the person using it)
+  var PH = [["I protect the flows", " that bring in revenue"], ["I test that it works,", " then how it feels"], ["I review requirements", " before code exists"], ["I watch how people", " really use the app"], ["API checks first,", " so UI tests stay small"], ["If users hesitate,", " I log it as a bug"], ["A flaky test", " gets fixed at the root"], ["I test the moments", " where users get stuck"], ["I write tests", " developers can read and fix"], ["A slow screen", " counts as a bug too"], ["I track the bugs", " that slip past testing"], ["Error messages", " should tell users what to do"], ["A green build", " should mean ready to ship"], ["Every bug I report", " has steps to reproduce"], ["I teach what I automate:", " 18 engineers so far"]];
   var rotator = document.getElementById('rotator'), tA = document.getElementById('tA'), tB = document.getElementById('tB');
   var pi = 0, ci = (PH[0][0] + PH[0][1]).length, del = true, paused = false;
   rotator.addEventListener('mouseenter', function(){ paused = true; });
