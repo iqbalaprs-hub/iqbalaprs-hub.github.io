@@ -157,19 +157,28 @@ section{padding:72px 0}
 .checks li{display:flex;gap:10px;align-items:center}
 .checks svg{flex:none;color:var(--pass)}
 
-/* hero visual: an example test plan sorted by risk, the headline's principles applied to one feature */
+/* hero visual: a simulated smoke run of one feature, riskiest test first; runs once (~3s) when seen, replay on click */
 .tplan{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--ring),0 30px 60px -36px rgba(0,0,0,.35);padding:22px}
 @media(min-width:600px){.tplan{padding:28px}}
 .tp-head{display:grid;gap:4px;margin-bottom:14px}
 .tp-kicker{font:500 12px var(--mono);color:var(--muted)}
 .tp-title{font:450 22px/1.25 var(--display);letter-spacing:-.01em}
+.run-bar{height:4px;border-radius:4px;background:var(--surface-2);overflow:hidden;margin-bottom:6px}
+.run-bar i{display:block;height:100%;width:0;background:var(--pass);transition:width .4s}
 .tp-rows{list-style:none}
-.tp-rows li{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line);font-size:14.5px;line-height:1.4}
+.tp-rows li{display:grid;grid-template-columns:16px 1fr;gap:12px;align-items:start;padding:12px 0;border-top:1px solid var(--line);font-size:14.5px;line-height:1.4;color:var(--muted);transition:color .2s}
+.tp-rows li.run,.tp-rows li.ok{color:var(--ink)}
+.tp-rows li div{display:grid;gap:5px}
+.st{width:16px;height:16px;margin-top:2px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center}
+.run .st{border-color:var(--pass);border-top-color:transparent;animation:spin .6s linear infinite}
+.ok .st{border-color:var(--pass);background:var(--pass)}
+.ok .st::after{content:"";width:6px;height:3px;border-left:1.6px solid var(--card);border-bottom:1.6px solid var(--card);transform:rotate(-45deg) translate(1px,-1px)}
+@keyframes spin{to{transform:rotate(360deg)}}
 .risk{display:inline-flex;align-items:center;gap:6px;font:500 11.5px/1 var(--mono);color:var(--ink-2)}
 .risk::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--muted)}
 .risk.hi::before{background:var(--red)}
 .risk.md::before{background:#4F7FC9}
-.tp-foot{padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.tp-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
 .lights{display:flex;gap:6px}
 
 /* trusted + stats */
@@ -427,7 +436,7 @@ footer .wrap{display:grid;gap:14px}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;transition:none}
-  .caret,.tap,.ui .cta,.ui .cta::before,.ui .cta::after,.bpage .cta,.bpage .cta::before,.bpage .cta::after{animation:none}
+  .caret,.run .st,.tap,.ui .cta,.ui .cta::before,.ui .cta::after,.bpage .cta,.bpage .cta::before,.bpage .cta::after{animation:none}
   .odo .col{transition:none}
   .device,.browser{transition:none}
 }
@@ -522,17 +531,18 @@ footer .wrap{display:grid;gap:14px}
     </div>
 
     <div class="rv">
-      <figure class="tplan">
-        <figcaption class="tp-head"><span class="tp-kicker">Example test plan</span><span class="tp-title">Pay with a saved card</span></figcaption>
+      <figure class="tplan" id="runCard">
+        <figcaption class="tp-head"><span class="tp-kicker">Example smoke run · riskiest first</span><span class="tp-title">Pay with a saved card</span></figcaption>
+        <div class="run-bar" aria-hidden="true"><i id="runBar" style="width:100%"></i></div>
         <ol class="tp-rows">
-          <li><span class="risk hi">High</span><span>An expired card is rejected before an order is created</span><span class="tag">API</span></li>
-          <li><span class="risk hi">High</span><span>Double-tapping Pay creates only one order</span><span class="tag">UI</span></li>
-          <li><span class="risk hi">High</span><span>The amount charged matches the cart total</span><span class="tag">API</span></li>
-          <li><span class="risk md">Med</span><span>The saved card shows only its last 4 digits</span><span class="tag">UI</span></li>
-          <li><span class="risk md">Med</span><span>The order summary matches the baseline on iOS and Android</span><span class="tag">Visual</span></li>
-          <li><span class="risk">Low</span><span>The checkout page loads the cart in one API call</span><span class="tag">Network</span></li>
+          <li class="ok"><span class="st" aria-hidden="true"></span><div><span>An expired card is rejected before an order is created</span><span class="risk hi">High · API</span></div></li>
+          <li class="ok"><span class="st" aria-hidden="true"></span><div><span>Double-tapping Pay creates only one order</span><span class="risk hi">High · UI</span></div></li>
+          <li class="ok"><span class="st" aria-hidden="true"></span><div><span>The amount charged matches the cart total</span><span class="risk hi">High · API</span></div></li>
+          <li class="ok"><span class="st" aria-hidden="true"></span><div><span>The saved card shows only its last 4 digits</span><span class="risk md">Med · UI</span></div></li>
+          <li class="ok"><span class="st" aria-hidden="true"></span><div><span>The order summary matches the baseline on iOS and Android</span><span class="risk md">Med · Visual</span></div></li>
+          <li class="ok"><span class="st" aria-hidden="true"></span><div><span>The checkout page loads the cart in one API call</span><span class="risk">Low · Network</span></div></li>
         </ol>
-        <p class="tp-foot">Sorted by risk. API checks run before the UI tests that depend on them.</p>
+        <div class="tp-foot"><span id="runSum">6 passed, 0 failed</span><button class="btn btn-light btn-sm" id="runBtn" type="button">Run again</button></div>
       </figure>
     </div>
   </div>
@@ -949,10 +959,25 @@ footer .wrap{display:grid;gap:14px}
   function rollOdo(el){ el.querySelectorAll('.col').forEach(function(c){ c.style.transform = 'translateY(-' + c.dataset.d + 'em)'; }); }
   var odos = document.querySelectorAll('.odo'); odos.forEach(buildOdo);
 
+  // hero smoke run: queued -> running -> passed, one test per step; the HTML holds the finished state
+  var runCard = document.getElementById('runCard'), runRows = runCard.querySelectorAll('li'), runBar = document.getElementById('runBar'), runSum = document.getElementById('runSum'), runT;
+  function run(animate){
+    clearTimeout(runT);
+    var n = runRows.length, i = animate ? 0 : n;
+    (function step(){
+      runRows.forEach(function(r, k){ r.className = k < i ? 'ok' : k === i ? 'run' : ''; });
+      runBar.style.width = (i / n * 100) + '%';
+      runSum.textContent = i < n ? 'Running ' + (i + 1) + ' of ' + n + '…' : n + ' passed, 0 failed';
+      if (i++ < n) runT = setTimeout(step, 550);
+    })();
+  }
+  document.getElementById('runBtn').addEventListener('click', function(){ run(true); });
+
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       if (!en.isIntersecting) return;
       en.target.classList.add('in');
+      if (en.target.contains(runCard)) run(!reduce && root.dataset.motion !== 'off');
       var o = en.target.querySelector && en.target.querySelector('.odo');
       if (o) setTimeout(function(){ rollOdo(o); }, 150);
       io.unobserve(en.target);
