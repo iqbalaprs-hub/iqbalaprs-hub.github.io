@@ -331,7 +331,7 @@ section{padding:72px 0}
 /* real production screens as evidence; each opens full size */
 .proj-body .shots-label{font:500 12px var(--mono);color:var(--muted);margin-top:8px}
 .shots{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:20px 16px}
-@media(min-width:900px){.shots{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:900px){.shots{grid-template-columns:repeat(3,1fr);max-width:860px}}
 .shots li{display:grid;gap:4px;align-content:start;font-size:13.5px;line-height:1.45;color:var(--ink-2)}
 .shots a{display:block;border-radius:16px;overflow:hidden;box-shadow:var(--ring);margin-bottom:8px}
 .shots img{width:100%;height:auto;transition:transform .3s}
@@ -700,14 +700,13 @@ footer .wrap{display:grid;gap:14px}
           <h3 style="font-size:26px">OLX Indonesia</h3>
           <p>End-to-end tests in one TypeScript codebase, run on real devices in CI with visual and network checks.</p>
           <div class="plat-row"><span class="chip">Android</span><span class="chip">iOS</span><span class="chip">Desktop &amp; mobile web</span></div>
-          <p class="shots-label">Features I tested, live in production</p>
+          <p class="shots-label">Features I tested, live in production · screens © PT Astra Digital Mobil</p>
           <ul class="shots">
             <li><a href="assets/olx-car-price.webp" target="_blank" rel="noopener"><img src="assets/olx-car-price.webp" alt="Used-car ad price step with a market price range and an instant-sell estimate" width="499" height="798" loading="lazy"></a><b>Price guidance · used cars</b><span>Market price range, time to sell and an instant-sell estimate. A wrong range misprices the car.</span></li>
             <li><a href="assets/olx-moto-form.webp" target="_blank" rel="noopener"><img src="assets/olx-moto-form.webp" alt="Step 2 of 3 of the motorcycle ad form with required product details" width="499" height="798" loading="lazy"></a><b>Ad posting · motorcycles</b><span>A three-step form with required fields per category. A broken step blocks new listings.</span></li>
-            <li><a href="assets/olx-my-ads.webp" target="_blank" rel="noopener"><img src="assets/olx-my-ads.webp" alt="My Ads filter sheet with status, category, republish and expiry filters" width="499" height="798" loading="lazy"></a><b>My Ads filters</b><span>Filter by status, category, republish history and expiry. Wrong results hide a user's own ads.</span></li>
-            <li><a href="assets/olx-new-cars.webp" target="_blank" rel="noopener"><img src="assets/olx-new-cars.webp" alt="New-car home with brand shortcuts and a make, model and type search" width="499" height="798" loading="lazy"></a><b>New-car catalog</b><span>Brand shortcuts and a search by make, model and type. A wrong brand mapping shows the wrong cars.</span></li>
-          </ul>
+            <li><a href="assets/olx-my-ads.webp" target="_blank" rel="noopener"><img src="assets/olx-my-ads.webp" alt="My Ads filter sheet with status, category, republish and expiry filters" width="499" height="798" loading="lazy"></a><b>My Ads filters</b><span>Filter by status, category, republish history and expiry. Wrong results hide a user's own ads.</span></li>          </ul>
           <ul class="areas">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Brand catalog pages</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Paid ad promotions</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Reusable flows across squads</li>
           </ul>
