@@ -169,10 +169,10 @@ section{padding:72px 0}
 .tp-rows li{display:grid;grid-template-columns:16px 1fr;gap:12px;align-items:start;padding:12px 0;border-top:1px solid var(--line);font-size:14.5px;line-height:1.4;color:var(--muted);transition:color .2s}
 .tp-rows li.run,.tp-rows li.ok{color:var(--ink)}
 .tp-rows li div{display:grid;gap:5px}
-.st{width:16px;height:16px;margin-top:2px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center}
-.run .st{border-color:var(--pass);border-top-color:transparent;animation:spin .6s linear infinite}
-.ok .st{border-color:var(--pass);background:var(--pass)}
-.ok .st::after{content:"";width:6px;height:3px;border-left:1.6px solid var(--card);border-bottom:1.6px solid var(--card);transform:rotate(-45deg) translate(1px,-1px)}
+.tp-st{width:16px;height:16px;margin-top:2px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center}
+.run .tp-st{border-color:var(--pass);border-top-color:transparent;animation:spin .6s linear infinite}
+.ok .tp-st{border-color:var(--pass);background:var(--pass)}
+.ok .tp-st::after{content:"";width:6px;height:3px;border-left:1.6px solid var(--card);border-bottom:1.6px solid var(--card);transform:rotate(-45deg) translate(1px,-1px)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .risk{display:inline-flex;align-items:center;gap:6px;font:500 11.5px/1 var(--mono);color:var(--ink-2)}
 .risk::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--muted)}
@@ -436,7 +436,7 @@ footer .wrap{display:grid;gap:14px}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;transition:none}
-  .caret,.run .st,.tap,.ui .cta,.ui .cta::before,.ui .cta::after,.bpage .cta,.bpage .cta::before,.bpage .cta::after{animation:none}
+  .caret,.run .tp-st,.tap,.ui .cta,.ui .cta::before,.ui .cta::after,.bpage .cta,.bpage .cta::before,.bpage .cta::after{animation:none}
   .odo .col{transition:none}
   .device,.browser{transition:none}
 }
@@ -532,15 +532,15 @@ footer .wrap{display:grid;gap:14px}
 
     <div class="rv">
       <figure class="tplan" id="runCard">
-        <figcaption class="tp-head"><span class="tp-kicker">Example smoke run · riskiest first</span><span class="tp-title">Pay with a saved card</span></figcaption>
+        <figcaption class="tp-head"><span class="tp-kicker">Example smoke run · riskiest first</span><span class="tp-title">Checkout, end to end</span></figcaption>
         <div class="run-bar" aria-hidden="true"><i id="runBar" style="width:100%"></i></div>
         <ol class="tp-rows">
-          <li class="ok"><span class="st" aria-hidden="true"></span><div><span>An expired card is rejected before an order is created</span><span class="risk hi">High · API</span></div></li>
-          <li class="ok"><span class="st" aria-hidden="true"></span><div><span>Double-tapping Pay creates only one order</span><span class="risk hi">High · UI</span></div></li>
-          <li class="ok"><span class="st" aria-hidden="true"></span><div><span>The amount charged matches the cart total</span><span class="risk hi">High · API</span></div></li>
-          <li class="ok"><span class="st" aria-hidden="true"></span><div><span>The saved card shows only its last 4 digits</span><span class="risk md">Med · UI</span></div></li>
-          <li class="ok"><span class="st" aria-hidden="true"></span><div><span>The order summary matches the baseline on iOS and Android</span><span class="risk md">Med · Visual</span></div></li>
-          <li class="ok"><span class="st" aria-hidden="true"></span><div><span>The checkout page loads the cart in one API call</span><span class="risk">Low · Network</span></div></li>
+          <li class="ok"><span class="tp-st" aria-hidden="true"></span><div><span>As a User, I can sign in with my email and password</span><span class="risk hi">High · UI</span></div></li>
+          <li class="ok"><span class="tp-st" aria-hidden="true"></span><div><span>As a User, I am charged exactly my cart total</span><span class="risk hi">High · API</span></div></li>
+          <li class="ok"><span class="tp-st" aria-hidden="true"></span><div><span>As a User, I get only one order when I tap Pay twice</span><span class="risk hi">High · UI</span></div></li>
+          <li class="ok"><span class="tp-st" aria-hidden="true"></span><div><span>As a User, I can't check out with an expired card</span><span class="risk hi">High · API</span></div></li>
+          <li class="ok"><span class="tp-st" aria-hidden="true"></span><div><span>As a User, I see the same order summary on Android and iOS</span><span class="risk md">Med · Visual</span></div></li>
+          <li class="ok"><span class="tp-st" aria-hidden="true"></span><div><span>As a User, I keep my cart when the connection drops</span><span class="risk">Low · Network</span></div></li>
         </ol>
         <div class="tp-foot"><span id="runSum">6 passed, 0 failed</span><button class="btn btn-light btn-sm" id="runBtn" type="button">Run again</button></div>
       </figure>
@@ -686,12 +686,12 @@ footer .wrap{display:grid;gap:14px}
           </div>
           <div class="viz" aria-hidden="true">
             <span class="c">// test design → spec</span><br>
-            <span class="k">it</span>(<span class="s">'pays with a saved card'</span>, <span class="k">async</span> () =&gt; {<br>
+            <span class="k">it</span>(<span class="s">'As a User, I am charged exactly my cart total'</span>, <span class="k">async</span> () =&gt; {<br>
             &nbsp;&nbsp;<span class="k">await</span> auth.signIn(testUser);<br>
-            &nbsp;&nbsp;<span class="k">await</span> cartPage.open();<br>
+            &nbsp;&nbsp;<span class="k">const</span> total = <span class="k">await</span> cartPage.total();<br>
             &nbsp;&nbsp;<span class="k">await</span> checkoutPage.payWith(<span class="s">'saved-card'</span>);<br>
             &nbsp;&nbsp;<span class="c">// guardrail: locator must exist</span><br>
-            &nbsp;&nbsp;<span class="k">await</span> expect(orderPage.status).toBeDisplayed();<br>
+            &nbsp;&nbsp;<span class="k">await</span> expect(orderPage.total).toHaveText(total);<br>
             });
           </div>
         </div>
@@ -866,7 +866,7 @@ footer .wrap{display:grid;gap:14px}
       <h2 class="display rv">Quick <span class="grad">answers</span></h2>
     </div>
     <div class="rv">
-      <details open><summary>Open to remote?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. Remote, hybrid, onsite in Jakarta, or relocation to Malaysia, Japan or the US.</p></details>
+      <details open><summary>Open to remote?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes, and open to relocating to Malaysia, Japan or the US.</p></details>
       <details><summary>Notice period?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>One month.</p></details>
       <details><summary>Which languages do you test in?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>TypeScript and JavaScript daily, Ruby for BDD and API, Python and SQL for the rest.</p></details>
       <details><summary>Performance testing?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Functional testing is my focus: web, mobile and API.</p></details>
