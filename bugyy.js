@@ -281,7 +281,7 @@ const CS = 2, CAT_W = CW * CS, CAT_H = CH * CS;
 // Components the cat may stand on (top edge), and everything it must never cover: text, controls, media, the island, the ticker.
 // Only the island and the toast float; everything else scrolls with the page.
 const TEXT_PERCH = opts.textPerch || 'h2.display, .odo, .co, .proj-body h3, .edu-card h3, .logos span';
-const PERCH_SEL = (opts.perch || '.card, .stack-group, .tplan, .ci-art, .ci-card, .portrait, .proj-art, .plan-head, .role.now, .areas li, .btn-dark') + ', ' + TEXT_PERCH;
+const PERCH_SEL = (opts.perch || '.card, .stack-group, .sim, .ci-art, .ci-card, .portrait, .proj-art, .plan-head, .role.now, .areas li, .btn-dark') + ', ' + TEXT_PERCH;
 const BLOCK_SEL = 'a[href], button, input, select, textarea, label, summary, [role="button"], [tabindex]:not([tabindex="-1"]), img, svg, canvas:not(#esdy-cat-canvas), .chip, .sp, .pill, .swatch, .esdy-cat-pick' + (opts.block ? ', ' + opts.block : ', .tag, .badge, .spec, .now-pill, .pass-stamp, .lbl, .stamp, .device, .browser, .mweb, .stat-ico, .saas, .ico');
 const INTERACTIVE_SEL = 'a[href], button, input, select, textarea, label, summary, [role="button"], [draggable="true"], [contenteditable]';
 const cat = { el: null, ox: 0, range: [0, 0], dir: 1, state: 'idle', target: 0, until: 0, frame: 0, ft: 0, jy: 0, vy: 0, hop: null, lastTouch: performance.now(), food: null, ball: null, nextNag: 0, nextZ: 0, nextCheck: 0, then: null,

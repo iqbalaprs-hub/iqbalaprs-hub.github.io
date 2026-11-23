@@ -157,28 +157,123 @@ section{padding:72px 0}
 .checks li{display:flex;gap:10px;align-items:center}
 .checks svg{flex:none;color:var(--pass)}
 
-/* hero visual: a simulated smoke run of one feature, riskiest test first; runs once (~3s) when seen, replay on click */
-.tplan{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--ring),0 30px 60px -36px rgba(0,0,0,.35);padding:22px}
-@media(min-width:600px){.tplan{padding:28px}}
-.tp-head{display:grid;gap:4px;margin-bottom:14px}
-.tp-kicker{font:500 12px var(--mono);color:var(--muted)}
-.tp-title{font:450 22px/1.25 var(--display);letter-spacing:-.01em}
-.run-bar{height:4px;border-radius:4px;background:var(--surface-2);overflow:hidden;margin-bottom:6px}
-.run-bar i{display:block;height:100%;width:0;background:var(--pass);transition:width .4s}
-.tp-rows{list-style:none}
-.tp-rows li{display:grid;grid-template-columns:16px 1fr;gap:12px;align-items:start;padding:12px 0;border-top:1px solid var(--line);font-size:14.5px;line-height:1.4;color:var(--muted);transition:color .2s}
-.tp-rows li.run,.tp-rows li.ok{color:var(--ink)}
-.tp-rows li div{display:grid;gap:5px}
-.tp-st{width:16px;height:16px;margin-top:2px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center}
-.run .tp-st{border-color:var(--pass);border-top-color:transparent;animation:spin .6s linear infinite}
-.ok .tp-st{border-color:var(--pass);background:var(--pass)}
-.ok .tp-st::after{content:"";width:6px;height:3px;border-left:1.6px solid var(--card);border-bottom:1.6px solid var(--card);transform:rotate(-45deg) translate(1px,-1px)}
+/* hero visual: one flow (post an ad) run three ways, on a real device, in Playwright, against the API.
+   Steps play when the card is on screen, stop when it leaves, and obey the pause button and reduced motion. */
+.sim{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--ring),0 30px 60px -36px rgba(0,0,0,.35);padding:16px}
+@media(min-width:600px){.sim{padding:22px}}
+.sim-head{display:grid;gap:2px;margin-bottom:12px}
+.sim-kicker{font:500 12px var(--mono);color:var(--muted)}
+.sim-title{font:450 20px/1.25 var(--display);letter-spacing:-.01em}
+.sim-tabs{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--surface);margin-bottom:10px}
+.sim-tabs button{flex:1;min-height:44px;border-radius:10px;font-size:13.5px;font-weight:500;color:var(--ink-2);transition:background .2s,color .2s}
+.sim-tabs button:hover{color:var(--ink)}
+.sim-tabs button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:var(--ring)}
+.sim-tabs button span{font:500 11px var(--mono);color:var(--muted);margin-left:4px}
+@media(max-width:420px){.sim-tabs button span{display:none}}
+.sim-stage{position:relative;height:404px;border-radius:16px;background:var(--surface);overflow:hidden}
+@media(min-width:600px){.sim-stage{height:332px}}
+.sim-st{position:absolute;inset:0;padding:10px;display:flex;flex-direction:column;gap:8px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .35s,transform .35s,visibility 0s .35s}
+.sim-st.is-on{opacity:1;visibility:visible;transform:none;transition:opacity .35s,transform .35s}
+.sim-bar{display:flex;align-items:center;gap:7px;min-width:0;white-space:nowrap;font:500 11px var(--mono);color:var(--ink-2);padding:2px 2px 0}
+.sim-bar i{width:7px;height:7px;border-radius:50%;background:var(--pass);flex:none}
+.sim-bar span{margin-left:auto;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sim-body{flex:1;min-height:0;display:grid;gap:10px}
+.sim-body>*{min-height:0}
+/* the log scrolls itself to the running step, like a runner's console */
+.sim-log{list-style:none;display:grid;align-content:start;gap:2px;min-width:0;max-height:100%;overflow:hidden;scroll-behavior:smooth;font:400 11px/1.45 var(--mono);color:var(--muted)}
+@media(min-width:600px){.sim-log{font-size:11.5px}}
+.sim-log li{display:grid;grid-template-columns:12px minmax(0,1fr);gap:6px;min-width:0;padding:5px 7px;border-radius:8px;transition:background .2s,color .2s}
+.sim-log li::before{content:"";width:9px;height:9px;margin-top:3px;border-radius:50%;border:1.5px solid currentColor}
+.sim-log li.run{background:var(--card);color:var(--ink);box-shadow:var(--ring)}
+.sim-log li.run::before{border-color:var(--pass);border-top-color:transparent;animation:spin .6s linear infinite}
+.sim-log li.ok{color:var(--ink-2)}
+.sim-log li.ok::before{border-color:var(--pass);background:var(--pass)}
+.sim-log code{font:inherit;overflow-wrap:break-word}
+.sim-log b{font-weight:600;color:var(--ink)}
+/* Playwright UI mode style: action on one line, locator truncated on the next */
+.sim-web .sim-log code{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sim-web .sim-log b{display:block}
+.sim-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;font:500 12.5px var(--mono);color:var(--muted)}
 @keyframes spin{to{transform:rotate(360deg)}}
+@keyframes tapx{0%{transform:scale(.4);opacity:0}25%{opacity:1}100%{transform:scale(1.9);opacity:0}}
+@keyframes swipex{0%{transform:translateY(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateY(-96px);opacity:0}}
+/* target and assertion marks, shared by all three layers */
+.s-hl{position:relative;outline:2px solid #4F7FC9;outline-offset:1px}
+.s-as{position:relative;outline:1.5px dashed var(--pass);outline-offset:2px}
+.sim-mob .s-hl::after{content:"";position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px;border-radius:50%;background:rgba(79,127,201,.35);border:1.5px solid #4F7FC9;animation:tapx .9s ease-out both;pointer-events:none}
+/* layer 1: real-device cloud, phone + WebdriverIO command log */
+.sim-mob .sim-body{grid-template-columns:112px 1fr;align-items:center}
+@media(min-width:420px){.sim-mob .sim-body{grid-template-columns:132px 1fr}}
+.dev-sim{width:112px;height:228px;justify-self:center}
+@media(min-width:420px){.dev-sim{width:132px;height:268px}}
+.ph{position:absolute;inset:0;padding:18px 7px 7px;display:flex;flex-direction:column;gap:5px;opacity:0;transition:opacity .25s;font:500 7.5px/1.25 var(--sans);color:#1F2933}
+.sim-mob[data-screen="home"] .ph-home,.sim-mob[data-screen="cats"] .ph-cats,.sim-mob[data-screen="form"] .ph-form,.sim-mob[data-screen="done"] .ph-done{opacity:1}
+.ph-top{display:flex;justify-content:space-between;align-items:center}
+.ph-top b{width:42%;height:6px;border-radius:3px;background:#1F2933}
+.ph-top i{width:10px;height:10px;border-radius:50%;background:#D5D9DE}
+.ph-search{height:12px;border-radius:6px;background:#EEF0F3}
+.ph-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.ph-grid i{border-radius:5px;background:#EEF0F3}
+.ph-nav{display:flex;justify-content:space-around;align-items:center;height:20px}
+.ph-nav i{width:7px;height:7px;border-radius:2px;background:#C4C9D0}
+.ph-sell{width:22px;height:22px;margin-top:-8px;border-radius:50%;background:#4F7FC9;color:#fff;display:grid;place-items:center;font-size:13px;line-height:1}
+.ph-h{font-size:8.5px;font-weight:600;margin:2px 0}
+.ph-row{padding:7px 6px;border-radius:5px;background:#F2F4F7}
+.ph-form{overflow:hidden}
+.ph-scroll{display:flex;flex-direction:column;gap:4px;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.sim-mob[data-scrolled] .ph-scroll{transform:translateY(-42%)}
+.ph-l{color:#475467}
+.ph-in{min-height:15px;padding:3px 4px;border:1px solid #D0D5DD;border-radius:4px;font-family:var(--mono);white-space:nowrap;overflow:hidden}
+.ph-in.tall{height:40px}
+.ph-pics{display:flex;gap:3px}
+.ph-pics i{width:24px;height:24px;border-radius:4px;background:#EEF0F3}
+.ph-btn{margin-top:4px;padding:6px;border-radius:5px;background:#1F2933;color:#fff;text-align:center;font-weight:600}
+.ph-done{align-items:center;justify-content:center;text-align:center;gap:6px}
+.ph-ok{width:30px;height:30px;border-radius:50%;background:#16A34A;color:#fff;display:grid;place-items:center;font-size:15px}
+.ph-dt{font-size:10px;font-weight:600;padding:1px 4px}
+.ph-ds{color:#475467}
+.ph-swipe{position:absolute;left:50%;top:72%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:rgba(79,127,201,.35);border:1.5px solid #4F7FC9;opacity:0;pointer-events:none}
+.sim-mob[data-swipe] .ph-swipe{animation:swipex .9s ease-in-out both}
+/* layer 2: Playwright UI mode, action list + browser snapshot */
+.sim-web .sim-body{grid-template-rows:auto 1fr}
+.sim-web .browser{order:-1}
+@media(min-width:600px){.sim-web .sim-body{grid-template-columns:186px 1fr;grid-template-rows:none;align-items:start}.sim-web .browser{order:0}}
+.bw-view{position:relative;height:148px}
+@media(min-width:600px){.bw-view{height:220px}}
+.bw{position:absolute;inset:0;padding:10px;display:flex;flex-direction:column;gap:7px;opacity:0;transition:opacity .25s;font:500 9px/1.3 var(--sans);color:#1F2933}
+@media(min-width:600px){.bw{font-size:10px;gap:9px}}
+.sim-web[data-screen="home"] .bw-home,.sim-web[data-screen="cats"] .bw-cats,.sim-web[data-screen="form"] .bw-form,.sim-web[data-screen="done"] .bw-done{opacity:1}
+.bw-nav{display:flex;justify-content:space-between;align-items:center}
+.bw-nav b{width:56px;height:8px;border-radius:4px;background:#1F2933}
+.bw-btn{padding:4px 10px;border-radius:6px;background:#4F7FC9;color:#fff;font-weight:600}
+.bw-btn.dark{align-self:flex-start;background:#1F2933}
+.bw-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.bw-grid i{border-radius:6px;background:#EEF0F3}
+.bw-h{font-weight:600;font-size:1.15em}
+.bw-tiles{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.bw-tiles span{padding:9px 8px;border-radius:6px;background:#F2F4F7}
+.bw-in{display:block;margin-top:2px;padding:4px 6px;min-height:20px;border:1px solid #D0D5DD;border-radius:5px;font-family:var(--mono)}
+.bw-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bw-done{justify-content:center;align-items:center;text-align:center}
+.bw-ok{padding:6px 12px;border-radius:7px;background:#DCFCE7;color:#15803D;font-weight:600;font-size:1.15em}
+.bw-sub{color:#475467}
+/* layer 3: API, assertion log + request/response */
+.sim-api .sim-body{grid-template-rows:auto 1fr}
+.api{order:-1;min-width:0;display:grid;gap:6px;align-content:start;padding:8px;border-radius:12px;background:var(--card);box-shadow:var(--ring);font:400 10.5px/1.45 var(--mono)}
+@media(min-width:600px){.sim-api .sim-body{grid-template-columns:1fr 1fr;grid-template-rows:none;align-items:start}.api{order:0;font-size:10px}}
+.api-x{display:none;gap:6px}
+.sim-api[data-screen^="post"] .api-post,.sim-api[data-screen^="get"] .api-get{display:grid}
+.api-line{display:flex;align-items:center;gap:6px;padding:2px 4px;border-radius:6px}
+.api-line code{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
+.api-m{padding:1px 5px;border-radius:4px;background:#FEF0C7;color:#93370D;font-weight:600}
+.api-m.get{background:#D1FADF;color:#05603A}
+.api-sc{padding:1px 5px;border-radius:4px;background:var(--pass-soft);color:var(--pass);font-weight:600}
+.api pre{margin:0;padding:6px 8px;border-radius:8px;background:var(--surface);font:inherit;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.sim-api[data-screen$="-req"] .api-sc,.sim-api[data-screen$="-req"] .api-res{visibility:hidden}
 .risk{display:inline-flex;align-items:center;gap:6px;font:500 11.5px/1 var(--mono);color:var(--ink-2)}
 .risk::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--muted)}
 .risk.hi::before{background:var(--red)}
 .risk.md::before{background:#4F7FC9}
-.tp-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
 .lights{display:flex;gap:6px}
 
 /* trusted + stats */
@@ -466,7 +561,9 @@ footer .wrap{display:grid;gap:14px}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;transition:none}
-  .caret,.run .tp-st,.tap,.ui .cta,.ui .cta::before,.ui .cta::after,.bpage .cta,.bpage .cta::before,.bpage .cta::after{animation:none}
+  .sim-st,.ph-scroll{transition:none}
+  .sim-log{scroll-behavior:auto}
+  .caret,.sim-log li.run::before,.sim-mob .s-hl::after,.sim-mob[data-swipe] .ph-swipe,.tap,.ui .cta,.ui .cta::before,.ui .cta::after,.bpage .cta,.bpage .cta::before,.bpage .cta::after{animation:none}
   .odo .col{transition:none}
   .device,.browser{transition:none}
 }
@@ -556,18 +653,97 @@ footer .wrap{display:grid;gap:14px}
     </div>
 
     <div class="rv">
-      <figure class="tplan" id="runCard">
-        <figcaption class="tp-head"><span class="tp-kicker">Example smoke run · riskiest first</span><span class="tp-title">Checkout, end to end</span></figcaption>
-        <div class="run-bar" aria-hidden="true"><i id="runBar" style="width:100%"></i></div>
-        <ol class="tp-rows">
-          <li class="ok"><span class="tp-st" aria-hidden="true"></span><div><span>As a User, I can sign in with my email and password</span><span class="risk hi">High · UI</span></div></li>
-          <li class="ok"><span class="tp-st" aria-hidden="true"></span><div><span>As a User, I am charged exactly my cart total</span><span class="risk hi">High · API</span></div></li>
-          <li class="ok"><span class="tp-st" aria-hidden="true"></span><div><span>As a User, I get only one order when I tap Pay twice</span><span class="risk hi">High · UI</span></div></li>
-          <li class="ok"><span class="tp-st" aria-hidden="true"></span><div><span>As a User, I can't check out with an expired card</span><span class="risk hi">High · API</span></div></li>
-          <li class="ok"><span class="tp-st" aria-hidden="true"></span><div><span>As a User, I see the same order summary on Android and iOS</span><span class="risk md">Med · Visual</span></div></li>
-          <li class="ok"><span class="tp-st" aria-hidden="true"></span><div><span>As a User, I keep my cart when the connection drops</span><span class="risk">Low · Network</span></div></li>
-        </ol>
-        <div class="tp-foot"><span id="runSum">6 passed, 0 failed</span><button class="btn btn-light btn-sm" id="runBtn" type="button">Run again</button></div>
+      <figure class="sim" id="sim">
+        <figcaption class="sim-head"><span class="sim-kicker">Example run · one flow, three layers</span><span class="sim-title">Post an ad, end to end</span></figcaption>
+        <div class="sim-tabs" role="group" aria-label="Test layer">
+          <button type="button" data-stage="0" aria-pressed="true">Mobile<span>WDIO</span></button>
+          <button type="button" data-stage="1" aria-pressed="false">Web<span>Playwright</span></button>
+          <button type="button" data-stage="2" aria-pressed="false">API<span>REST</span></button>
+        </div>
+        <div class="sim-stage">
+          <div class="sim-st sim-mob is-on" data-screen="done">
+            <div class="sim-bar"><i aria-hidden="true"></i>Galaxy S23 · Android 14<span>LambdaTest · WebdriverIO + Appium</span></div>
+            <div class="sim-body">
+              <div class="device android dev-sim" aria-hidden="true"><div class="scr">
+                <span class="punch"></span>
+                <div class="ph ph-home"><div class="ph-top"><b></b><i></i></div><div class="ph-search"></div><div class="ph-grid"><i></i><i></i><i></i><i></i></div><div class="ph-nav"><i></i><i></i><span class="ph-sell" data-t="sell">+</span><i></i><i></i></div></div>
+                <div class="ph ph-cats"><span class="ph-h">Choose a category</span><span class="ph-row">Cars</span><span class="ph-row" data-t="moto">Motorcycles</span><span class="ph-row">Phones</span><span class="ph-row">Property</span></div>
+                <div class="ph ph-form"><div class="ph-scroll">
+                  <span class="ph-h">Ad details</span>
+                  <span class="ph-l">Title</span><span class="ph-in" data-t="title"><span class="s-tx" data-type="title"></span></span>
+                  <span class="ph-l">Price</span><span class="ph-in" data-t="price">Rp <span class="s-tx" data-type="price"></span></span>
+                  <span class="ph-l">Condition</span><span class="ph-in">Used</span>
+                  <span class="ph-l">Photos</span><span class="ph-pics"><i></i><i></i><i></i></span>
+                  <span class="ph-l">Description</span><span class="ph-in tall"></span>
+                  <span class="ph-btn" data-t="post">Post ad</span>
+                </div></div>
+                <div class="ph ph-done"><span class="ph-ok">✓</span><span class="ph-dt" data-t="posted">Ad posted</span><span class="ph-ds">Vario 125, 2021 · in review</span></div>
+                <span class="ph-swipe"></span>
+              </div></div>
+              <ol class="sim-log">
+                <li><code>$(<span class="s">'~sell'</span>).click()</code></li>
+                <li><code>$(<span class="s">'~category-motorcycles'</span>)<wbr>.click()</code></li>
+                <li><code>$(<span class="s">'~title'</span>)<wbr>.setValue(<span class="s">'Vario 125, 2021'</span>)</code></li>
+                <li><code>$(<span class="s">'~price'</span>)<wbr>.setValue(<span class="s">'18500000'</span>)</code></li>
+                <li><code>browser.swipe({ direction: <span class="s">'up'</span> })</code></li>
+                <li><code>$(<span class="s">'~post-ad'</span>).click()</code></li>
+                <li><code>expect($(<span class="s">'~ad-posted'</span>))<wbr>.toBeDisplayed()</code></li>
+              </ol>
+            </div>
+          </div>
+          <div class="sim-st sim-web" data-screen="done">
+            <div class="sim-bar"><i aria-hidden="true"></i>post-ad.spec.ts<span>Playwright UI mode · chromium</span></div>
+            <div class="sim-body">
+              <ol class="sim-log">
+                <li><code><b>click</b> getByRole(<span class="s">'button'</span>, { name: <span class="s">'Sell'</span> })</code></li>
+                <li><code><b>click</b> getByRole(<span class="s">'link'</span>, { name: <span class="s">'Motorcycles'</span> })</code></li>
+                <li><code><b>fill</b> getByLabel(<span class="s">'Title'</span>)</code></li>
+                <li><code><b>fill</b> getByLabel(<span class="s">'Price'</span>)</code></li>
+                <li><code><b>click</b> getByRole(<span class="s">'button'</span>, { name: <span class="s">'Post ad'</span> })</code></li>
+                <li><code><b>expect</b> getByText(<span class="s">'Ad posted'</span>).toBeVisible()</code></li>
+              </ol>
+              <div class="browser" aria-hidden="true">
+                <div class="btop"><div class="lights"><i></i><i></i><i></i></div><div class="url"><b>localhost:3000/</b><span class="bw-path">ads/ad_7k2p</span></div></div>
+                <div class="bw-view">
+                  <div class="bw bw-home"><div class="bw-nav"><b></b><span class="bw-btn" data-t="sell">Sell</span></div><div class="bw-grid"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+                  <div class="bw bw-cats"><span class="bw-h">Choose a category</span><div class="bw-tiles"><span>Cars</span><span data-t="moto">Motorcycles</span><span>Phones</span><span>Property</span></div></div>
+                  <div class="bw bw-form"><span class="bw-h">Ad details</span><div class="bw-row"><span>Title<span class="bw-in" data-t="title"><span class="s-tx" data-type="title"></span></span></span><span>Price<span class="bw-in" data-t="price"><span class="s-tx" data-type="price"></span></span></span></div><span class="bw-btn dark" data-t="post">Post ad</span></div>
+                  <div class="bw bw-done"><span class="bw-ok" data-t="posted">✓ Ad posted</span><span class="bw-sub">Vario 125, 2021 is in review</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sim-st sim-api" data-screen="get-res">
+            <div class="sim-bar"><i aria-hidden="true"></i>ads.api.spec.ts<span>Playwright request · REST</span></div>
+            <div class="sim-body">
+              <ol class="sim-log">
+                <li><code>request.post(<span class="s">'/api/ads'</span>, { data: ad })</code></li>
+                <li><code>expect(res.status())<wbr>.toBe(201)</code></li>
+                <li><code>expect(body.status)<wbr>.toBe(<span class="s">'pending_review'</span>)</code></li>
+                <li><code>request.get(<wbr><span class="s">`/api/ads/${body.id}`</span>)</code></li>
+                <li><code>expect(get.ok())<wbr>.toBeTruthy()</code></li>
+                <li><code>expect(found.title)<wbr>.toBe(<span class="s">'Vario 125, 2021'</span>)</code></li>
+              </ol>
+              <div class="api" aria-hidden="true">
+                <div class="api-x api-post">
+                  <div class="api-line"><span class="api-m">POST</span><code>/api/ads</code><span class="api-sc" data-t="status">201</span></div>
+                  <pre data-t="req">{ "title": "Vario 125, 2021",
+  "price": 18500000,
+  "category": "motorcycles" }</pre>
+                  <pre class="api-res" data-t="body">{ "id": "ad_7k2p",
+  "status": "pending_review" }</pre>
+                </div>
+                <div class="api-x api-get">
+                  <div class="api-line" data-t="req"><span class="api-m get">GET</span><code>/api/ads/ad_7k2p</code><span class="api-sc" data-t="status">200</span></div>
+                  <pre class="api-res" data-t="body">{ "id": "ad_7k2p",
+  "title": "Vario 125, 2021",
+  "status": "pending_review" }</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sim-foot"><span id="simSum">7 checks passed on a real device</span><button class="btn btn-light btn-sm" id="simReplay" type="button">Replay</button></div>
       </figure>
     </div>
   </div>
@@ -985,25 +1161,73 @@ footer .wrap{display:grid;gap:14px}
   function rollOdo(el){ el.querySelectorAll('.col').forEach(function(c){ c.style.transform = 'translateY(-' + c.dataset.d + 'em)'; }); }
   var odos = document.querySelectorAll('.odo'); odos.forEach(buildOdo);
 
-  // hero smoke run: queued -> running -> passed, one test per step; the HTML holds the finished state
-  var runCard = document.getElementById('runCard'), runRows = runCard.querySelectorAll('li'), runBar = document.getElementById('runBar'), runSum = document.getElementById('runSum'), runT;
-  function run(animate){
-    clearTimeout(runT);
-    var n = runRows.length, i = animate ? 0 : n;
-    (function step(){
-      runRows.forEach(function(r, k){ r.className = k < i ? 'ok' : k === i ? 'run' : ''; });
-      runBar.style.width = (i / n * 100) + '%';
-      runSum.textContent = i < n ? 'Running ' + (i + 1) + ' of ' + n + '…' : n + ' passed, 0 failed';
-      if (i++ < n) runT = setTimeout(step, 550);
+  // hero simulation: the same "post an ad" test on a real device (WDIO + Appium), in Playwright, then against the API.
+  // Each step sets the screen, the target or assertion mark, typed text and the log line; the HTML holds the finished state.
+  var TITLE = 'Vario 125, 2021', PRICE = '18500000';
+  var FLOW = [
+    { name: 'Mobile', done: 'checks passed on a real device', steps: [
+      { screen: 'home', hl: 'sell' }, { screen: 'cats', hl: 'moto' },
+      { screen: 'form', hl: 'title', type: TITLE }, { screen: 'form', hl: 'price', type: PRICE },
+      { screen: 'form', swipe: true }, { screen: 'form', hl: 'post' }, { screen: 'done', as: 'posted' } ] },
+    { name: 'Web', done: 'checks passed in Chromium', steps: [
+      { screen: 'home', hl: 'sell' }, { screen: 'cats', hl: 'moto' },
+      { screen: 'form', hl: 'title', type: TITLE }, { screen: 'form', hl: 'price', type: PRICE },
+      { screen: 'form', hl: 'post' }, { screen: 'done', as: 'posted' } ] },
+    { name: 'API', done: 'checks passed against the API', steps: [
+      { screen: 'post-req', hl: 'req' }, { screen: 'post-res', as: 'status' }, { screen: 'post-res', as: 'body' },
+      { screen: 'get-req', hl: 'req' }, { screen: 'get-res', as: 'status' }, { screen: 'get-res', as: 'body' } ] }
+  ];
+  var PATH = { home: '', cats: 'sell', form: 'sell/motorcycles', done: 'ads/ad_7k2p' };
+  var sim = document.getElementById('sim'), simStages = sim.querySelectorAll('.sim-st'), simTabs = sim.querySelectorAll('[data-stage]'), simSum = document.getElementById('simSum');
+  var simT = [], simCur = 0, simVisible = false;
+  function simLive(){ return !reduce && root.dataset.motion !== 'off' && simVisible; }
+  function simClear(){ simT.forEach(clearTimeout); simT = []; }   // clearTimeout also clears intervals
+  function simPaint(s, k, animate){
+    var st = simStages[s], steps = FLOW[s].steps, n = steps.length, step = steps[Math.min(k, n - 1)];
+    simStages.forEach(function(e, i){ e.classList.toggle('is-on', i === s); });
+    simTabs.forEach(function(t, i){ t.setAttribute('aria-pressed', i === s); });
+    st.dataset.screen = step.screen;
+    if (s === 0) { st.toggleAttribute('data-scrolled', k >= 4); st.toggleAttribute('data-swipe', animate && k < n && !!step.swipe); }
+    st.querySelectorAll('[data-t]').forEach(function(e){
+      e.classList.toggle('s-hl', k < n && e.dataset.t === step.hl);
+      e.classList.toggle('s-as', e.dataset.t === step.as);
+    });
+    // a typed field is empty before its step, typed out on its step, full after it
+    st.querySelectorAll('.s-tx').forEach(function(tx){
+      var ti = tx.dataset.type === 'title' ? 2 : 3, text = steps[ti].type;
+      if (k > ti || (k === ti && !animate)) tx.textContent = text;
+      else if (k < ti) tx.textContent = '';
+      else { var c = 0, iv; tx.textContent = ''; iv = setInterval(function(){ tx.textContent = text.slice(0, ++c); if (c >= text.length) clearInterval(iv); }, 50); simT.push(iv); }
+    });
+    var path = st.querySelector('.bw-path'); if (path) path.textContent = PATH[step.screen];
+    var log = st.querySelector('.sim-log'), lis = log.querySelectorAll('li');
+    lis.forEach(function(li, i){ li.className = i < k ? 'ok' : i === k ? 'run' : ''; });
+    var cur = lis[Math.min(k, n - 1)]; log.scrollTop = Math.max(0, cur.offsetTop - log.offsetTop - log.clientHeight / 3);
+    simSum.textContent = k < n ? FLOW[s].name + ' · step ' + (k + 1) + ' of ' + n : n + ' ' + FLOW[s].done;
+  }
+  // animate=false paints the finished state; when a layer finishes it hands over to the next while the card stays live
+  function simRun(s, animate){
+    simClear(); simCur = s;
+    var n = FLOW[s].steps.length, k = animate ? 0 : n;
+    (function tick(){
+      simPaint(s, k, animate);
+      if (!animate) return;
+      if (k < n) { simT.push(setTimeout(tick, FLOW[s].steps[k++].type ? 1500 : 1050)); return; }
+      simT.push(setTimeout(function(){ if (simLive()) simRun((s + 1) % FLOW.length, true); }, 2400));
     })();
   }
-  document.getElementById('runBtn').addEventListener('click', function(){ run(true); });
+  simTabs.forEach(function(t){ t.addEventListener('click', function(){ simRun(+t.dataset.stage, !reduce && root.dataset.motion !== 'off'); }); });
+  document.getElementById('simReplay').addEventListener('click', function(){ simRun(simCur, true); });
+  new IntersectionObserver(function(en){
+    var v = en[0].isIntersecting; if (v === simVisible) return; simVisible = v;
+    if (v && simLive()) simRun(simCur, true); else if (!v) simClear();
+  }, { threshold: .35 }).observe(sim);
+  simRun(0, false);
 
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       if (!en.isIntersecting) return;
       en.target.classList.add('in');
-      if (en.target.contains(runCard)) run(!reduce && root.dataset.motion !== 'off');
       var o = en.target.querySelector && en.target.querySelector('.odo');
       if (o) setTimeout(function(){ rollOdo(o); }, 150);
       io.unobserve(en.target);
@@ -1035,6 +1259,7 @@ footer .wrap{display:grid;gap:14px}
     motionBtn.setAttribute('aria-label', label); motionBtn.title = label;
     if (off && window.bugyyDestroy) { window.bugyyDestroy(); window.bugyyDestroy = null; }
     else if (!off && window.mountCat) window.mountCat();
+    if (simStages) { if (off) simRun(simCur, false); else if (simVisible) simRun(simCur, true); }   // undefined on the first call, before the sim is set up
     if (save) try { localStorage.setItem('motion', off ? 'off' : 'on'); } catch (e) {}
   }
   setMotion(root.dataset.motion === 'off');
