@@ -575,6 +575,8 @@ details p{padding:0 0 20px;color:var(--ink-2);max-width:58ch}
 .final .lead{margin:0 auto 28px}
 .final .cta-row{justify-content:center}
 .contacts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.mail-help{font-size:14px;color:var(--ink-2);margin:-10px auto 22px;max-width:44ch}
+.mail-help a{color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600}
 
 /* footer */
 footer{border-top:1px solid var(--line);padding:28px 0 calc(28px + env(safe-area-inset-bottom));font-size:13px;color:var(--muted)}
@@ -1099,7 +1101,7 @@ footer .wrap{display:grid;gap:14px}
       <p class="spec rv"><i></i>process.spec.ts</p>
       <h2 class="display rv">From spec to <span class="grad">green build</span></h2>
       <p class="lead rv">The order my checks run before a release, and why.</p>
-      <p class="rule rv">If a job is flaky, the release waits until I find the cause. A retry would only hide the bug.</p>
+      <p class="rule rv">A green build only means something when I trust every test behind it.</p>
     </div>
     <div class="ci-art rv">
       <div class="ci-card">
@@ -1136,11 +1138,11 @@ footer .wrap{display:grid;gap:14px}
       <h2 class="display rv">Quick <span class="grad">answers</span></h2>
     </div>
     <div class="rv">
-      <details open><summary>Open to remote?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes, and open to relocating to Malaysia, Japan or the US.</p></details>
+      <details open><summary>Open to remote?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. I'm also open to relocating abroad, such as to Malaysia, Japan or the US.</p></details>
       <details><summary>Notice period?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>One month.</p></details>
       <details><summary>Which languages do you test in?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>TypeScript and JavaScript daily; Ruby, Python and SQL when needed.</p></details>
       <details><summary>Performance testing?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Not my focus. I specialize in functional testing on web, mobile and API.</p></details>
-      <details><summary>Can you start automation from zero?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. Riskiest flows first, then framework, CI and docs.</p></details>
+      <details><summary>Can you start automation from zero?<span class="pm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>Yes. I join at the first requirement review and stay through maintenance, automating the riskiest flows first.</p></details>
     </div>
   </div>
 </section>
@@ -1152,10 +1154,11 @@ footer .wrap{display:grid;gap:14px}
     <h2 class="display rv">What keeps <span class="grad">breaking?</span></h2>
     <p class="lead rv">Tell me, and I'll share how I'd test it. Open to full-time roles and scoped freelance work, onsite, hybrid or remote.</p>
     <div class="cta-row rv">
-      <a class="btn btn-dark" href="mailto:iqbalaprs8@gmail.com?subject=Let's%20talk%20about%20an%20SDET%20role">Email me</a>
+      <a class="btn btn-dark" id="mailBtn" href="mailto:iqbalaprs8@gmail.com?subject=Let%27s%20talk%20about%20an%20SDET%20role">Email me</a>
       <a class="btn btn-light" href="assets/Iqbal-Apriansyah-SDET-CV.pdf" download="Iqbal-Apriansyah-SDET-CV.pdf">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>Download CV</a>
     </div>
+    <p class="mail-help" id="mailHelp" hidden>No mail app opened? Write from <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=iqbalaprs8@gmail.com&amp;su=Let%27s%20talk%20about%20an%20SDET%20role" target="_blank" rel="noopener">Gmail</a> or <a href="https://outlook.office.com/mail/deeplink/compose?to=iqbalaprs8@gmail.com&amp;subject=Let%27s%20talk%20about%20an%20SDET%20role" target="_blank" rel="noopener">Outlook</a>, or copy the address below.</p>
     <div class="contacts rv">
       <button class="chip" id="copyEmail" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg><span>iqbalaprs8@gmail.com</span></button>
       <a class="chip" href="https://www.linkedin.com/in/iqbal-apriansyah-84753a21b" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg>LinkedIn</a>
@@ -1197,17 +1200,15 @@ footer .wrap{display:grid;gap:14px}
   });
   menu.addEventListener('click', function(e){ if (e.target.tagName === 'A' && menu.classList.contains('open')) btn.click(); });
 
-  // headline: types a phrase, holds, deletes it, types the next; pauses while hovered or when motion is off
+  // headline: types a phrase, holds, deletes it, types the next; stops when motion is off (hover pause froze it mid-word while people read)
   // 15 principles: testing craft interleaved with the human-experience side (how the app feels to the person using it)
   var PH = [["I start with the flows", " users rely on most"], ["I test for human experience:", " how it feels"], ["I ask questions early,", " before code exists"], ["I watch how people", " actually use the app"], ["API checks first,", " so UI tests stay small"], ["When users hesitate,", " I take note"], ["A flaky test", " is worth fixing properly"], ["I look for the moments", " users get stuck"], ["I write tests", " my teammates can read"], ["A slow screen", " is worth a bug report"], ["I keep suites small", " enough to trust"], ["I check that errors", " tell users what to do"], ["My bug reports", " come with steps to reproduce"], ["Each missed bug", " teaches me something"], ["I share what I learn", " with my team"]];
   var rotator = document.getElementById('rotator'), tA = document.getElementById('tA'), tB = document.getElementById('tB');
-  var pi = 0, ci = (PH[0][0] + PH[0][1]).length, del = true, paused = false;
-  rotator.addEventListener('mouseenter', function(){ paused = true; });
-  rotator.addEventListener('mouseleave', function(){ paused = false; });
+  var pi = 0, ci = (PH[0][0] + PH[0][1]).length, del = true;
   function type(){
     var a = PH[pi][0], full = a + PH[pi][1], wait;
     if (root.dataset.motion === 'off') { tA.textContent = a; tB.textContent = PH[pi][1]; ci = full.length; del = true; rotator.classList.remove('typing'); setTimeout(type, 400); return; }
-    if (paused || document.hidden) { setTimeout(type, 400); return; }
+    if (document.hidden) { setTimeout(type, 400); return; }
     ci += del ? -1 : 1;
     tA.textContent = full.slice(0, Math.min(ci, a.length)); tB.textContent = ci > a.length ? full.slice(a.length, ci) : '';
     rotator.classList.add('typing');
@@ -1359,6 +1360,9 @@ footer .wrap{display:grid;gap:14px}
   }
   setMotion(root.dataset.motion === 'off');
   motionBtn.addEventListener('click', function(){ setMotion(root.dataset.motion !== 'off', true); });
+
+  // mailto does nothing on a computer with no mail app set up, so show webmail links after the click
+  document.getElementById('mailBtn').addEventListener('click', function(){ document.getElementById('mailHelp').hidden = false; });
 
   // copy email
   var ce = document.getElementById('copyEmail');
