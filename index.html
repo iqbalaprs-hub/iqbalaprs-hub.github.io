@@ -485,31 +485,86 @@ section{padding:72px 0}
 .art-olx{--brand:#3A77FF;--brand-2:#002F34;--soft-a:rgba(58,119,255,.32);--soft-b:rgba(35,229,219,.38)}
 .art-ek{--brand:#2446A6;--brand-2:#E0382E;--soft-a:rgba(36,70,166,.3);--soft-b:rgba(224,56,46,.22)}
 .art-wh{--brand:#E53935;--brand-2:#1F2933;--soft-a:rgba(229,57,53,.3);--soft-b:rgba(255,183,77,.3)}
-.p-olx .proj-art{height:300px}
-@media(min-width:760px){.p-olx .proj-art{height:340px}.p-olx .art .device{width:150px;height:304px}}
-@media(max-width:480px){.art .device:nth-child(3){display:none}}
+/* OLX screens redrawn from the live app. Sizes below are the phone's own pixels (499px wide screen),
+   then zoom shrinks the whole screen to fit the frame, so the layout stays true to the original. */
+.p-olx .proj-art{height:auto;display:block;padding:0}
+.ox-row{--oz:.4;display:flex;gap:28px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:thin;padding:26px 24px 24px}
+.ox-row>:first-child{margin-left:auto}.ox-row>:last-child{margin-right:auto}
+.ox-row:focus-visible{outline:2px solid var(--ink);outline-offset:-4px}
+.ox-dev{width:calc(499px * var(--oz) + 12px);height:calc(1080px * var(--oz) + 12px);border-radius:40px;scroll-snap-align:center}
+.ox-dev .scr{border-radius:34px}
+.ox{zoom:var(--oz);position:relative;width:499px;height:1080px;flex:none;display:flex;flex-direction:column;background:#fff;color:#0B2E33;font:400 15px/1.3 var(--sans)}
+.ox b{font-weight:600}
+.ox-isl{position:absolute;top:12px;left:50%;width:118px;height:34px;margin-left:-59px;border-radius:20px;background:#000;z-index:3}
+.ox-sb{display:flex;justify-content:space-between;align-items:center;height:58px;flex:none;padding:6px 48px 0;font-size:19px}
+.ox-bat{padding:1px 6px;border-radius:6px;background:#0B2E33;color:#fff;font:700 13px/1.3 var(--sans)}
+.ox-nav{position:relative;display:flex;justify-content:center;align-items:center;height:54px;flex:none;border-bottom:1px solid #D9DDE0;font-size:19px;font-weight:500}
+.ox-back{position:absolute;left:28px;top:50%;width:14px;height:14px;margin-top:-7px;border-left:2.5px solid;border-bottom:2.5px solid;transform:rotate(45deg)}
+.ox-body{flex:1;min-height:0;overflow:hidden;padding:0 30px;display:flex;flex-direction:column}
+.ox-h{font-size:19px;margin:30px 0 20px}
+.ox .ox-h{font-weight:700}
+.ox-card{border:1px solid #DCE1E5;border-radius:10px;padding:18px 14px 14px;margin-bottom:20px;flex:none}
+.ox-ct{display:flex;justify-content:space-between;align-items:center;font-size:17px}
+.ox-ct img{width:33px;height:24px}
+.ox-mobbi{font:800 15px/1 var(--sans);color:#3A77FF}
+.ox-mobbi b{color:#1E3A8A;font-weight:700}
+.ox-sub{margin:4px 0 14px;font-size:13px;color:#5B6B70}
+.ox-in{display:grid;justify-items:center;gap:16px;padding:18px 14px 14px;border-radius:8px;background:#F6F8F9}
+.ox-pill{display:inline-flex;align-items:center;gap:10px;padding:9px 14px;border-radius:8px;background:linear-gradient(90deg,#1E7BFF,#1E3A8A);color:#fff;font-size:18px;font-weight:500}
+.ox-clk{width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 6px #fff,inset 0 0 0 9px #1E7BFF}
+.ox-pr{display:flex;justify-content:space-between;align-items:baseline;justify-self:stretch;padding:0 6px;font-size:27px}
+.ox-pr b{font-weight:700}
+.ox-pr small{font-size:17px}
+.ox-bar{position:relative;justify-self:stretch;height:6px;margin:4px 14px;border-radius:3px;background:linear-gradient(90deg,#FF5A36,#FFC629 50%,#1FB24A)}
+.ox-bar::before,.ox-bar::after{content:"";position:absolute;top:-6px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #3D4448}
+.ox-bar::before{left:-9px}.ox-bar::after{right:-9px}
+.ox-link{color:#3A68E8;font-size:15px;font-weight:600}
+.ox-link::after,.ox-sel::after{content:"";display:inline-block;width:8px;height:8px;margin-left:14px;border-right:2px solid;border-bottom:2px solid;transform:translateY(-4px) rotate(45deg)}
+.ox-btn{display:block;margin-top:14px;padding:15px;border-radius:8px;background:#3F74FF;color:#fff;text-align:center;font-size:16px;font-weight:700}
+.ox-lab{display:block;margin-bottom:8px;font-size:15px;font-weight:500;color:#1BA39C}
+.ox-fld{display:block;height:44px;flex:none;border:1.5px solid #1BA39C;border-radius:6px}
+.ox-foot{flex:none;padding:16px 20px 46px;background:#fff;box-shadow:0 -6px 14px -8px rgba(0,0,0,.18)}
+.ox-go{display:block;padding:16px;border-radius:6px;background:#002F34;color:#fff;text-align:center;font-size:19px;font-weight:700}
+.ox-form{padding:0 19px}
+.ox-steps{display:flex;justify-content:center;align-items:center;gap:8px;margin:28px 0 8px}
+.ox-steps b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:2px solid #3A77FF;font-size:14px}
+.ox-steps b.done{background:#3A77FF}
+.ox-steps b.done::after{content:"";width:12px;height:7px;margin-top:-4px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg)}
+.ox-steps i{width:84px;border-top:3px dotted #3A77FF}
+.ox-steps .off{border-color:#D0D5D8;color:#5B6B70}
+.ox-form .ox-lab{color:#0B2E33;font-weight:400}
+.ox-sel{display:flex;justify-content:space-between;align-items:center;height:54px;flex:none;margin-bottom:24px;padding:0 18px;border:1px solid #A3ABB0;border-radius:5px;color:#8C979C;font-size:19px}
+.ox-sel::after{color:#3D4448;width:10px;height:10px}
+.ox-dim{background:#000;color:#fff}
+.ox-dim .ox-bat{background:#fff;color:#000}
+.ox-ghost{position:absolute;top:58px;left:24px;right:24px;height:40px;border-radius:10px;background:#D6D6D6}
+.ox-sheet{position:absolute;top:70px;left:0;right:0;bottom:0;display:flex;flex-direction:column;border-radius:26px 26px 0 0;background:#fff;color:#0B2E33}
+.ox-grab{width:38px;height:5px;margin:10px auto 0;border-radius:3px;background:#CFCFCF}
+.ox-shead{display:flex;justify-content:space-between;align-items:center;padding:24px 24px 18px;border-bottom:1px solid #E3E3E3;font-size:20px;font-weight:600}
+.ox-x{position:relative;width:24px;height:24px}
+.ox-x::before,.ox-x::after{content:"";position:absolute;left:11px;top:-3px;width:2px;height:30px;background:#0B2E33;transform:rotate(45deg)}
+.ox-x::after{transform:rotate(-45deg)}
+.ox-filters{padding:0}
+.ox-sec{padding:24px 24px 22px;border-bottom:3px solid #E9E9E9;flex:none}
+.ox-st{display:flex;justify-content:space-between;align-items:center;font-size:18px}
+.ox-up{width:9px;height:9px;margin-right:6px;border-left:2px solid;border-top:2px solid;transform:translateY(3px) rotate(45deg)}
+.ox-sec .ox-sub{margin:2px 0 14px;color:#8A9497}
+.ox-chips{display:flex;flex-wrap:wrap;gap:8px 6px}
+.ox-chips span{padding:8px 13px;border:1.5px solid #0B2E33;border-radius:14px;font-size:16px}
+.ox-rads{display:flex;gap:30px;font-size:16px}
+.ox-rads span{display:flex;align-items:center;gap:10px}
+.ox-rads span::before{content:"";width:20px;height:20px;border-radius:50%;border:2.5px solid #7C8A86}
+.ox-acts{display:flex;gap:16px;flex:none;margin-top:auto;padding:16px 20px 56px;background:#fff}
+.ox-acts span{flex:1;padding:15px;border:1.5px solid #E3E3E3;border-radius:6px;color:#BDBDBD;text-align:center;font-size:16px;font-weight:600}
+.ox-acts .on{border-color:#EEE;background:#EEE}
+@media(max-width:1099px){.ox-row{padding-top:58px}.p-olx .proj-art .lbl{top:14px;bottom:auto}}
+@media(max-width:599px){.ox-row{--oz:.36;gap:16px;padding:58px 16px 20px}}
 .wf{flex:1;display:flex;flex-direction:column;gap:6px;padding:22px 9px 9px}
 .wf i{display:block;height:5px;border-radius:3px;background:#E4E7EB}
 .wf .h{height:7px;width:46%;background:#1F2933}
 .wf .box{border:1px solid #E4E7EB;border-radius:7px;padding:6px;display:grid;gap:5px}
-.wf .pill{display:block;height:10px;width:62%;margin:0 auto;border-radius:4px;background:var(--brand)}
-.wf .range{display:block;position:relative;height:4px;margin:3px 3px;border-radius:2px;background:linear-gradient(90deg,#F04438,#FDB022,#12B76A)}
-.wf .range::before,.wf .range::after{content:"";position:absolute;top:-2.5px;width:5px;height:5px;border-radius:50%;background:#fff;border:1.5px solid #344054}
-.wf .range::before{left:-3px}.wf .range::after{right:-3px}
 .wf .wb{display:block;height:14px;border-radius:5px;background:var(--brand)}
-.wf .wb.end{margin-top:auto;background:var(--brand-2)}
 .wf .field{display:block;height:13px;border:1px solid #D0D5DD;border-radius:4px}
-.wf .steps{display:flex;align-items:center;justify-content:center;gap:3px;margin:2px 0}
-.wf .steps b{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--brand)}
-.wf .steps b:first-child{background:var(--brand)}
-.wf .steps i{width:20px;height:0;border-radius:0;border-top:1.5px dotted var(--brand);background:none}
-.wf .chips{display:flex;flex-wrap:wrap;gap:3px}
-.wf .chips b{height:9px;width:26px;border:1px solid var(--brand-2);border-radius:5px}
-.wf .chips b:nth-child(even){width:34px}
-.wf .chips b:nth-child(3n){width:20px}
-.scr.dim{background:#9AA3AD}
-.wf.sheet{margin-top:34px;padding-top:10px;background:#fff;border-radius:12px 12px 0 0}
-.wf .grab{display:block;width:20px;height:3px;margin:0 auto 2px;border-radius:2px;background:#D0D5DD}
 .wf .row{display:flex;gap:6px;align-items:center}
 .wf .row i{flex:1}
 .wf .ava{width:16px;height:16px;flex:none;border-radius:50%;background:#D0D5DD}
@@ -849,15 +904,12 @@ footer .wrap{display:grid;gap:14px}
     </div>
     <div>
       <p class="spec rv"><i></i>about.spec.ts</p>
-      <h2 class="display rv">Hi, I'm Iqbal. <span class="grad">I try to catch bugs early,</span> while they're cheap to fix.</h2>
-      <p class="lead rv">I keep automation small, readable and fast, and fix flaky tests before adding new ones. I also watch how people use the app, since a feature can pass every test and still confuse someone.</p>
+      <h2 class="display rv">I write <span class="grad">fewer tests</span> than you'd expect.</h2>
+      <p class="lead rv">Every test I keep has to run fast, read clearly and fail only when something is really broken. The time saved goes into watching people use the app, where the bugs nobody scripted tend to show up.</p>
       <div class="facts rv">
         <span class="chip">Bekasi, Indonesia</span>
         <span class="chip">In QA since Dec 2021</span>
         <span class="chip">English · Indonesian</span>
-      </div>
-      <div class="cta-row rv">
-        <a class="btn btn-light" href="https://www.linkedin.com/in/iqbal-apriansyah-84753a21b" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </div>
@@ -955,7 +1007,7 @@ footer .wrap{display:grid;gap:14px}
             <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg></span>
             <h3>AI-assisted test design</h3>
             <p>I use agentic AI to draft specs from test designs, then check each locator on the real screen.</p>
-            <div class="tags"><span class="tag">Claude Code</span><span class="tag">Hermes Agent</span><span class="tag">MCP</span></div>
+            <div class="tags"><span class="tag">Claude Code</span><span class="tag">Hermes Agent</span></div>
           </div>
           <div class="viz" aria-hidden="true">
             <span class="c">// test design → spec</span><br>
@@ -988,33 +1040,69 @@ footer .wrap{display:grid;gap:14px}
     <div class="projects">
       <article class="proj p-olx rv">
         <div class="proj-art art art-olx">
-          <div class="device ios" aria-hidden="true"><div class="scr"><span class="island"></span><div class="wf">
-            <i class="h"></i>
-            <div class="box"><i style="width:58%"></i><span class="pill"></span><span class="range"></span><i style="width:40%;margin:0 auto"></i></div>
-            <div class="box"><i style="width:64%"></i><span class="pill"></span><span class="range"></span><span class="wb"></span></div>
-            <span class="wb end"></span>
+          <div class="ox-row" tabindex="0" role="region" aria-label="Three OLX screens I tested, redrawn from the live app: price guidance, the ad form and My Ads filters">
+          <div class="device ios ox-dev" aria-hidden="true"><div class="scr"><div class="ox">
+            <span class="ox-isl"></span><div class="ox-sb"><b>15.51</b><span class="ox-bat">64</span></div>
+            <div class="ox-nav"><i class="ox-back"></i>Mobil Bekas</div>
+            <div class="ox-body">
+              <b class="ox-h">Tentukan harga</b>
+              <div class="ox-card">
+                <div class="ox-ct"><b>Rata-Rata Harga Iklan</b><img src="assets/logo-olx.webp" alt="" width="33" height="24" loading="lazy"></div>
+                <p class="ox-sub">Pasang iklan dan deal dengan pemilik di OLX.</p>
+                <div class="ox-in"><span class="ox-pill">Terjual dalam : 33 - 59 Hari</span><div class="ox-pr"><b>Rp74<small>JT</small></b><span>-</span><b>Rp82<small>JT</small></b></div><span class="ox-bar"></span><span class="ox-link">Penjelasan Rentang Harga</span></div>
+              </div>
+              <div class="ox-card">
+                <div class="ox-ct"><b>Estimasi Harga Jual Instan</b><span class="ox-mobbi">olx<b>mobbi</b></span></div>
+                <p class="ox-sub">Jual cepat &amp; bebas ribet di OLXmobbi.</p>
+                <div class="ox-in"><span class="ox-pill"><i class="ox-clk"></i>Proses Hanya 1 Jam</span><div class="ox-pr"><b>Rp67<small>JT</small></b><span>-</span><b>Rp75<small>JT</small></b></div><span class="ox-bar"></span><span class="ox-link">Penjelasan Rentang Harga</span></div>
+                <span class="ox-btn">Jual Sekarang</span>
+              </div>
+              <span class="ox-lab">Harga*</span><span class="ox-fld"></span>
+            </div>
+            <div class="ox-foot"><span class="ox-go">Lanjut</span></div>
           </div></div></div>
-          <div class="device ios" aria-hidden="true"><div class="scr"><span class="island"></span><div class="wf">
-            <i class="h"></i>
-            <div class="steps"><b></b><i></i><b></b><i></i><b></b></div>
-            <i style="width:36%"></i><span class="field"></span><i style="width:30%"></i><span class="field"></span><i style="width:42%"></i><span class="field"></span><i style="width:34%"></i><span class="field"></span>
-            <span class="wb end"></span>
+          <div class="device ios ox-dev" aria-hidden="true"><div class="scr"><div class="ox">
+            <span class="ox-isl"></span><div class="ox-sb"><b>15.49</b><span class="ox-bat">64</span></div>
+            <div class="ox-nav"><i class="ox-back"></i>Motor Bekas</div>
+            <div class="ox-body ox-form">
+              <div class="ox-steps"><b class="done"></b><i></i><b>02</b><i class="off"></i><b class="off">03</b></div>
+              <b class="ox-h">Sertakan Detail Produk</b>
+              <span class="ox-lab">Merek*</span><span class="ox-sel">-- Pilih Merek --</span>
+              <span class="ox-lab">Transmisi*</span><span class="ox-sel">-- Pilih Transmisi --</span>
+              <span class="ox-lab">Tahun*</span><span class="ox-sel">-- Pilih Tahun --</span>
+              <span class="ox-lab">Jarak Tempuh</span><span class="ox-sel">-- Pilih Jarak Tempuh --</span>
+              <span class="ox-lab">Tipe Bodi*</span><span class="ox-sel">-- Pilih Tipe Bodi --</span>
+              <span class="ox-lab">Kapasitas Mesin*</span><span class="ox-sel">-- Pilih Kapasitas Mesin --</span>
+              <span class="ox-lab">Fitur</span><span class="ox-sel">-- Pilih Fitur --</span>
+            </div>
+            <div class="ox-foot"><span class="ox-go">Lanjut</span></div>
           </div></div></div>
-          <div class="device ios" aria-hidden="true"><div class="scr dim"><span class="island"></span><div class="wf sheet">
-            <span class="grab"></span><i class="h"></i>
-            <div class="chips"><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
-            <i style="width:40%"></i>
-            <div class="chips"><b></b><b></b><b></b><b></b><b></b></div>
-            <i style="width:48%"></i>
-            <div class="chips"><b></b><b></b><b></b></div>
+          <div class="device ios ox-dev" aria-hidden="true"><div class="scr"><div class="ox ox-dim">
+            <span class="ox-isl"></span><div class="ox-sb"><b>15.48</b><span class="ox-bat">64</span></div>
+            <span class="ox-ghost"></span>
+            <div class="ox-sheet">
+              <span class="ox-grab"></span>
+              <div class="ox-shead">Pilih Filter<i class="ox-x"></i></div>
+              <div class="ox-body ox-filters">
+                <div class="ox-sec"><div class="ox-st"><b>Status Iklan</b><i class="ox-up"></i></div><p class="ox-sub">Filter berdasarkan status iklan saat ini</p>
+                  <div class="ox-chips"><span>Aktif</span><span>Tidak Aktif</span><span>Kedaluwarsa</span><span>Sedang Ditinjau</span><span>Terjual</span><span>Belum Tayang</span><span>Perlu Perbaikan</span></div></div>
+                <div class="ox-sec"><div class="ox-st"><b>Kategori</b><i class="ox-up"></i></div><p class="ox-sub">Filter berdasarkan kategori iklan</p>
+                  <div class="ox-chips"><span>Handphone &amp; Gadget (Gratis)</span><span>Mobil Bekas</span><span>Mobil Baru</span><span>Lowongan Kerja</span><span>Cari Pekerjaan</span><span>Handphone</span></div></div>
+                <div class="ox-sec"><div class="ox-st"><b>Ditayangkan Ulang</b><i class="ox-up"></i></div><p class="ox-sub">Filter berdasarkan riwayat penayangan ulang</p>
+                  <div class="ox-rads"><span>Pernah Republish</span><span>Tidak Pernah Republish</span></div></div>
+                <div class="ox-sec"><div class="ox-st"><b>Masa Kedaluwarsa Iklan</b><i class="ox-up"></i></div><p class="ox-sub">Filter berdasarkan masa tayang iklan</p></div>
+              </div>
+              <div class="ox-acts"><span>Reset Filter</span><span class="on">Terapkan</span></div>
+            </div>
           </div></div></div>
-          <span class="pass-stamp">PASSED</span><span class="lbl">Android · iOS · Web</span>
+          </div>
+          <span class="pass-stamp">PASSED</span><span class="lbl">Features I tested · redrawn</span>
         </div>
         <div class="proj-body">
           <img class="brand-logo tall" src="assets/logo-olx.webp" alt="OLX" width="148" height="109">
           <span class="co-line">PT Astra Digital Mobil · SDET · since 2025</span>
           <h3 style="font-size:26px">OLX Indonesia</h3>
-          <p class="shots-label">Live in production · <a href="https://www.olx.co.id/" target="_blank" rel="noopener">OLX app ↗</a></p>
+          <p class="shots-label">Live on Android, iOS and web · <a href="https://www.olx.co.id/" target="_blank" rel="noopener">OLX app ↗</a></p>
           <ul class="feats">
             <li class="feat">
               <span class="risk hi">High risk · used cars</span>
