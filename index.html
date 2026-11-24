@@ -343,7 +343,7 @@ section{padding:72px 0}
 
 /* device mockups (generic UI, no real app) */
 /* mockups draw a light app in both themes, so they keep the light tokens */
-.device,.browser,.mweb,.saas{--surface:#F5F3F1;--surface-2:#ECEAE7;--line:rgba(0,0,0,.08);--muted:rgba(0,0,0,.56);--ring:0 0 0 .5px rgba(0,0,0,.125);--pass:#16A34A;color:#000}
+.device,.browser,.mweb{--surface:#F5F3F1;--surface-2:#ECEAE7;--line:rgba(0,0,0,.08);--muted:rgba(0,0,0,.56);--ring:0 0 0 .5px rgba(0,0,0,.125);--pass:#16A34A;color:#000}
 .stage{display:flex;gap:18px;justify-content:center;align-items:flex-end;margin-top:28px;perspective:900px}
 .dev-wrap{display:grid;justify-items:center;gap:10px}
 .dev-wrap small{font:500 11px var(--mono);color:var(--muted)}
@@ -437,7 +437,6 @@ section{padding:72px 0}
 
 /* projects */
 .projects{display:grid;gap:16px}
-@media(min-width:900px){.projects{grid-template-columns:repeat(3,1fr)}.p-olx{grid-column:span 3}}
 .proj{border-radius:var(--r-lg);overflow:hidden;background:var(--card);box-shadow:var(--ring);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
 .proj:hover{transform:translateY(-3px);box-shadow:var(--ring),0 18px 40px -20px rgba(0,0,0,.25)}
 .proj-art{position:relative;height:200px;overflow:hidden;background:var(--surface)}
@@ -469,32 +468,23 @@ section{padding:72px 0}
 @media(min-width:560px){.areas{grid-template-columns:1fr 1fr}}
 .areas li{display:flex;gap:10px;align-items:center;font-size:14.5px;padding:11px 12px;border-radius:12px;background:var(--surface)}
 .areas li svg{flex:none;color:var(--pass)}
-.art-saas{display:grid;place-items:center;background:radial-gradient(80% 80% at 10% 90%,rgba(125,166,227,.6),transparent 60%),radial-gradient(70% 70% at 90% 10%,rgba(196,181,253,.7),transparent 60%),#E8EEFB}
-.saas{width:82%;background:#fff;border-radius:12px;box-shadow:0 18px 30px -16px rgba(0,0,0,.3);display:grid;grid-template-columns:42px 1fr;overflow:hidden;height:136px}
-.saas .side{background:#111;padding:10px 8px;display:grid;gap:7px;align-content:start}
-.saas .side i{height:5px;border-radius:3px;background:#3a3a3e}
-.saas .side i:first-child{background:var(--mint);width:60%}
-.saas .main{padding:10px;display:grid;gap:7px;align-content:start}
-.saas .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.saas .kpis div{height:26px;border-radius:6px;background:var(--surface)}
-.saas .chart{height:40px;border-radius:6px;background:linear-gradient(180deg,rgba(125,166,227,.35),transparent),var(--surface);clip-path:polygon(0 80%,15% 60%,30% 68%,45% 35%,60% 45%,75% 20%,90% 30%,100% 10%,100% 100%,0 100%)}
-.saas .rows i{display:block;height:5px;border-radius:3px;background:var(--surface-2);margin-top:5px}
-/* project art: wireframes in each product's own colours; no logos, text or real screens */
-.art{display:flex;justify-content:center;align-items:flex-start;gap:14px;padding:22px 16px 0;background:radial-gradient(80% 90% at 10% 100%,var(--soft-a),transparent 65%),radial-gradient(70% 80% at 92% 0%,var(--soft-b),transparent 60%),#EEF1F4}
-.art.web{align-items:center;padding:16px}
+/* project art: screens of the features I tested, redrawn in HTML from the live product. Sizes inside .ox are the
+   screen's own pixels (a 499px phone, a 1000px browser); zoom shrinks the whole screen to fit the frame. */
+.art{height:auto;background:radial-gradient(80% 90% at 10% 100%,var(--soft-a),transparent 65%),radial-gradient(70% 80% at 92% 0%,var(--soft-b),transparent 60%),#EEF1F4}
 .art .device{flex:none}
-.art-olx{--brand:#3A77FF;--brand-2:#002F34;--soft-a:rgba(58,119,255,.32);--soft-b:rgba(35,229,219,.38)}
-.art-ek{--brand:#2446A6;--brand-2:#E0382E;--soft-a:rgba(36,70,166,.3);--soft-b:rgba(224,56,46,.22)}
-.art-wh{--brand:#E53935;--brand-2:#1F2933;--soft-a:rgba(229,57,53,.3);--soft-b:rgba(255,183,77,.3)}
-/* OLX screens redrawn from the live app. Sizes below are the phone's own pixels (499px wide screen),
-   then zoom shrinks the whole screen to fit the frame, so the layout stays true to the original. */
-.p-olx .proj-art{height:auto;display:block;padding:0}
+.art-olx{--soft-a:rgba(58,119,255,.32);--soft-b:rgba(35,229,219,.38)}
+.art-ek{--soft-a:rgba(36,70,166,.3);--soft-b:rgba(224,0,77,.2)}
+.art-sir{--soft-a:rgba(31,155,215,.3);--soft-b:rgba(14,42,85,.22)}
+.art-wh{--soft-a:rgba(229,57,53,.3);--soft-b:rgba(255,183,77,.3)}
 .ox-row{--oz:.4;display:flex;gap:28px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:thin;padding:58px 24px 24px}
+.art-ek .ox-row,.art-sir .ox-row{--oz:.58}
+.art-wh .ox-row{--oz:.38}
+@media(min-width:900px){.proj:not(.p-olx){display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}}
 .ox-row>:first-child{margin-left:auto}.ox-row>:last-child{margin-right:auto}
 .ox-row:focus-visible{outline:2px solid var(--ink);outline-offset:-4px}
-.ox-dev{width:calc(499px * var(--oz) + 12px);height:calc(1080px * var(--oz) + 12px);border-radius:40px;scroll-snap-align:center}
+.ox-dev{width:calc(var(--w,499px) * var(--oz) + 12px);height:calc(var(--h,1080px) * var(--oz) + 12px);border-radius:40px;scroll-snap-align:center}
 .ox-dev .scr{border-radius:34px}
-.ox{zoom:var(--oz);position:relative;width:499px;height:1080px;flex:none;display:flex;flex-direction:column;background:#fff;color:#0B2E33;font:400 15px/1.3 var(--sans)}
+.ox{zoom:var(--oz);position:relative;width:var(--w,499px);height:var(--h,1080px);flex:none;display:flex;flex-direction:column;background:#fff;color:#0B2E33;font:400 15px/1.3 var(--sans)}
 .ox b{font-weight:600}
 .ox-isl{position:absolute;top:12px;left:50%;width:118px;height:34px;margin-left:-59px;border-radius:20px;background:#000;z-index:3}
 .ox-sb{display:flex;justify-content:space-between;align-items:center;height:58px;flex:none;padding:6px 48px 0;font-size:19px}
@@ -551,7 +541,7 @@ section{padding:72px 0}
 .ox-hd img{width:46px;height:34px}
 .ox-loc{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:15px;font-weight:600}
 .ox-loc svg{width:24px;height:24px}
-.ox-dn{width:10px;height:10px;margin:0 4px 0 6px;border-right:2px solid;border-bottom:2px solid;transform:translateY(-3px) rotate(45deg)}
+.ox-dn{display:inline-block;width:10px;height:10px;margin:0 4px 0 6px;border-right:2px solid;border-bottom:2px solid;transform:translateY(-3px) rotate(45deg)}
 .ox-search{display:flex;align-items:center;gap:8px;height:40px;flex:none;margin:6px 14px 0;padding:0 12px;border:1.5px solid #DADDE0;border-radius:8px;color:#8C979C;font-size:15px}
 .ox-search svg{width:18px;height:18px}
 .ox-home{flex:1;min-height:0;overflow:hidden;margin-top:12px;border-top:1px solid #E3E6E8}
@@ -616,27 +606,123 @@ section{padding:72px 0}
 .ox-acts{display:flex;gap:16px;flex:none;margin-top:auto;padding:16px 20px 56px;background:#fff}
 .ox-acts span{flex:1;padding:15px;border:1.5px solid #E3E3E3;border-radius:6px;color:#BDBDBD;text-align:center;font-size:16px;font-weight:600}
 .ox-acts .on{border-color:#EEE;background:#EEE}
-.p-olx .proj-art .lbl{top:14px;bottom:auto}
-@media(max-width:599px){.ox-row{--oz:.36;gap:16px;padding:58px 16px 20px}}
-.wf{flex:1;display:flex;flex-direction:column;gap:6px;padding:22px 9px 9px}
-.wf i{display:block;height:5px;border-radius:3px;background:#E4E7EB}
-.wf .h{height:7px;width:46%;background:#1F2933}
-.wf .box{border:1px solid #E4E7EB;border-radius:7px;padding:6px;display:grid;gap:5px}
-.wf .wb{display:block;height:14px;border-radius:5px;background:var(--brand)}
-.wf .field{display:block;height:13px;border:1px solid #D0D5DD;border-radius:4px}
-.wf .row{display:flex;gap:6px;align-items:center}
-.wf .row i{flex:1}
-.wf .ava{width:16px;height:16px;flex:none;border-radius:50%;background:#D0D5DD}
-.wf .map{position:relative;min-height:96px;border-radius:7px;background:linear-gradient(90deg,transparent 47%,#fff 47% 53%,transparent 53%),linear-gradient(0deg,transparent 58%,#fff 58% 64%,transparent 64%),#E6EAEE}
-.wf .map svg{position:absolute;inset:0;width:100%;height:100%}
-.route{fill:none;stroke:var(--brand);stroke-width:3;stroke-dasharray:5 4;stroke-linecap:round}
-.pin{fill:var(--brand)}.pin.to{fill:var(--brand-2)}
-.wf-web{width:86%}
-.wf-web .wf{padding:10px}
-.wf .wf-hero{display:block;height:28px;border-radius:6px;background:linear-gradient(90deg,var(--brand),#5B7BD6)}
-.wf .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.wf .grid b{height:38px;border-radius:5px;border:1px solid #E4E7EB;background:linear-gradient(#F2F4F7 0 55%,transparent 55%)}
-.wf .grid b:first-child{border-color:var(--brand-2)}
+.proj-art.art .lbl{top:14px;bottom:auto}
+@media(max-width:599px){.ox-row,.art-ek .ox-row,.art-sir .ox-row,.art-wh .ox-row{--oz:.36;gap:16px;padding:58px 16px 20px}}
+.ox-web{--w:1000px;--h:560px;flex:none;width:calc(var(--w) * var(--oz));scroll-snap-align:start}
+.ek{background:#fff;color:#1F2933;font-size:13px}
+.ek-top{display:flex;gap:28px;height:40px;flex:none;align-items:center;padding:0 40px;background:#F3F4F6;color:#4B5563}
+.ek-top em{margin-left:6px;padding:1px 6px;border-radius:8px;background:#E0004D;color:#fff;font:normal 600 11px/1.4 var(--sans)}
+.ek-top .ox-dn,.ek-kat .ox-dn{width:6px;height:6px;margin:0 0 0 8px;border-width:1.5px}
+.ek-hd{display:flex;align-items:center;gap:22px;height:62px;flex:none;padding:0 40px;border-bottom:1px solid #EEF0F2}
+.ek-hd img{width:88px;height:24px;object-fit:contain}
+.ek-kat{font-size:15px;font-weight:500}
+.ek-search{flex:1;display:flex;align-items:center;gap:10px;height:34px;padding:0 12px;border:1px solid #D1D5DB;border-radius:6px;color:#9CA3AF}
+.ek-search svg{width:16px;height:16px}
+.ek-in,.ek-up{padding:7px 12px;border-radius:6px;border:1px solid #E0004D;color:#E0004D;font-weight:600}
+.ek-up{background:#E0004D;color:#fff}
+.ek-main{padding:12px 70px 0}
+.ek-ban{position:relative;height:190px;overflow:hidden;padding:30px 0 0 60px;border-radius:6px;background:linear-gradient(100deg,#1D1A9E,#2C2FC9 60%,#2340D6);color:#fff}
+.ek-ban::after{content:"";position:absolute;inset:0 0 0 48%;background:repeating-linear-gradient(90deg,transparent 0 22px,rgba(84,132,255,.45) 22px 40px);border-radius:0 6px 6px 0;mask-image:linear-gradient(90deg,transparent,#000 40%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%)}
+.ek-ban em{display:block;font:italic 700 24px/1.2 var(--sans)}
+.ek-ban b{display:block;margin-top:6px;font:800 44px/1.02 var(--sans);letter-spacing:.01em}
+.ek-dots{position:absolute;left:20px;bottom:14px;display:flex;gap:4px}
+.ek-dots b{width:38px;height:6px;margin:0;border-radius:3px;background:#fff}
+.ek-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.8)}
+.ek-sec{display:flex;align-items:baseline;gap:14px;margin:22px 0 12px}
+.ek-sec b{font-size:19px;font-weight:700}
+.ek-sec span{color:#2D3FD0;font-size:12px;font-weight:500}
+.ek-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.ek-card{display:grid;gap:3px;align-content:start;padding-bottom:10px;border:1px solid #E5E7EB;border-radius:6px;font-size:12.5px}
+.ek-card>*:not(.ek-img){margin:0 10px}
+.ek-img{position:relative;display:grid;place-items:center;height:118px;margin-bottom:6px;background:#F3F4F6;border-radius:6px 6px 0 0;color:#9CA3AF}
+.ek .ek-img svg{width:54px;height:54px;stroke-width:1.2}
+.ek-img em{position:absolute;left:6px;top:6px;padding:1px 6px;border-radius:3px;background:#fff;color:#2D6CDF;font:normal 500 11px/1.5 var(--sans)}
+.ek-img em.dk{left:58px;background:#374151;color:#fff}
+.ek-card b{font-size:13px;font-weight:700}
+.ek-tk{justify-self:start;padding:0 4px;background:#0E8F3E;color:#fff;font-size:11px;font-weight:600}
+.ek-card small{color:#6B7280;font-size:11px}
+.ek-card u{text-decoration:none;color:#2D6CDF;font-weight:600}
+.sc{background:#fff;color:#14213D;font-size:13px}
+.sc-hd{display:flex;align-items:center;gap:24px;height:56px;flex:none;padding:0 64px;font-size:11px;letter-spacing:.04em;color:#1F2937}
+.sc-hd img{width:104px;height:27px;margin-right:auto}
+.sc-hd .on::before{content:"";display:inline-block;width:6px;height:6px;margin-right:5px;border-radius:50%;background:#1F9BD7;vertical-align:1px}
+.sc-flag{width:26px;height:16px;margin-left:12px;background:linear-gradient(90deg,transparent 42%,#fff 42% 46%,#C8102E 46% 54%,#fff 54% 58%,transparent 58%),linear-gradient(transparent 34%,#fff 34% 40%,#C8102E 40% 60%,#fff 60% 66%,transparent 66%),#012169}
+.sc-hd .ox-dn{width:7px;height:7px;margin:0}
+.sc-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;height:86px;flex:none;padding:6px 64px 0}
+.sc-cards span{position:relative;padding-top:14px;font-size:16px;font-weight:600;line-height:1.25}
+.sc-cards span::before{content:"";position:absolute;left:-8px;right:20px;top:-6px;height:12px;border-radius:0 0 22px 22px;background:linear-gradient(90deg,#D9C6B4,#8A6F5A)}
+.sc-cta{position:relative;flex:1;display:grid;grid-template-columns:1fr 1.05fr;gap:50px;overflow:hidden;padding:24px 64px 0;background:linear-gradient(160deg,#0B1F3F,#1C4A86 45%,#4E86C9 70%,#1A3E73)}
+.sc-cta i[class^="g"]{position:absolute;inset:0}
+.sc-cta .g1{background:linear-gradient(#8DB4E6,#3D6DAF);clip-path:polygon(0 52%,32% 34%,48% 100%,0 100%);opacity:.75}
+.sc-cta .g2{background:linear-gradient(200deg,#D5E6F8,#5C8FCF);clip-path:polygon(40% 30%,62% 18%,58% 100%,38% 100%);opacity:.6}
+.sc-cta .g3{background:linear-gradient(120deg,transparent 47%,rgba(255,255,255,.7) 50%,transparent 53%);clip-path:polygon(55% 0,100% 0,100% 70%,70% 100%)}
+.sc-say,.sc-form{position:relative}
+.sc-say b{display:block;margin-bottom:22px;color:#fff;font-size:22px;font-weight:600;line-height:1.25}
+.sc-form{display:grid;gap:3px;align-content:start;color:#fff;font-size:10px;font-weight:600}
+.sc-form i{display:flex;align-items:center;height:29px;margin-bottom:5px;padding:0 10px;border-radius:4px;background:#fff;color:#6B7280;font:normal 400 12.5px var(--sans)}
+.sc-form .sel{justify-content:space-between}
+.sc-form .sel::after{content:"";width:6px;height:6px;border-right:1.5px solid #374151;border-bottom:1.5px solid #374151;transform:translateY(-2px) rotate(45deg)}
+.sc-form .msg{align-items:flex-start;height:56px;padding-top:9px}
+.sc-form em{padding:9px;border-radius:4px;background:#D6F6FC;color:#0A8BB0;text-align:center;font:normal 600 11px var(--sans)}
+.why-dev{--w:450px;--h:1000px;border-radius:26px}
+.why-dev .scr{border-radius:21px}
+.why{background:#F5F5F5;color:#222;font-size:15px}
+.why-head{position:relative;height:215px;flex:none;margin-bottom:-79px;background:radial-gradient(60% 40% at 80% 70%,#E5564C,transparent 70%),radial-gradient(70% 40% at 10% 85%,#E04B41,transparent 70%),#D23A30;color:#fff}
+.why-sb{position:relative;display:flex;justify-content:space-between;align-items:center;height:40px;padding:4px 22px 0;font-size:13px}
+.why-sb span{display:flex;align-items:center;gap:5px;font-weight:600}
+.why-sig{width:10px;height:11px;background:linear-gradient(90deg,#fff 0 25%,transparent 25% 37%,#fff 37% 62%,transparent 62% 75%,#fff 75%);clip-path:polygon(0 100%,100% 0,100% 100%)}
+.why-cam{position:absolute;left:50%;top:10px;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#111}
+.why-bar{display:flex;align-items:center;gap:24px;padding:14px 22px 0}
+.why-logo{position:relative;width:36px;height:36px;flex:none;border:3px solid #fff;border-radius:50%}
+.why-logo::after{content:"";position:absolute;left:7px;top:7px;width:10px;height:10px;border:3px solid #fff;border-radius:50% 50% 50% 0}
+.why-search{flex:1;display:flex;align-items:center;gap:12px;height:41px;padding:0 22px;border-radius:21px;background:#fff;color:#666;font-size:16px;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.why-search svg{width:16px;height:16px}
+.why-car{position:relative;display:flex;gap:19px;align-items:center;flex:none;margin:0 -19px}
+.why-car .peek{width:34px;height:160px;flex:none;border-radius:16px;background:#F2B8A8}
+.why-ban{position:relative;flex:1;height:192px;overflow:hidden;border-radius:22px;background:radial-gradient(60% 60% at 30% 60%,#FFC93C,transparent 70%),linear-gradient(120deg,#F59E1B,#F8C42A 60%,#F7B21E);color:#fff}
+.why-ban>small{position:absolute;left:14px;top:12px;font-size:7px;font-weight:600}
+.why-tag{position:absolute;right:10px;top:8px;color:#fff;font:italic 800 10px/1 var(--sans);text-align:center;text-shadow:0 0 2px #C0392B,0 0 2px #C0392B}
+.why-ban>b{position:absolute;left:12px;font-weight:800;line-height:1}
+.why-t1{top:56px;font-size:32px;color:#fff;text-shadow:0 2px 0 #B83228}
+.why-t2{top:92px;font-size:19px;color:#F25F1E;text-shadow:0 0 2px #fff,0 0 2px #fff,0 0 2px #fff}
+.why-t3{top:114px;font-size:15px;text-shadow:0 0 2px #B83228,0 0 2px #B83228}
+.why-disc{position:absolute;left:216px;top:46px;display:grid;width:72px;height:82px;align-content:center;padding:0 7px;border-radius:8px;background:#E8C21B;font-size:6px;font-weight:700}
+.why-disc b{font-size:13px;font-weight:800}
+.why-disc strong{font-size:26px;line-height:1;font-weight:800}
+.why-pic{position:absolute;left:294px;top:46px;display:grid;place-items:center;width:72px;height:82px;border-radius:8px;background:#E7E54A}
+.why-pic i{width:30px;height:28px;border-radius:4px 4px 10px 10px;background:#A55AD8;box-shadow:12px -10px 0 -8px #4FB6E8}
+.why-code{position:absolute;left:214px;top:136px;display:grid;width:154px;padding:2px 6px 3px;border-radius:4px;background:#fff;color:#D23A30;text-align:center;font-size:13px;font-weight:800}
+.why-code small{font-size:5px;color:#C0392B}
+.why-ban>.why-until{left:auto;top:auto;right:12px;bottom:8px;font-size:5px}
+.why-dots{display:flex;justify-content:center;gap:7px;margin:22px 0 33px}
+.why-dots i,.why-dots b{width:11px;height:11px;border-radius:50%;background:#CFCFCF}
+.why-dots b{background:#CC3A2E}
+.why-loy{flex:none;margin:0 22px}
+.why-lt{display:flex;align-items:center;gap:14px;padding:12px 16px 14px 14px;border-radius:20px 20px 0 0;background:#D23A30;color:#FFE1DC;font-size:15px;line-height:1.35}
+.why-lt b{display:block;color:#fff;font-size:16px}
+.why-star{width:20px;height:20px;flex:none;border-radius:50%;background:#F5A623;box-shadow:inset 0 0 0 4px #FBD06A}
+.why-chev{width:9px;height:9px;flex:none;margin-left:auto;border-right:2px solid;border-bottom:2px solid;transform:rotate(-45deg)}
+.why-ref{display:flex;align-items:center;gap:14px;height:52px;padding:0 18px 0 16px;border:1.5px dashed #D23A30;border-top:0;border-radius:0 0 20px 20px;background:#FBEAEA;color:#333;font-size:17px}
+.why-ref b{margin-left:auto;color:#D23A30;font-size:17px;font-weight:700}
+.why-ref .why-chev{margin-left:0;color:#333}
+.why-gift{width:18px;height:18px;flex:none;border-radius:3px;background:linear-gradient(90deg,transparent 42%,#F5A623 42% 58%,transparent 58%),#E8513F}
+.why-h{display:block;margin:50px 0 24px 23px;font-size:22px;font-weight:700}
+.why-svc{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 0;padding:0 12px}
+.why-svc span{display:grid;justify-items:center;gap:12px;font-size:17px}
+.why-svc i{display:grid;place-items:center;width:59px;height:59px;border-radius:14px;background:#C8372D;color:#fff}
+.why .why-svc svg{width:30px;height:30px;stroke-width:2.2}
+.why-next{position:absolute;left:310px;top:765px;width:32px;height:32px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+.why-next::after{content:"";position:absolute;left:10px;top:11px;width:8px;height:8px;border-right:2.5px solid #111;border-top:2.5px solid #111;transform:rotate(45deg)}
+.why-bot{position:absolute;left:352px;top:786px;display:grid;place-items:start center;width:86px;height:80px;padding-top:5px;border-radius:50%;background:radial-gradient(circle at 50% 62%,#B9BEC6 0 46%,transparent 47%),radial-gradient(circle at 50% 50%,#fff 0 60%,transparent 61%);border:4px solid #D23A30;color:#D23A30;font-size:8px;font-weight:700}
+.why-tabs{display:flex;justify-content:space-around;height:66px;flex:none;margin-top:auto;padding-top:8px;border-radius:20px 20px 0 0;background:#fff;box-shadow:0 -1px 0 #ECECEC;color:#444;font-size:16px}
+.why-tabs span{display:grid;justify-items:center;align-content:start;gap:4px}
+.why-tabs svg{width:20px;height:20px}
+.why .why-tabs .on svg{fill:#E8513F;stroke:none}
+.why-nav{display:flex;justify-content:space-around;align-items:center;height:49px;flex:none;background:#111}
+.why-nav i{width:16px;height:16px;border:2px solid #9A9A9A}
+.why-nav .b{width:11px;height:11px;border-width:0 0 2px 2px;transform:rotate(45deg)}
+.why-nav .h{border-radius:50%}
+.why-nav .m{height:12px;border-width:2px 0}
 
 /* languages + test management, under the capability cards */
 .stack{display:grid;gap:16px;margin-top:16px}
@@ -1221,11 +1307,25 @@ footer .wrap{display:grid;gap:14px}
       </article>
 
       <article class="proj rv">
-        <div class="proj-art art web art-ek">
-          <div class="browser wf-web" aria-hidden="true"><div class="btop"><div class="lights"><i></i><i></i><i></i></div><div class="url"></div></div>
-            <div class="wf"><div class="row"><i class="h" style="flex:none;width:22%;background:var(--brand)"></i><span class="field" style="flex:1"></span></div><span class="wf-hero"></span><div class="grid"><b></b><b></b><b></b><b></b></div></div>
+        <div class="proj-art art art-ek">
+          <div class="ox-row" tabindex="0" role="region" aria-label="e-Katalog home page I tested, redrawn from the live site">
+          <div class="browser ox-web" aria-hidden="true"><div class="btop"><div class="lights"><i></i><i></i><i></i></div><div class="url">katalog.inaproc.id</div></div><div class="ox ek">
+            <div class="ek-top"><span>Produk Hukum<i class="ox-dn"></i></span><span>Dashboard Data INAPROC</span><span>Pusat Bantuan<i class="ox-dn"></i></span><span>Berita<i class="ox-dn"></i></span><span>Toko Daring<em>Baru</em></span></div>
+            <div class="ek-hd"><img src="assets/logo-ekatalog.webp" alt="" width="108" height="30" loading="lazy"><span class="ek-kat">Kategori<i class="ox-dn"></i></span><span class="ek-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Cari produk &amp; penyedia di sini...</span><span class="ek-in">Masuk</span><span class="ek-up">Daftar</span></div>
+            <div class="ek-main">
+              <div class="ek-ban"><em>Selamat Datang di</em><b>KATALOG<br>ELEKTRONIK V.6</b><span class="ek-dots"><b></b><i></i><i></i><i></i><i></i><i></i></span></div>
+              <div class="ek-sec"><b>Produk Bersertifikat TKDN</b><span>Lihat Semua ›</span></div>
+              <div class="ek-grid">
+                <div class="ek-card"><span class="ek-img"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M11 18h2"/></svg><em>Barang</em><em class="dk">Stok Habis</em></span><p>Tablet 11 inci 5G</p><b>Rp 22.921.500,00</b><span class="ek-tk">TKDN+BMP 53.21%</span><small>PDN</small><small><u>UMKK</u> Kab. Kapuas</small><small>Terjual 5,00</small></div>
+                <div class="ek-card"><span class="ek-img"><svg viewBox="0 0 24 24"><path d="M7 4h10v8H7zM6 12h12v3H6zM8 15v5M16 15v5"/></svg><em>Barang</em></span><p>Kursi Rapat Kulit</p><b>Rp 4.162.500,00</b><span class="ek-tk">TKDN+BMP 56.33%</span><small>PDN</small><small><u>UMKK</u> Kota Tangerang</small><small>Terjual 0</small></div>
+                <div class="ek-card"><span class="ek-img"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M7 10h4M7 14h4M15 10v4"/></svg><em>Barang</em></span><p>Genset Silent 1800 KVA</p><b>Rp 9.745.955.005,00</b><span class="ek-tk">TKDN+BMP 40%</span><small>PDN</small><small><u>UMKK</u> Kota Tangerang</small><small>Terjual 0</small></div>
+                <div class="ek-card"><span class="ek-img"><svg viewBox="0 0 24 24"><path d="M8 3L3 6l2 4 3-1v12h8V9l3 1 2-4-5-3a4 4 0 01-8 0z"/></svg><em>Barang</em><em class="dk">Pre Order</em></span><p>Seragam Dinas Pesiar SMA</p><b>Rp 388.500,00</b><span class="ek-tk">TKDN+BMP 38%</span><small>PDN</small><small><u>UMKK</u> Kab. Karanganyar</small><small>Terjual 0</small></div>
+                <div class="ek-card"><span class="ek-img"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V5h6v3M3 13h18"/></svg><em>Barang</em></span><p>Modul Percobaan Fisika</p><b>Rp 81.500.000,00</b><span class="ek-tk">TKDN+BMP 40%</span><small>PDN</small><small><u>UMKK</u> Kab. Tasikmalaya</small><small>Terjual 0</small></div>
+              </div>
+            </div>
+          </div></div>
           </div>
-          <span class="pass-stamp">PASSED</span><span class="lbl">Web</span>
+          <span class="pass-stamp">PASSED</span><span class="lbl">Features I tested · redrawn</span>
         </div>
         <div class="proj-body">
           <img class="brand-logo tall" src="assets/logo-ekatalog.webp" alt="INAPROC Katalog Elektronik" width="430" height="119">
@@ -1238,9 +1338,26 @@ footer .wrap{display:grid;gap:14px}
       </article>
 
       <article class="proj rv">
-        <div class="proj-art art-saas" aria-hidden="false">
-          <div class="saas" aria-hidden="true"><div class="side"><i></i><i></i><i></i><i></i></div><div class="main"><div class="kpis"><div></div><div></div><div></div></div><div class="chart"></div><div class="rows"><i></i><i style="width:70%"></i></div></div></div>
-          <span class="pass-stamp">PASSED</span><span class="lbl">Web · SaaS</span>
+        <div class="proj-art art art-sir">
+          <div class="ox-row" tabindex="0" role="region" aria-label="SIRCLO contact form I tested, redrawn from the live site">
+          <div class="browser ox-web" aria-hidden="true"><div class="btop"><div class="lights"><i></i><i></i><i></i></div><div class="url">sirclo.com</div></div><div class="ox sc">
+            <div class="sc-hd"><img src="assets/logo-sirclo.webp" alt="" width="104" height="27" loading="lazy"><span>ABOUT</span><span class="on">SOLUTIONS</span><span>CLIENTS</span><span>GOVERNANCE</span><span>CAREER</span><span>CONTACT</span><i class="sc-flag"></i><i class="ox-dn"></i></div>
+            <div class="sc-cards"><span>Market Presence<br>through Live ...</span><span>Accelerating Scale<br>with Integrated ...</span><span>Expanding Access<br>through Smarter ...</span><span>Strengthening<br>Performance ...</span></div>
+            <div class="sc-cta"><i class="g1"></i><i class="g2"></i><i class="g3"></i>
+              <div class="sc-say"><b>Ready to scale your brand with SIRCLO?</b><b>Fill out the form, and we'll be in touch.</b></div>
+              <div class="sc-form">
+                <span>Full Name*</span><i>Jane Smith</i>
+                <span>Company/Institution*</span><i>Company/Institution</i>
+                <span>Work Email*</span><i>work@email.com</i>
+                <span>Contact Number*</span><i>081234567890</i>
+                <span>Subject*</span><i class="sel">Subject</i>
+                <span>Message*</span><i class="msg">Message</i>
+                <em>Submit</em>
+              </div>
+            </div>
+          </div></div>
+          </div>
+          <span class="pass-stamp">PASSED</span><span class="lbl">Features I tested · redrawn</span>
         </div>
         <div class="proj-body">
           <img class="brand-logo" src="assets/logo-sirclo.webp" alt="SIRCLO" width="277" height="72">
@@ -1253,12 +1370,39 @@ footer .wrap{display:grid;gap:14px}
 
       <article class="proj rv">
         <div class="proj-art art art-wh">
-          <div class="device ios" aria-hidden="true"><div class="scr"><span class="island"></span><div class="wf">
-            <div class="map"><svg viewBox="0 0 100 96"><path class="route" d="M20 80 C 34 50, 62 70, 78 22"/><circle class="pin" cx="20" cy="80" r="5"/><circle class="pin to" cx="78" cy="22" r="5"/></svg></div>
-            <div class="box"><div class="row"><span class="ava"></span><i></i></div><i style="width:70%"></i></div>
-            <span class="wb"></span>
+          <div class="ox-row" tabindex="0" role="region" aria-label="Wehelpyou Android home screen I tested, redrawn from the live app">
+          <div class="device android ox-dev why-dev" aria-hidden="true"><div class="scr"><div class="ox why">
+            <div class="why-head">
+              <div class="why-sb"><b>14.34</b><i class="why-cam"></i><span>4G <i class="why-sig"></i> 31%</span></div>
+              <div class="why-bar"><i class="why-logo"></i><span class="why-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Mau tahu? Google-in aja!</span></div>
+            </div>
+            <div class="why-car"><i class="peek"></i><div class="why-ban">
+              <small>Wehelpyou</small><em class="why-tag">#KENAPA<br>ENGGAK</em>
+              <b class="why-t1">Hunian</b><b class="why-t2">Bersih &amp; Nyaman</b><b class="why-t3">di Wehelpyou Clean</b>
+              <span class="why-disc"><b>Diskon</b><strong>15%</strong>min. order 135Rb</span><span class="why-pic"><i></i></span>
+              <span class="why-code"><small>Kode voucher</small>WEHELPYOU15</span><small class="why-until">Voucher berlaku sampai 31 Januari 2023</small>
+            </div><i class="peek"></i></div>
+            <div class="why-dots"><i></i><i></i><b></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="why-loy"><div class="why-lt"><i class="why-star"></i><div><b>Lengkapi profil untuk gabung di Program Loyalty!</b>Yuk lengkapi dulu data profil-mu untuk mendapat reward spesial</div><i class="why-chev"></i></div><div class="why-ref"><i class="why-gift"></i>Kode Referral<b>WHYDEMO2023</b><i class="why-chev"></i></div></div>
+            <b class="why-h">Layanan</b>
+            <div class="why-svc">
+              <span><i><svg viewBox="0 0 24 24"><path d="M3 7h9v8H3zM12 10h4l3 3v2h-7M6 18a1.5 1.5 0 100-.1M16 18a1.5 1.5 0 100-.1"/></svg></i>Delivery</span>
+              <span><i><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/></svg></i>Buy</span>
+              <span><i><svg viewBox="0 0 24 24"><path d="M4 9l2-5h12l2 5M5 9v11h14V9M4 9h16M10 20v-6h4v6"/></svg></i>Sell</span>
+              <span><i><svg viewBox="0 0 24 24"><path d="M12 3v8M8 11h8l1 9H7zM10 20v-4M14 20v-4"/></svg></i>Clean</span>
+              <span><i><svg viewBox="0 0 24 24"><path d="M4 10h16v10H4zM8 10a4 4 0 018 0"/></svg></i>Groceries</span>
+            </div>
+            <i class="why-next"></i><span class="why-bot">Asisten</span>
+            <div class="why-tabs">
+              <span class="on"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>Beranda</span>
+              <span><svg viewBox="0 0 24 24"><path d="M7 3h11v18H7zM10 8h5M10 12h5M10 16h3M4 7h3"/></svg>Riwayat</span>
+              <span><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Info</span>
+              <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3l2 2.5 3-.5 1 3 2.5 2-1.5 2.5 1.5 2.5-2.5 2-1 3-3-.5L12 21l-2-2.5-3 .5-1-3L3.5 14 5 12 3.5 9.5 6 7.5l1-3 3 .5z"/></svg>Pengaturan</span>
+            </div>
+            <div class="why-nav"><i class="b"></i><i class="h"></i><i class="m"></i></div>
           </div></div></div>
-          <span class="pass-stamp">PASSED</span><span class="lbl">Mobile · Manual</span>
+          </div>
+          <span class="pass-stamp">PASSED</span><span class="lbl">Features I tested · redrawn</span>
         </div>
         <div class="proj-body">
           <img class="brand-logo" src="assets/logo-wehelpyou.webp" alt="Wehelpyou" width="368" height="72">
